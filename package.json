@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check-types": "tsc --project tsconfig.json --pretty --noEmit"
+    "check-types": "tsc --project tsconfig.json --pretty --noEmit",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "yarn run pages:build && wrangler pages dev",
+    "deploy": "yarn run pages:build && wrangler pages deploy"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
@@ -40,6 +43,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.7.2",
+    "vercel": "^39.2.5",
     "wrangler": "^3.99.0"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"

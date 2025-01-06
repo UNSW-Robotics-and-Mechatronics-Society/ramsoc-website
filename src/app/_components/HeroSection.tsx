@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <div className="relative mb-16 flex h-[800] w-full items-center justify-center">
+    <div className="relative mb-16 flex h-[800px] w-full items-center justify-center">
       <div className="absolute left-0 top-0 -z-10 h-full w-full">
         <Image
           className="h-full w-full object-cover"
@@ -18,7 +18,7 @@ export default function HeroSection() {
       <div className="flex flex-col items-center justify-center gap-8 px-4 text-white">
         <div className="flex flex-col items-center justify-center gap-y-4 md:flex-row md:gap-4">
           <Image
-            className="w-[300px] md:order-2 xl:w-[400]"
+            className="w-[300px] md:order-2 xl:w-[400px]"
             src="/logo.svg"
             alt="Ramsoc logo"
             width={400}

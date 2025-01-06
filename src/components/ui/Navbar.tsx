@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <nav className="absolute z-50 h-24 w-full">
-      <div className="text-primary-50 mx-auto flex h-full w-full max-w-[1200] items-center">
+      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center text-primary-50">
         <Image
           src="/logo.svg"
           alt="logo for ramsoc"

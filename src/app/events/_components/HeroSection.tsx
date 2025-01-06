@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <div className="relative mb-16 flex h-[800] w-full items-center justify-center">
+    <div className="relative mb-16 flex h-[800px] w-full items-center justify-center">
       <div className="absolute left-0 top-0 -z-10 h-full w-full">
         <Image
           className="h-full w-full object-cover"

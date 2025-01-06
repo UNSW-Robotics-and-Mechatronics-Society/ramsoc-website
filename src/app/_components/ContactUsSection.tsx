@@ -9,7 +9,7 @@ import {
 export default function ContactUsSection() {
   return (
     <div className="w-full bg-gradient-to-b from-neutral-50 via-primary-100 to-primary-100 pb-16">
-      <div className="mx-auto flex w-full max-w-[1200] flex-col items-center">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center">
         <h2 id="contact" className="text-center text-5xl">
           Contact Us
         </h2>

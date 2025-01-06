@@ -1,7 +1,7 @@
 import { LuBookOpenText, LuBuilding2, LuRocket, LuUsers } from "react-icons/lu";
 export default function AboutUsSection() {
   return (
-    <div className="mx-auto mb-16 w-full max-w-[1200]">
+    <div className="mx-auto mb-16 w-full max-w-[1200px]">
       <h2 className="mb-8 text-center text-5xl">About Us</h2>
       <div className="grid w-full justify-items-center gap-y-12 text-primary-800 sm:grid-cols-2">
         <div className="flex w-full max-w-96 flex-col items-center gap-12 text-center">

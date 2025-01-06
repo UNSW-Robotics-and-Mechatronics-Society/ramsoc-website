@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function SponsoredSection() {
   return (
-    <div className="mx-auto mb-16 w-full max-w-[1200]">
+    <div className="mx-auto mb-16 w-full max-w-[1200px]">
       <h2 className="mb-16 text-center text-5xl">Sponsored By</h2>
       <InfiniteMovingCards
         direction="left"

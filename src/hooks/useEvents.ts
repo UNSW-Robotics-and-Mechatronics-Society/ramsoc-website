@@ -20,10 +20,12 @@ export default function useEvents() {
 
   const allEvents = useMemo(() => {
     if (!query.data) return;
+    console.log(query);
     // Data comes back in many pages so we flatten to a singular dimension
     const flattenedData = query.data.pages.flatMap((v) => {
       return v.data;
     });
+    console.log(flattenedData);
 
     // Seperate events in to upcoming and past
     const upcomingEvents = flattenedData.filter((v) => {
