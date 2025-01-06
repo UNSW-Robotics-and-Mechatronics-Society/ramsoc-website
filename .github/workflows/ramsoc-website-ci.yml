@@ -1,0 +1,31 @@
+name: Next.js App CI
+on:
+  push:
+    branches: ["*"]
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+  pull_request:
+    branches: [master, dev]
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+jobs:
+  all-cli-checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nextjs-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Set environment variables
+        run: mv .env
+      - name: Install dependencies
+        run: yarn
+      - name: Run linter
+        run: yarn lint
+      - name: Build application
+        run: yarn build
