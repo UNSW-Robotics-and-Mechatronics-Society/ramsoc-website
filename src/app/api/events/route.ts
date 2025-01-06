@@ -14,3 +14,5 @@ export async function GET(request: NextRequest) {
     paging: { cursors: data.paging?.cursors },
   });
 }
+
+export const runtime = "edge";
