@@ -13,16 +13,13 @@ on:
 jobs:
   all-cli-checks:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/nextjs-app
+    env:
+      REACT_APP_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.META_API_PAGE_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-      - name: Set environment variables
-        run: mv .env
       - name: Install dependencies
         run: yarn
       - name: Run linter
