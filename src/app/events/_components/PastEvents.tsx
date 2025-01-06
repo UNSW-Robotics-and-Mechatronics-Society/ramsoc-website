@@ -15,10 +15,10 @@ export default function PastEvents() {
   });
 
   useEffect(() => {
-    if (hasNextPage && !isFetching) {
+    if (isIntersecting && hasNextPage && !isFetching) {
       fetchNextPage();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, hasNextPage, isFetching]);
 
   const termGroupedPastEvents = useMemo<
     [string, MetaEvent[]][] | undefined

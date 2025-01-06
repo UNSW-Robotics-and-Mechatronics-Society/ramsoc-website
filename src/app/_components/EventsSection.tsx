@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/Button";
 import CurrentEvents from "@/features/CurrentEvents";
 import Link from "next/link";
