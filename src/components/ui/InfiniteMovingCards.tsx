@@ -86,6 +86,11 @@ export const InfiniteMovingCards = ({
             {item}
           </li>
         ))}
+        {items.map((item, idx) => (
+          <li className="relative flex-shrink-0 px-8 py-6" key={idx}>
+            {item}
+          </li>
+        ))}
       </ul>
     </div>
   );
