@@ -1,5 +1,5 @@
 import { MetaGraphAPIEventResponse } from "@/types/events";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
