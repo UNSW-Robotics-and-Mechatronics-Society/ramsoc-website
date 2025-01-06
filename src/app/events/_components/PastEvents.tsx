@@ -56,6 +56,7 @@ export default function PastEvents() {
                             className="absolute left-0 top-0 h-full w-full object-cover"
                             src={data.cover.source}
                             alt={data.name}
+                            unoptimized
                           ></Image>
                           <Image
                             width={512}
@@ -63,6 +64,7 @@ export default function PastEvents() {
                             className="absolute h-full w-full object-contain backdrop-blur-3xl"
                             src={data.cover.source}
                             alt={data.name}
+                            unoptimized
                           ></Image>
                         </>
                       )}
