@@ -1,0 +1,211 @@
+# useEvents Hook
+
+The `useEvents` hook provides a powerful way to fetch and manage event data with built-in infinite scrolling capabilities. This hook is particularly useful when you need to display events in a paginated format while separating them into upcoming and past categories.
+
+## Features
+
+- Infinite scrolling support using React Query
+- Automatic categorization of events into upcoming and past
+- Built-in cursor-based pagination
+- Memoized event processing for optimal performance
+- Type-safe implementation with TypeScript
+
+## Usage
+
+Here's a basic example of how to implement the hook in your component:
+
+```tsx
+import useEvents from "./hooks/useEvents";
+
+function EventsList() {
+  const { allEvents, fetchNextPage, hasNextPage, isLoading, error } =
+    useEvents();
+
+  if (isLoading) return <div>Loading events...</div>;
+  if (error) return <div>Error loading events</div>;
+  if (!allEvents) return <div>No events found</div>;
+
+  const { upcomingEvents, pastEvents } = allEvents;
+
+  return (
+    <div>
+      <h2>Upcoming Events ({upcomingEvents.length})</h2>
+      {upcomingEvents.map((event) => (
+        <EventCard key={event.id} event={event} />
+      ))}
+
+      <h2>Past Events ({pastEvents.length})</h2>
+      {pastEvents.map((event) => (
+        <EventCard key={event.id} event={event} />
+      ))}
+
+      {hasNextPage && (
+        <button onClick={() => fetchNextPage()}>Load More</button>
+      )}
+    </div>
+  );
+}
+```
+
+## API Reference
+
+### Return Values
+
+The hook returns an object containing:
+
+| Property      | Type                                                       | Description                                       |
+| ------------- | ---------------------------------------------------------- | ------------------------------------------------- |
+| allEvents     | `{ upcomingEvents: MetaEvent[], pastEvents: MetaEvent[] }` | Memoized object containing separated event arrays |
+| data          | `InfiniteData<MetaGraphAPIEventResponse>`                  | Raw response data from the API                    |
+| fetchNextPage | `() => Promise<void>`                                      | Function to load the next page of events          |
+| hasNextPage   | `boolean`                                                  | Indicates if more events are available            |
+| isLoading     | `boolean`                                                  | Loading state indicator                           |
+| error         | `Error`                                                    | Error object if the request fails                 |
+
+### Types
+
+The hook works with two main interfaces that define the structure of our event data:
+
+#### MetaEvent Interface
+
+```typescript
+interface MetaEvent {
+  id: number; // Unique identifier for the event
+  cover?: {
+    offset_x: number; // Horizontal offset for the cover image
+    offset_y: number; // Vertical offset for the cover image
+    source: string; // URL or path to the cover image
+  };
+  name: string; // Name of the event
+  description: string; // Detailed description of the event
+  start_time: string; // Event start time in ISO format
+  end_time: string; // Event end time in ISO format
+  place?: {
+    name: string; // Name of the event venue
+  };
+}
+```
+
+Each field in the MetaEvent interface serves a specific purpose:
+
+- The optional `cover` object allows for flexible image positioning and sourcing
+- `start_time` and `end_time` are used for event scheduling and categorization
+- The optional `place` object handles venue information
+- Core event details like `name`, `description`, and `id` are required fields
+
+#### MetaGraphAPIEventResponse Interface
+
+```typescript
+interface MetaGraphAPIEventResponse {
+  data: MetaEvent[]; // Array of events from the API
+  paging: {
+    cursors: {
+      after: string; // Token for the next page of results
+      before: string; // Token for the previous page of results
+    };
+  };
+}
+```
+
+The response interface implements cursor-based pagination:
+
+- The `data` array contains the actual event objects
+- The `paging.cursors` object enables navigation through the result set
+- Both `after` and `before` cursors are always present, enabling bi-directional pagination
+
+## Implementation Details
+
+### Query Configuration
+
+The hook uses React Query's `useInfiniteQuery` to handle data fetching and caching:
+
+```typescript
+const query = useInfiniteQuery<MetaGraphAPIEventResponse>({
+  queryKey: ["events"],
+  queryFn: async ({ pageParam = undefined }) => {
+    return await axios
+      .get(`/api/events${pageParam ? `?cursor=${pageParam}` : ""}`)
+      .then((res) => res.data);
+  },
+  initialPageParam: undefined,
+  getNextPageParam: (lastPage) => lastPage.paging.cursors?.after,
+});
+```
+
+This configuration:
+
+- Uses a stable query key for caching
+- Handles cursor-based pagination
+- Automatically manages cache invalidation and refetching
+
+### Event Processing
+
+The hook processes events using `useMemo` for performance optimization:
+
+```typescript
+const allEvents = useMemo(() => {
+  if (!query.data) return;
+
+  // Flatten paginated data
+  const flattenedData = query.data.pages.flatMap((v) => v.data);
+
+  // Categorize events
+  const upcomingEvents = flattenedData.filter(
+    (v) => Date.parse(v.start_time) > Date.now(),
+  );
+  const pastEvents = flattenedData.filter(
+    (v) => Date.parse(v.start_time) <= Date.now(),
+  );
+
+  return { upcomingEvents, pastEvents };
+}, [query.data]);
+```
+
+This implementation:
+
+- Flattens paginated data into a single array
+- Categorizes events based on their start time
+- Memoizes results to prevent unnecessary recalculations
+
+## Best Practices
+
+1. **Error Handling**: Always implement error handling in your components:
+
+```typescript
+if (error) {
+  console.error('Failed to fetch events:', error);
+  return <ErrorComponent message={error.message} />;
+}
+```
+
+2. **Loading States**: Show loading indicators for better UX:
+
+```typescript
+if (isLoading) {
+  return <LoadingSpinner />;
+}
+```
+
+3. **Infinite Scroll**: Implement infinite scroll using an Intersection Observer:
+
+```typescript
+const { allEvents, fetchNextPage, hasNextPage, isFetching } = useEvents();
+const { isIntersecting, ref } = useIntersectionObserver({
+  threshold: 0.5,
+});
+
+useEffect(() => {
+  if (isIntersecting && hasNextPage && !isFetching) {
+    fetchNextPage();
+  }
+}, [isIntersecting]);
+```
+
+## Contributing
+
+When modifying this hook, consider:
+
+1. Maintaining TypeScript type safety
+2. Adding appropriate JSDoc comments
+3. Updating tests for new functionality
+4. Documenting API changes

@@ -43,3 +43,7 @@ next-env.d.ts
 
 # wrangler
 .wrangler
+
+# storybook
+*storybook.log
+storybook-static
