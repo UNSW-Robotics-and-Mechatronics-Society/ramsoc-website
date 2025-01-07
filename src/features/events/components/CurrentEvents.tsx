@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
+import useEvents from "@/features/events/hooks/useEvents";
 
-import EventCard, { EventCardLoading } from "@/components/ui/EventCard";
-import useEvents from "@/hooks/useEvents";
+import EventCard from "./EventCardLarge";
+import { EventCardLoading } from "./EventCardLargeLoading";
+import { NoEvents } from "./NoEvents";
 
 export default function CurrentEvents() {
   const { isFetching, allEvents } = useEvents();
@@ -18,16 +19,7 @@ export default function CurrentEvents() {
         ))}
 
       {allEvents && allEvents.upcomingEvents.length === 0 && (
-        <>
-          <Image
-            src="/home/sleeping-logo.svg"
-            alt="sleeping ramsoc logo"
-            width={500}
-            height={387}
-            className="translate-x-[2.5%]"
-          ></Image>
-          <p>There are no events currently. Check back later!</p>
-        </>
+        <NoEvents></NoEvents>
       )}
     </>
   );

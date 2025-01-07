@@ -15,7 +15,7 @@ export default function HeroSection() {
         <div className="absolute left-0 top-0 size-full bg-primary-950/75"></div>
       </div>
 
-      <h1 className="block text-6xl font-bold text-primary-50 md:contents xl:text-8xl">
+      <h1 className="block text-6xl text-primary-50 md:contents xl:text-8xl">
         Our Team
       </h1>
     </div>

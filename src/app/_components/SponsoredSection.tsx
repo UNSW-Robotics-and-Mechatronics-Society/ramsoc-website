@@ -1,11 +1,12 @@
 import Image from "next/image";
 
+import { Container } from "@/components/ui/Container";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
 export default function SponsoredSection() {
   return (
-    <div className="mx-auto mb-16 w-full max-w-[1200px]">
-      <h2 className="mb-16 text-center text-5xl">Sponsored By</h2>
+    <Container className="py-16">
+      <h2 className="mb-16 text-center">Sponsored By</h2>
       <InfiniteMovingCards
         direction="left"
         pauseOnHover={false}
@@ -40,6 +41,6 @@ export default function SponsoredSection() {
           ></Image>,
         ]}
       ></InfiniteMovingCards>
-    </div>
+    </Container>
   );
 }

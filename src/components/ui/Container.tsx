@@ -4,50 +4,78 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const containerVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-xl ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary-500 text-primary-50 hover:bg-primary-900/90",
-        destructive: "bg-red-500 text-primary-50 hover:bg-red-500/90 ",
-        outline:
-          "border border-primary-600 bg-transparent text-primary-500 hover:border-primary-800 hover:text-primary-800",
-        secondary: "bg-primary-100 text-primary-900 hover:bg-primary-100/80",
-        ghost: "hover:bg-primary-100 hover:text-primary-900 ",
-        link: "text-primary-900 underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "px-10 py-3",
-        sm: "h-9 px-3",
-        lg: "h-11 px-8",
-        icon: "size-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
+const outerContainerVariants = cva("w-full", {
+  variants: {
+    variant: {
+      default: "bg-stone-50",
+      gradient:
+        "bg-gradient-to-b from-neutral-50 via-primary-100 to-primary-100",
     },
   },
-);
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-export interface DivProps
+const innerContainerVariants = cva("mx-auto w-full", {
+  variants: {
+    width: {
+      default: "max-w-[1200px]",
+      full: "",
+    },
+  },
+  defaultVariants: {
+    width: "default",
+  },
+});
+
+export interface ContainerProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
+    VariantProps<typeof innerContainerVariants> {
   asChild?: boolean;
+  outerProps?: React.HTMLAttributes<HTMLDivElement> &
+    VariantProps<typeof outerContainerVariants>;
 }
 
-const Container = React.forwardRef<HTMLDivElement, DivProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  (
+    { className, width, asChild = false, outerProps = {}, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "div";
+    const {
+      className: outerClassName,
+      variant: outerVariant,
+      ...restOuterProps
+    } = outerProps;
+
     return (
-      <Comp
-        className={cn(containerVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+      <div
+        className={cn(
+          outerContainerVariants({
+            variant: outerVariant,
+            className: outerClassName,
+          }),
+        )}
+        {...restOuterProps}
+      >
+        <Comp
+          className={cn(
+            innerContainerVariants({
+              width,
+              className,
+            }),
+          )}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Comp>
+      </div>
     );
   },
 );
+
 Container.displayName = "Container";
 
-export { Container, containerVariants };
+export { Container, outerContainerVariants, innerContainerVariants };

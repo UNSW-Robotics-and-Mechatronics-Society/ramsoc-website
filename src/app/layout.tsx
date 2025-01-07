@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-stone-50 antialiased`}>
+      <body className={`bg-stone-50 text-primary-800 antialiased`}>
         <Providers>
           <Navbar></Navbar>
           {children}

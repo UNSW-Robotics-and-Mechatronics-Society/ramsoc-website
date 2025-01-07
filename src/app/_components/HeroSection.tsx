@@ -25,8 +25,8 @@ export default function HeroSection() {
             width={400}
             height={247}
           ></Image>
-          <h1 className="block text-6xl md:contents xl:text-8xl">
-            <span className="font-bold md:order-1">RAM</span>
+          <h1 className="block md:contents xl:text-8xl">
+            <span className="md:order-1">RAM</span>
             <span className="font-light md:order-3">SOC</span>
           </h1>
         </div>
