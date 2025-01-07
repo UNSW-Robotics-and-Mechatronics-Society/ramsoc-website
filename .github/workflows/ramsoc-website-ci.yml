@@ -6,7 +6,7 @@ on:
       - "README.md"
       - "docs/**"
   pull_request:
-    branches: [master, dev]
+    branches: [main, dev]
     paths-ignore:
       - "README.md"
       - "docs/**"
@@ -14,7 +14,7 @@ jobs:
   all-cli-checks:
     runs-on: ubuntu-latest
     env:
-      REACT_APP_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.META_API_PAGE_ACCESS_TOKEN }}
+      META_API_PAGE_ACCESS_TOKEN: ${{ secrets.META_API_PAGE_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,4 +25,4 @@ jobs:
       - name: Run linter
         run: yarn lint
       - name: Build application
-        run: yarn build
+        run: yarn pages:build
