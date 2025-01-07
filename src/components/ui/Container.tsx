@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const outerContainerVariants = cva("w-full", {
   variants: {
     variant: {
-      default: "bg-stone-50",
+      default: "bg-transparent",
       gradient:
         "bg-gradient-to-b from-neutral-50 via-primary-100 to-primary-100",
     },

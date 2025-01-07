@@ -10,7 +10,11 @@ module.exports = {
     "public/mockServiceWorker.js",
     "generators/*",
   ],
-  extends: ["eslint:recommended", "next/core-web-vitals"],
+  extends: [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
   overrides: [
     {
       files: ["**/*.ts", "**/*.tsx"],
