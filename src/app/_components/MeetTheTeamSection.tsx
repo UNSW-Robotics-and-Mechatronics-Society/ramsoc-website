@@ -2,11 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 
 export default function MeetTheTeamSection() {
   return (
-    <div className="relative mx-auto mb-16 flex h-64 w-full flex-col items-center justify-center gap-8">
-      <div className="absolute left-0 top-0 -z-10 size-full">
+    <Container
+      className="relative flex h-64 flex-col items-center justify-center gap-8"
+      width="full"
+    >
+      <div className="absolute left-0 top-0 size-full">
         <Image
           className="size-full object-cover"
           src="/home/team.jpg"
@@ -17,12 +21,12 @@ export default function MeetTheTeamSection() {
         ></Image>
         <div className="absolute left-0 top-0 size-full bg-primary-950/75"></div>
       </div>
-      <h2 className="text-center text-5xl text-primary-50">
-        Meet Our 2025 Team!
-      </h2>
+      <h2 className="z-10 text-center text-primary-50">Meet Our 2025 Team!</h2>
       <Button asChild>
-        <Link href="/team">Learn More</Link>
+        <Link className="z-10" href="/team">
+          Learn More
+        </Link>
       </Button>
-    </div>
+    </Container>
   );
 }

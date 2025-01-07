@@ -7,7 +7,7 @@ import SponsoredSection from "@/app/_components/SponsoredSection";
 
 export default function HomePage() {
   return (
-    <main className="w-full">
+    <main>
       <HeroSection></HeroSection>
       <AboutUsSection></AboutUsSection>
       <EventsSection></EventsSection>

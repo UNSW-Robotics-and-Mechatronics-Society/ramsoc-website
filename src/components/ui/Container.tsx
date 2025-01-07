@@ -4,16 +4,12 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const containerVariants = cva("w-full", {
+const outerContainerVariants = cva("w-full", {
   variants: {
     variant: {
-      default: "bg-primary-500 text-primary-50 hover:bg-primary-900/90",
-    },
-    size: {
-      default: "px-10 py-3",
-      sm: "h-9 px-3",
-      lg: "h-11 px-8",
-      icon: "size-10",
+      default: "bg-stone-50",
+      gradient:
+        "bg-gradient-to-b from-neutral-50 via-primary-100 to-primary-100",
     },
   },
   defaultVariants: {
@@ -21,26 +17,65 @@ const containerVariants = cva("w-full", {
   },
 });
 
-export interface DivProps
+const innerContainerVariants = cva("mx-auto w-full", {
+  variants: {
+    width: {
+      default: "max-w-[1200px]",
+      full: "",
+    },
+  },
+  defaultVariants: {
+    width: "default",
+  },
+});
+
+export interface ContainerProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
+    VariantProps<typeof innerContainerVariants> {
   asChild?: boolean;
+  outerProps?: React.HTMLAttributes<HTMLDivElement> &
+    VariantProps<typeof outerContainerVariants>;
 }
 
-const Container = React.forwardRef<HTMLDivElement, DivProps>(
-  ({ className, variant, asChild = false, ...props }, ref) => {
+const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  (
+    { className, width, asChild = false, outerProps = {}, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "div";
+    const {
+      className: outerClassName,
+      variant: outerVariant,
+      ...restOuterProps
+    } = outerProps;
+
     return (
-      <div className="w-full">
+      <div
+        className={cn(
+          outerContainerVariants({
+            variant: outerVariant,
+            className: outerClassName,
+          }),
+        )}
+        {...restOuterProps}
+      >
         <Comp
-          className={cn(containerVariants({ variant, className }))}
+          className={cn(
+            innerContainerVariants({
+              width,
+              className,
+            }),
+          )}
           ref={ref}
           {...props}
-        />
+        >
+          {children}
+        </Comp>
       </div>
     );
   },
 );
+
 Container.displayName = "Container";
 
-export { Container, containerVariants };
+export { Container, outerContainerVariants, innerContainerVariants };

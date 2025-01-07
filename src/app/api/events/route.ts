@@ -17,7 +17,11 @@ export async function GET(request: NextRequest) {
       paging: { cursors: data.paging?.cursors },
     });
   } catch (err: any) {
-    if (err.response.headers.get("www-authenticate").includes(`cursor`)) {
+    if (!err.response) {
+      return new Response("Internal Server Error", { status: 500 });
+    } else if (
+      err.response.headers.get("www-authenticate").includes(`cursor`)
+    ) {
       return new Response("Invalid Cursor", { status: 400 });
     } else if (
       err.response.headers.get("www-authenticate").includes("invalid_token")
