@@ -1,12 +1,13 @@
 "use client";
-import useEvents from "@/hooks/useEvents";
-import { getUnswTermAndYear } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
+import { groupBy } from "lodash-es";
 import Image from "next/image";
 import { Fragment, useEffect, useMemo } from "react";
-import { groupBy } from "lodash-es";
-import { MetaEvent } from "@/types/events";
+
+import useEvents from "@/hooks/useEvents";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { getUnswTermAndYear } from "@/lib/utils";
+import { MetaEvent } from "@/types/events";
 
 export default function PastEvents() {
   const { allEvents, fetchNextPage, hasNextPage, isFetching } = useEvents();
@@ -53,7 +54,7 @@ export default function PastEvents() {
                           <Image
                             width={512}
                             height={384}
-                            className="absolute left-0 top-0 h-full w-full object-cover"
+                            className="absolute left-0 top-0 size-full object-cover"
                             src={data.cover.source}
                             alt={data.name}
                             unoptimized
@@ -61,7 +62,7 @@ export default function PastEvents() {
                           <Image
                             width={512}
                             height={384}
-                            className="absolute h-full w-full object-contain backdrop-blur-3xl"
+                            className="absolute size-full object-contain backdrop-blur-3xl"
                             src={data.cover.source}
                             alt={data.name}
                             unoptimized

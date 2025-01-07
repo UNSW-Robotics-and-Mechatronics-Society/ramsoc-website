@@ -2230,6 +2230,14 @@ eslint-module-utils@^2.12.0:
   dependencies:
     debug "^3.2.7"
 
+eslint-plugin-check-file@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-check-file/-/eslint-plugin-check-file-2.8.0.tgz#6f93f28b25376ca9a7b0d741ca56a726d59f8db7"
+  integrity sha512-FvvafMTam2WJYH9uj+FuMxQ1y+7jY3Z6P9T4j2214cH0FBxNzTcmeCiGTj1Lxp3mI6kbbgsXvmgewvf+llKYyw==
+  dependencies:
+    is-glob "^4.0.3"
+    micromatch "^4.0.5"
+
 eslint-plugin-import@^2.31.0:
   version "2.31.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.31.0.tgz#310ce7e720ca1d9c0bb3f69adfd1c6bdd7d9e0e7"
@@ -2304,6 +2312,14 @@ eslint-plugin-react@^7.37.0:
     semver "^6.3.1"
     string.prototype.matchall "^4.0.12"
     string.prototype.repeat "^1.0.0"
+
+eslint-plugin-tailwindcss@^3.17.5:
+  version "3.17.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.17.5.tgz#6bf9403e77a5f3f930fb3444a3e22b29cd0fee07"
+  integrity sha512-8Mi7p7dm+mO1dHgRHHFdPu4RDTBk69Cn4P0B40vRQR+MrguUpwmKwhZy1kqYe3Km8/4nb+cyrCF+5SodOEmaow==
+  dependencies:
+    fast-glob "^3.2.5"
+    postcss "^8.4.4"
 
 eslint-scope@^8.2.0:
   version "8.2.0"
@@ -2453,7 +2469,7 @@ fast-glob@3.3.1:
     merge2 "^1.3.0"
     micromatch "^4.0.4"
 
-fast-glob@^3.2.7:
+fast-glob@^3.2.5, fast-glob@^3.2.7:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.3.tgz#d06d585ce8dba90a16b0505c543c3ccfb3aeb818"
   integrity sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==
@@ -3321,7 +3337,7 @@ micro@9.3.5-canary.3:
     content-type "1.0.4"
     raw-body "2.4.1"
 
-micromatch@^4.0.4, micromatch@^4.0.8:
+micromatch@^4.0.4, micromatch@^4.0.5, micromatch@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
   integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
@@ -3882,7 +3898,7 @@ postcss@8.4.31:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@^8, postcss@^8.4.47:
+postcss@^8, postcss@^8.4.4, postcss@^8.4.47:
   version "8.4.49"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.49.tgz#4ea479048ab059ab3ae61d082190fabfd994fe19"
   integrity sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==

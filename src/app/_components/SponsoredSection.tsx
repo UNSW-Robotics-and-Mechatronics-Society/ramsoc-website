@@ -1,5 +1,6 @@
-import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 import Image from "next/image";
+
+import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
 export default function SponsoredSection() {
   return (

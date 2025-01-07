@@ -1,6 +1,7 @@
-import { MetaGraphAPIEventResponse } from "@/types/events";
 import axios from "axios";
 import { type NextRequest } from "next/server";
+
+import { MetaGraphAPIEventResponse } from "@/types/events";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

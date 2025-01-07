@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
+
 import EventCard, { EventCardLoading } from "@/components/ui/EventCard";
 import useEvents from "@/hooks/useEvents";
-import Image from "next/image";
 
 export default function CurrentEvents() {
   const { isFetching, allEvents } = useEvents();

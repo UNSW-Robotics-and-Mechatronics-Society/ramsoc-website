@@ -1,7 +1,8 @@
-import { SchoolTerm, Term } from "@/types/term";
 import { clsx, type ClassValue } from "clsx";
 import { parseISO } from "date-fns";
 import { twMerge } from "tailwind-merge";
+
+import { SchoolTerm, Term } from "@/types/term";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

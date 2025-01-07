@@ -1,7 +1,8 @@
-import { MetaGraphAPIEventResponse } from "@/types/events";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo } from "react";
+
+import { MetaGraphAPIEventResponse } from "@/types/events";
 
 // React hook that fetches and manages event data with infinite scrolling capabilities.
 // The hook separates events into upcoming and past categories based on their start times.

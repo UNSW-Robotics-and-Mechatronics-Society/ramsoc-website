@@ -1,8 +1,10 @@
-import * as React from "react";
-import { Button } from "./Button";
-import Image from "next/image";
-import { MetaEvent } from "@/types/events";
 import { format, parseISO } from "date-fns";
+import Image from "next/image";
+import * as React from "react";
+
+import { MetaEvent } from "@/types/events";
+
+import { Button } from "./Button";
 import { Skeleton } from "./Skeleton";
 
 interface EventCardProps {
@@ -13,7 +15,7 @@ export function EventCardLoading() {
   return (
     <div className="flex w-full flex-col bg-primary-950 sm:h-96 sm:flex-row">
       <div className="relative aspect-video h-full sm:aspect-[3/4] md:aspect-[4/4]">
-        <Skeleton className="h-full w-full" />
+        <Skeleton className="size-full" />
       </div>
       <div className="flex max-h-fit w-full flex-col gap-2 overflow-hidden p-8 text-primary-50 sm:max-h-full">
         <Skeleton className="h-8 w-8/12" />
@@ -39,7 +41,7 @@ export default function EventCard({ data }: EventCardProps) {
             <Image
               width={512}
               height={384}
-              className="absolute left-0 top-0 h-full w-full object-cover"
+              className="absolute left-0 top-0 size-full object-cover"
               src={data.cover.source}
               alt={data.name}
               unoptimized
@@ -47,7 +49,7 @@ export default function EventCard({ data }: EventCardProps) {
             <Image
               width={512}
               height={384}
-              className="absolute h-full w-full object-contain backdrop-blur-3xl"
+              className="absolute size-full object-contain backdrop-blur-3xl"
               src={data.cover.source}
               alt={data.name}
               unoptimized

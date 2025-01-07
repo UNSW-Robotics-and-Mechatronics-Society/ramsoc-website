@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
+import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
+
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -20,9 +23,7 @@ export default function RootLayout({
         <Providers>
           <Navbar></Navbar>
           {children}
-          <footer className="flex h-12 w-full items-center justify-center bg-primary-950 text-primary-50">
-            Copyright © 2025 UNSW RAMSoc Society - All Rights Reserved.
-          </footer>
+          <Footer></Footer>
         </Providers>
       </body>
     </html>

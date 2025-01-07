@@ -1,6 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { ReactElement, useEffect, useRef, useState } from "react";
+
+import { cn } from "@/lib/utils";
 
 export const InfiniteMovingCards = ({
   items,
@@ -72,22 +73,22 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-          <li className="relative flex-shrink-0 px-8 py-6" key={idx}>
+          <li className="relative shrink-0 px-8 py-6" key={idx}>
             {item}
           </li>
         ))}
         {items.map((item, idx) => (
-          <li className="relative flex-shrink-0 px-8 py-6" key={idx}>
+          <li className="relative shrink-0 px-8 py-6" key={idx}>
             {item}
           </li>
         ))}
         {items.map((item, idx) => (
-          <li className="relative flex-shrink-0 px-8 py-6" key={idx}>
+          <li className="relative shrink-0 px-8 py-6" key={idx}>
             {item}
           </li>
         ))}
         {items.map((item, idx) => (
-          <li className="relative flex-shrink-0 px-8 py-6" key={idx}>
+          <li className="relative shrink-0 px-8 py-6" key={idx}>
             {item}
           </li>
         ))}
