@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 import { Button } from "@/components/ui/Button";
 
@@ -7,8 +7,6 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
 
 export const Primary = () => <Button variant={"default"}>Button</Button>;
 export const Secondary = () => <Button variant={"secondary"}>Button</Button>;
