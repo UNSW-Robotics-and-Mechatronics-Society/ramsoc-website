@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import EventCard, { EventCardLoading } from "@/components/ui/EventCard";
-import useEvents from "@/hooks/useEvents";
+import useEvents from "@/features/events/hooks/useEvents";
 
 export default function CurrentEvents() {
   const { isFetching, allEvents } = useEvents();

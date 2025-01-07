@@ -1,8 +1,7 @@
 "use client";
 import HeroSection from "@/app/events/_components/HeroSection";
-import CurrentEvents from "@/features/CurrentEvents";
-
-import PastEvents from "./_components/PastEvents";
+import CurrentEvents from "@/features/events/components/CurrentEvents";
+import PastEvents from "@/features/events/components/PastEvents";
 
 export default function EventsPage() {
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
-import CurrentEvents from "@/features/CurrentEvents";
+import CurrentEvents from "@/features/events/components/CurrentEvents";
 
 export default function EventsSection() {
   return (

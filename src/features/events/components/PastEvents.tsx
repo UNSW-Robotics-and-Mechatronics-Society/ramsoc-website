@@ -4,7 +4,7 @@ import { groupBy } from "lodash-es";
 import Image from "next/image";
 import { Fragment, useEffect, useMemo } from "react";
 
-import useEvents from "@/hooks/useEvents";
+import useEvents from "@/features/events/hooks/useEvents";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { getUnswTermAndYear } from "@/lib/utils";
 import { MetaEvent } from "@/types/events";
@@ -37,7 +37,7 @@ export default function PastEvents() {
 
   return (
     <>
-      <div className="grid min-h-screen w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {termGroupedPastEvents &&
           termGroupedPastEvents.map(([term, events]) => {
             return (
