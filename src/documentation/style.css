@@ -12,5 +12,5 @@ h4 {
 
 img {
     margin: 0 auto;
-    min-width: fit-content;
+    object-fit: contain;
 }
