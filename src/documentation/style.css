@@ -1,0 +1,16 @@
+ol {
+    list-style: decimal;
+}
+
+ol + ol {
+    list-style: lower-alpha;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+img {
+    margin: 0 auto;
+    min-width: fit-content;
+}
