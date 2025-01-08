@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 
 const config: StorybookConfig = {
   stories: [
-    "../src/**/introduction.mdx",
+    "../src/**/Introduction.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
