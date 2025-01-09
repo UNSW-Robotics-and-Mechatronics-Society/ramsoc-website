@@ -3,9 +3,9 @@ import remarkGfm from "remark-gfm";
 
 const config: StorybookConfig = {
   stories: [
-    "../src/**/Introduction.mdx",
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../**/Introduction.mdx",
+    "../**/*.mdx",
+    "../**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-onboarding",
@@ -27,6 +27,6 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
-  staticDirs: ["../src/documentation/assets"],
+  staticDirs: ["../documentation/assets"],
 };
 export default config;
