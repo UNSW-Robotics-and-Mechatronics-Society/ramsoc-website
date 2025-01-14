@@ -61,5 +61,5 @@
     "vercel": "^39.2.5",
     "wrangler": "^3.99.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@1.22.22"
 }
