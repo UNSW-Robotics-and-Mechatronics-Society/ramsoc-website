@@ -10,7 +10,23 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+        port: "",
+        pathname: "/**",
+      },
     ],
+  },
+  async redirects() {
+    const currentYear = new Date().getFullYear();
+    return [
+      {
+        source: '/teams',
+        destination: `/teams/${currentYear}`,
+        permanent: false, // Use false for temporary redirects (307) or true for permanent redirects (308)
+      },
+    ];
   },
 };
 

@@ -4,6 +4,9 @@ import { twMerge } from "tailwind-merge";
 
 import { SchoolTerm, Term } from "@/types/term";
 
+import { Asset } from 'contentful';
+import { client } from '@/lib/contentful-client';
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -35,3 +38,100 @@ export function getUnswTermAndYear(dateString: string): SchoolTerm {
     term,
   };
 }
+
+export const fetchTeamData = async (year : number) : Promise<TeamStructure> => {
+  const response = await client.getEntries({
+    content_type: 'team',
+    order: ['fields.year', 'fields.role', 'fields.name'],
+  });
+
+  const yearTeamData : TeamMember[] = response.items
+  .filter(item => item.fields.year?.toString() === year.toString()).map((item) => {
+    const selfieUrl = (item.fields.selfie as Asset)?.fields.file?.url; // without https
+    const formattedSelfieUrl = selfieUrl
+      ? `https:${selfieUrl}?fm=webp&fit=fill&w=500&h=500` // format: .webp, fitting: fill, dimention: 500px * 500px
+      : '';
+    
+    return {
+      id: item.sys.id as string,
+      name: item.fields.name as string,
+      role: item.fields.role as string,
+      year: item.fields.year as number,
+      selfie: formattedSelfieUrl as string,
+      email: item.fields.email as string,
+      linkedin: item.fields.linkedin as string,
+    };
+  });
+
+  return categorizeTeamMembersByRole(yearTeamData);
+};
+
+const categorizeTeamMembersByRole = (teamMembers: TeamMember[]): TeamStructure => {
+  /* 
+    Categorizing conditions:
+    - execs: teamMember.role doesn't include director nor subcommittee
+    - directors: teamMember.role includes director
+    - subcoms: teamMember.role includes subcommittee
+  */
+
+  const execs: TeamMember[] = [];
+  const directors: TeamMember[] = [];
+  const subcoms: SubcomProfileData[] = [];
+
+  const execOrder = [
+    'president',
+    'vice president',
+    'secretary',
+    'arc delegate',
+    'treasurer',
+    'grievance & edi officer',
+    'marketing executive',
+    'technical executive',
+    'industry & sponsorships executive',
+  ];
+
+  teamMembers.forEach(member => {
+    if (member.role.toLowerCase().includes('subcommittee')) {
+      const portfolioName = member.role.toLowerCase().replace(" subcommittee", "");
+      var portfolioSubcoms = subcoms.find(subcom => subcom.portfolio === portfolioName);
+      if (!portfolioSubcoms) {
+        subcoms.push({portfolio: portfolioName, members: [member.name]});
+      } else {
+        portfolioSubcoms.members.push(member.name);
+      }
+    } else if (member.role.toLowerCase().includes('director')) {
+      directors.push(member);
+    } else if (!member.role.toLowerCase().includes('none')) {
+      execs.push(member);
+    } else {
+      console.error(`Unrecognized role: ${member.name}`);
+    }
+  });
+
+  execs.sort((a, b) => execOrder.indexOf(a.role.toLowerCase()) - execOrder.indexOf(b.role.toLowerCase()));
+  directors.sort((a, b) => a.role.localeCompare(b.role));
+
+  return {
+    executives: execs,
+    directors: directors,
+    subcommittees: subcoms
+  };
+};
+
+export const getAvailableTeamYears = async (): Promise<number[]> => {
+  const response = await client.getEntries({
+    content_type: 'team',
+    order: ['fields.year'],
+  });
+
+  const availableYears: number[] = [];
+  response.items.forEach((item) => {
+    if (item.fields && item.fields.year) {
+      const year: number = item.fields.year as number;
+      if (!availableYears.includes(year)) {
+        availableYears.push(year);
+      }
+    }
+  });
+  return availableYears;
+};
