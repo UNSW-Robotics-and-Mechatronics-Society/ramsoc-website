@@ -1,4 +1,6 @@
-type TeamMember = {
+import { SubcomProfileData } from "./subcomData";
+
+export type TeamMember = {
   id: string;
   name: string;
   role: string;
@@ -8,8 +10,8 @@ type TeamMember = {
   linkedin: string;
 };
 
-type TeamStructure = {
+export type TeamStructure = {
   executives: TeamMember[];
   directors: TeamMember[];
   subcommittees: SubcomProfileData[];
-}
+};

@@ -1,4 +1,4 @@
-type SubcomProfileData = {
+export type SubcomProfileData = {
   portfolio: string;
   members: string[];
 };

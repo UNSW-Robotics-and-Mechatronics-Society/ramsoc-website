@@ -1,6 +1,9 @@
-import { JSX } from "react";
-import styles from "./ProfileCards.module.scss";
 import Image from "next/image";
+import { JSX } from "react";
+
+import { TeamMember } from "@/types/teamData";
+
+import styles from "./ProfileCards.module.scss";
 
 type Background = "director" | "executive";
 
@@ -74,7 +77,7 @@ const ProfileCard = ({
       </div>
       <div className={styles.links}>
         <a
-          className="text-primary hover:text-secondary underline underline-offset-4"
+          className="text-primary-900 underline underline-offset-4 hover:text-primary-700"
           href={`mailto:${profile.email}`}
         >
           {profile.email}

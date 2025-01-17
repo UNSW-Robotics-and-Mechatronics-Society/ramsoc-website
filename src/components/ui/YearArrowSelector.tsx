@@ -1,7 +1,8 @@
 'use client'
-import { JSX } from "react";
-import styles from "./YearArrowSelector.module.scss";
 import { useRouter } from "next/navigation";
+import { JSX } from "react";
+
+import styles from "./YearArrowSelector.module.scss";
 
 type YearArrowSelectorProps = {
   selectedYear: number;
