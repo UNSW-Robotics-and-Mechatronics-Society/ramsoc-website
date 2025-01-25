@@ -27,7 +27,7 @@ export default function Navbar() {
             Events
           </Link>
           <Link
-            href="/team"
+            href="/teams"
             className="flex h-full items-center px-4 hover:bg-black/50"
             aria-label="Go to team page"
           >

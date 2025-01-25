@@ -23,7 +23,7 @@ export default function MeetTheTeamSection() {
       </div>
       <h2 className="z-10 text-center text-primary-50">Meet Our 2025 Team!</h2>
       <Button asChild>
-        <Link className="z-10" href="/team">
+        <Link className="z-10" href="/teams">
           Learn More
         </Link>
       </Button>
