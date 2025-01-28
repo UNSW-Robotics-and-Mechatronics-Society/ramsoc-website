@@ -1,8 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { motion } from "framer-motion";
 
 import ParallaxText from "@/components/ui/ParallaxText";
 
@@ -64,7 +64,7 @@ const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
     >
       {/* TODO: Change Background image to GIF (Showcase the flagship event) */}
       <div
-        className={`flex ${isExpanded ? "backdrop-brightness-50" : "justify-center backdrop-blur-sm backdrop-brightness-[.3]"} h-full w-full overflow-hidden p-2`}
+        className={`flex ${isExpanded ? "backdrop-brightness-50" : "justify-center backdrop-blur-sm backdrop-brightness-[.3]"} size-full overflow-hidden p-2`}
       >
         <h1
           className={`${isExpanded ? "self-end text-3xl" : "self-center text-5xl md:text-6xl"} overflow-hidden whitespace-nowrap italic text-primary-50`}
@@ -90,7 +90,7 @@ const FlagshipEventsSection = () => {
     <div className="my-10">
       <ScrollBanner velocity={3} text={"Flagship Events"} />
       {/* TODO: Change URL later */}
-      <div className="flex h-[100vh] flex-col gap-1 lg:h-[50vh] lg:flex-row">
+      <div className="flex h-screen flex-col gap-1 lg:h-[50vh] lg:flex-row">
         <FlagshipEventCard
           name={"Sumobots"}
           imageSrc="home/sumobots-finals.jpg"
