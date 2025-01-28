@@ -89,12 +89,14 @@ const FlagshipEventsSection = () => {
   return (
     <>
       <ScrollBanner velocity={3} text={"Flagship Events"} />
+      {/* TODO: Change URL later */}
       <div className="flex h-[100vh] flex-col gap-1 lg:h-[50vh] lg:flex-row">
         <FlagshipEventCard
           name={"Sumobots"}
           imageSrc="home/sumobots-finals.jpg"
           url={"http://localhost:3001/2024/sumobots"}
         />
+        {/* TODO: Change URL later */}
         <FlagshipEventCard
           name={"Buildathon"}
           imageSrc="home/buildathon-finals.jpg"
