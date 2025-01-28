@@ -87,7 +87,7 @@ const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
 
 const FlagshipEventsSection = () => {
   return (
-    <>
+    <div className="my-10">
       <ScrollBanner velocity={3} text={"Flagship Events"} />
       {/* TODO: Change URL later */}
       <div className="flex h-[100vh] flex-col gap-1 lg:h-[50vh] lg:flex-row">
@@ -104,7 +104,7 @@ const FlagshipEventsSection = () => {
         />
       </div>
       <ScrollBanner velocity={-3} text={"Flagship Events"} />
-    </>
+    </div>
   );
 };
 
