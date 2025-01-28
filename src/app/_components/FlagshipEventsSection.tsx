@@ -1,3 +1,9 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
+
 import ParallaxText from "@/components/ui/ParallaxText";
 
 interface ScrollBannerProps {
@@ -15,15 +21,67 @@ const ScrollBanner = ({ velocity, text }: ScrollBannerProps) => {
 
 interface EventCardProps {
   name: string;
+  imageSrc: string;
+  url: string;
 }
 
-const EventCard = ({ name }: EventCardProps) => {
+const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+
+  const handleClick = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const cardVariants = {
+    initial: isMobile
+      ? { width: "100%", height: "50%", cursor: "pointer" }
+      : { width: "50%", height: "100%", cursor: "pointer" },
+    expanded: isMobile
+      ? { width: "100%", height: "200%", cursor: "default" }
+      : { width: "200%", height: "100%", cursor: "default" },
+    hover: isMobile
+      ? { width: "100%", height: "75%" }
+      : { width: "75%", height: "100%" },
+  };
+
   return (
-    <div className="flex h-full w-full justify-center bg-primary-500">
-      <h1 className="self-center italic text-primary-50">
-        {name.toUpperCase()}
-      </h1>
-    </div>
+    <motion.div
+      ref={cardRef}
+      className="bg-primary-500"
+      style={{
+        backgroundImage: `url(${imageSrc})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      initial="initial"
+      animate={isExpanded ? "expanded" : "initial"}
+      whileHover={isExpanded || isMobile ? {} : "hover"}
+      variants={cardVariants}
+      onClick={handleClick}
+      onHoverEnd={() => setIsExpanded(false)}
+    >
+      {/* TODO: Change Background image to GIF (Showcase the flagship event) */}
+      <div
+        className={`flex ${isExpanded ? "" : "justify-center backdrop-blur-sm"} h-full w-full p-2 backdrop-brightness-50`}
+      >
+        <h1
+          className={`${isExpanded ? "self-end text-3xl" : "self-center text-5xl md:text-6xl"} overflow-visible whitespace-nowrap italic text-primary-50`}
+        >
+          {name.toUpperCase()}
+        </h1>
+        {isExpanded && (
+          <button
+            className="absolute bottom-4 right-4 rounded bg-primary-700 px-4 py-2 text-primary-50"
+            onClick={() => window.open(url, "_blank")}
+          >
+            {/* TODO: use global ui button */}
+            Learn More
+          </button>
+        )}
+      </div>
+    </motion.div>
   );
 };
 
@@ -31,9 +89,17 @@ const FlagshipEventsSection = () => {
   return (
     <>
       <ScrollBanner velocity={3} text={"Flagship Events"} />
-      <div className="flex h-[50vh] w-full flex-auto">
-        <EventCard name={"Sumobots"} />
-        <EventCard name={"Buildathon"} />
+      <div className="flex h-[100vh] flex-col gap-1 lg:h-[50vh] lg:flex-row">
+        <FlagshipEventCard
+          name={"Sumobots"}
+          imageSrc="home/sumobots-finals.jpg"
+          url={"http://localhost:3001/2024/sumobots"}
+        />
+        <FlagshipEventCard
+          name={"Buildathon"}
+          imageSrc="home/buildathon-finals.jpg"
+          url={"http://localhost:3001/2024/sumobots"}
+        />
       </div>
       <ScrollBanner velocity={-3} text={"Flagship Events"} />
     </>
