@@ -6,8 +6,7 @@
  *
  */
 
-import styles from "./ParallaxText.module.scss";
-import { useRef } from "react";
+import { wrap } from "@motionone/utils";
 import {
   motion,
   useScroll,
@@ -17,7 +16,7 @@ import {
   useVelocity,
   useAnimationFrame,
 } from "framer-motion";
-import { wrap } from "@motionone/utils";
+import { useRef } from "react";
 
 interface ParallaxProps {
   children: string;
