@@ -49,7 +49,7 @@ const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
   return (
     <motion.div
       ref={cardRef}
-      className="bg-primary-500"
+      className="overflow-hidden bg-primary-500"
       style={{
         backgroundImage: `url(${imageSrc})`,
         backgroundSize: "cover",
@@ -64,10 +64,10 @@ const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
     >
       {/* TODO: Change Background image to GIF (Showcase the flagship event) */}
       <div
-        className={`flex ${isExpanded ? "" : "justify-center backdrop-blur-sm"} h-full w-full p-2 backdrop-brightness-50`}
+        className={`flex ${isExpanded ? "backdrop-brightness-50" : "justify-center backdrop-blur-sm backdrop-brightness-[.3]"} h-full w-full overflow-hidden p-2`}
       >
         <h1
-          className={`${isExpanded ? "self-end text-3xl" : "self-center text-5xl md:text-6xl"} overflow-visible whitespace-nowrap italic text-primary-50`}
+          className={`${isExpanded ? "self-end text-3xl" : "self-center text-5xl md:text-6xl"} overflow-hidden whitespace-nowrap italic text-primary-50`}
         >
           {name.toUpperCase()}
         </h1>
