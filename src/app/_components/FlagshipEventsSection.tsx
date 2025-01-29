@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import ParallaxText from "@/components/ui/ParallaxText";
@@ -33,6 +33,19 @@ const FlagshipEventCard = ({ name, imageSrc, url }: EventCardProps) => {
   const handleClick = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+      setIsExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const cardVariants = {
     initial: isMobile
