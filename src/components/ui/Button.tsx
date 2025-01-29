@@ -17,11 +17,11 @@ const buttonVariants = cva(
         ghost: "hover:bg-primary-100 hover:text-primary-900 ",
         link: "text-primary-900 underline-offset-4 hover:underline",
         outline_prime_dark:
-          "rounded-lg border-[1.5px] border-primary-800 text-primary-800 duration-100 hover:scale-[1.05] hover:border-primary-600 hover:bg-primary-600 hover:text-primary-50 hover:shadow",
+          "rounded-lg border-[1.5px] border-primary-800 text-primary-800 duration-100 hover:scale-105 hover:border-primary-600 hover:bg-primary-600 hover:text-primary-50 hover:shadow",
         outline_prime_light:
-          "rounded-lg border-[1.5px] border-primary-50 text-primary-50 duration-100 hover:scale-[1.05] hover:border-primary-600 hover:bg-primary-600 hover:text-primary-50 hover:shadow",
+          "rounded-lg border-[1.5px] border-primary-50 text-primary-50 duration-100 hover:scale-105 hover:border-primary-600 hover:bg-primary-600 hover:text-primary-50 hover:shadow",
         outline_prime_BW:
-          "rounded-lg border-[1.5px] border-primary-50 text-primary-50 duration-100 hover:scale-[1.05] hover:border-primary-50 hover:bg-primary-50 hover:text-primary-950 hover:shadow",
+          "rounded-lg border-[1.5px] border-primary-50 text-primary-50 duration-100 hover:scale-105 hover:border-primary-50 hover:bg-primary-50 hover:text-primary-950 hover:shadow",
       },
       size: {
         none: "",

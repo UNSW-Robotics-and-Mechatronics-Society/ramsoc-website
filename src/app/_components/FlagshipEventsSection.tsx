@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import ParallaxText from "@/components/ui/ParallaxText";
 import { Button } from "@/components/ui/Button";
+import ParallaxText from "@/components/ui/ParallaxText";
 
 interface ScrollBannerProps {
   velocity: number;
