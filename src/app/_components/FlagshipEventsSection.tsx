@@ -93,13 +93,13 @@ const FlagshipEventsSection = () => {
       <div className="flex h-screen flex-col gap-1 lg:h-[50vh] lg:flex-row">
         <FlagshipEventCard
           name={"Sumobots"}
-          imageSrc="home/sumobots-finals.jpg"
+          imageSrc="/home/sumobots-finals.jpg"
           url={"http://localhost:3001/2024/sumobots"}
         />
         {/* TODO: Change URL later */}
         <FlagshipEventCard
           name={"Buildathon"}
-          imageSrc="home/buildathon-finals.jpg"
+          imageSrc="/home/buildathon-finals.jpg"
           url={"http://localhost:3001/2024/sumobots"}
         />
       </div>
