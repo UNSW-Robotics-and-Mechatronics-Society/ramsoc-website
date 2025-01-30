@@ -117,7 +117,10 @@ const FlagshipEventCard = ({
 const FlagshipEventsSection = () => {
   return (
     <div className="my-10">
-      <ScrollBanner velocity={3} text={"Flagship Events"} />
+      <ScrollBanner
+        velocity={3}
+        text={`Flagship Events\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0主力イベント`}
+      />
       {/* TODO: Change URL and description later */}
       <div className="flex h-screen flex-col gap-1 lg:h-[50vh] lg:flex-row">
         <FlagshipEventCard
@@ -134,7 +137,10 @@ const FlagshipEventsSection = () => {
           description="Buildathon is a competition where teams are given a problem statement and are required to build a solution within a limited time frame. The teams are judged based on the creativity, feasibility, and scalability of their solution."
         />
       </div>
-      <ScrollBanner velocity={-3} text={"Flagship Events"} />
+      <ScrollBanner
+        velocity={-3}
+        text={"Flagship Events\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0主力イベント"}
+      />
     </div>
   );
 };
