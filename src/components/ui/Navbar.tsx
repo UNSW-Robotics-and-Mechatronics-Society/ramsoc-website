@@ -11,8 +11,9 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(window.scrollY > 10);
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
+    setIsScrolled(window.scrollY > 10);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
