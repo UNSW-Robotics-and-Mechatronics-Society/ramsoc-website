@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { Button } from "@/components/ui/Button";
 import { MetaEvent } from "@/types/events";
+import Link from "next/link";
 
 interface EventCardProps {
   data: MetaEvent;
@@ -49,7 +50,15 @@ export default function EventCard({ data }: EventCardProps) {
         <p className="mt-4 line-clamp-5 overflow-hidden text-ellipsis whitespace-pre-line text-base">
           {data.description}
         </p>
-        <Button className="mt-4 w-fit sm:mt-auto">Learn More</Button>
+        <Button asChild>
+          <Link
+            href={`https://www.facebook.com/events/${data.id}`}
+            target="_blank"
+            className="mt-4 w-fit sm:mt-auto"
+          >
+            Learn More
+          </Link>
+        </Button>
       </div>
     </div>
   );
