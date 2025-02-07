@@ -2,10 +2,8 @@ import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-
 import { Button } from "@/components/ui/Button";
 import { MetaEvent } from "@/types/events";
-import Link from "next/link";
 
 interface EventCardProps {
   data: MetaEvent;
