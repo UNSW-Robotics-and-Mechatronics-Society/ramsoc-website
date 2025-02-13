@@ -1,5 +1,6 @@
 import { JSX } from "react";
 
+import { Container } from "@/components/ui/Container";
 import { SubcomProfileData } from "@/types/subcomData";
 import { TeamMember, TeamStructure } from "@/types/teamData";
 
