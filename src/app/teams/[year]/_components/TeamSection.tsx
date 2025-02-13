@@ -6,6 +6,7 @@ import { TeamMember, TeamStructure } from "@/types/teamData";
 import ProfileCards from "./profileCard/ProfileCards";
 import SubcomProfileCards from "./profileCard/SubcomProfileCards";
 import styles from "./team.module.scss";
+import { Container } from "@/components/ui/Container";
 
 type TitleHeaderProps = {
   text: string;
@@ -62,11 +63,11 @@ type TeamSectionProps = TeamStructure;
 
 const TeamSection = async (team: TeamSectionProps) => {
   return (
-    <div>
+    <Container width="full" className="px-4">
       <ExecutivesSection execs={team.executives} />
       <DirectorsSection directors={team.directors} />
       <SectionSubcommittee subcomProfileData={team.subcommittees} />
-    </div>
+    </Container>
   );
 };
 
