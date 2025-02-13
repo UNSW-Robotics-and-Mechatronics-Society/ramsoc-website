@@ -1,5 +1,6 @@
 import { JSX } from "react";
 
+import { Container } from "@/components/ui/Container";
 import { SubcomProfileData } from "@/types/subcomData";
 import { TeamMember, TeamStructure } from "@/types/teamData";
 
@@ -62,11 +63,11 @@ type TeamSectionProps = TeamStructure;
 
 const TeamSection = async (team: TeamSectionProps) => {
   return (
-    <div>
+    <Container width="full" className="px-4">
       <ExecutivesSection execs={team.executives} />
       <DirectorsSection directors={team.directors} />
       <SectionSubcommittee subcomProfileData={team.subcommittees} />
-    </div>
+    </Container>
   );
 };
 

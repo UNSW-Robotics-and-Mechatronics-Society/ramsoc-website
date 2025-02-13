@@ -19,19 +19,19 @@ export default function HeroSection() {
       <div className="flex flex-col items-center justify-center gap-8 px-4 text-white">
         <div className="flex flex-col items-center justify-center gap-y-4 md:flex-row md:gap-4">
           <Image
-            className="w-[300px] md:order-2 xl:w-[400px]"
+            className="w-[250px] sm:w-[300px] md:order-2 xl:w-[400px]"
             src="/logo.svg"
             alt="Ramsoc logo"
             width={400}
             height={247}
           ></Image>
-          <h1 className="block md:contents xl:text-8xl">
+          <h1 className="block text-5xl md:contents xl:text-8xl">
             <span className="md:order-1">RAM</span>
             <span className="font-light md:order-3">SOC</span>
           </h1>
         </div>
         <div className="h-1 w-full max-w-[1200px] bg-white"></div>
-        <h2 className="text-center text-2xl xl:text-3xl">
+        <h2 className="text-center text-xl sm:text-2xl xl:text-3xl">
           UNSW ROBOTICS AND MECHATRONICS SOCIETY
         </h2>
         <Button asChild>

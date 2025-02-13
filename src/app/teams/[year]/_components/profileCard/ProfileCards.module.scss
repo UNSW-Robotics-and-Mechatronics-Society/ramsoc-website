@@ -1,9 +1,9 @@
 .mainContainer {
-  @apply mx-auto flex flex-wrap justify-center;
+  @apply mx-auto flex flex-wrap justify-center gap-x-10 gap-y-7;
 }
 
 .profileContainer {
-  @apply mx-10 my-7 flex h-[28rem] w-[25rem] flex-col items-center justify-center rounded-lg p-5 shadow-md duration-300;
+  @apply flex w-full max-w-96 flex-col items-center justify-center rounded-lg p-5 shadow-md duration-300;
   @apply hover:-translate-y-3 hover:shadow-2xl hover:ease-out;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .descriptionContainer {
-  @apply flex h-full flex-col;
+  @apply flex flex-col;
 }
 
 .textContainer {
@@ -50,12 +50,10 @@
 
 .name {
   @apply text-center text-2xl font-semibold leading-tight;
-  @apply h-8;
 }
 
 .position {
-  @apply text-center text-xl font-normal uppercase leading-normal text-gray-500;
-  @apply h-16;
+  @apply mb-8 text-center text-xl font-normal uppercase leading-normal text-gray-500;
 }
 
 .links {
@@ -82,5 +80,5 @@
 }
 
 .profileGrid {
-  @apply flex flex-wrap justify-center gap-8;
+  @apply mt-10 flex flex-wrap justify-center gap-8;
 }
