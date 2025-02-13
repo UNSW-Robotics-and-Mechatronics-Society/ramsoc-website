@@ -1,12 +1,12 @@
 import { JSX } from "react";
 
+import { Container } from "@/components/ui/Container";
 import { SubcomProfileData } from "@/types/subcomData";
 import { TeamMember, TeamStructure } from "@/types/teamData";
 
 import ProfileCards from "./profileCard/ProfileCards";
 import SubcomProfileCards from "./profileCard/SubcomProfileCards";
 import styles from "./team.module.scss";
-import { Container } from "@/components/ui/Container";
 
 type TitleHeaderProps = {
   text: string;
