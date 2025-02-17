@@ -1,27 +1,32 @@
-import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+
 export default function MeetTheTeamSection() {
   return (
-    <div className="relative mx-auto mb-16 flex h-64 w-full flex-col items-center justify-center gap-8">
-      <div className="absolute left-0 top-0 -z-10 h-full w-full">
+    <Container
+      className="relative flex h-64 flex-col items-center justify-center gap-8"
+      width="full"
+    >
+      <div className="absolute left-0 top-0 size-full">
         <Image
-          className="h-full w-full object-cover"
+          className="size-full object-cover"
           src="/home/team.jpg"
           width={1920}
           height={700}
           priority
           alt="Collage of events held by RAMSoc"
         ></Image>
-        <div className="absolute left-0 top-0 h-full w-full bg-primary-950 bg-opacity-75"></div>
+        <div className="absolute left-0 top-0 size-full bg-primary-950/75"></div>
       </div>
-      <h2 className="text-center text-5xl text-primary-50">
-        Meet Our 2025 Team!
-      </h2>
+      <h2 className="z-10 text-center text-primary-50">Meet Our 2025 Team!</h2>
       <Button asChild>
-        <Link href="/team">Learn More</Link>
+        <Link className="z-10" href="/teams">
+          Learn More
+        </Link>
       </Button>
-    </div>
+    </Container>
   );
 }

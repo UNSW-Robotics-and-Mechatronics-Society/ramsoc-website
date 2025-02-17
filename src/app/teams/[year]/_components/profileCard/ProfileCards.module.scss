@@ -1,0 +1,84 @@
+.mainContainer {
+  @apply mx-auto flex flex-wrap justify-center gap-x-10 gap-y-7;
+}
+
+.profileContainer {
+  @apply flex w-full max-w-96 flex-col items-center justify-center rounded-lg p-5 shadow-md duration-300;
+  @apply hover:-translate-y-3 hover:shadow-2xl hover:ease-out;
+}
+
+.execBGColour {
+  @apply bg-gradient-to-t from-white to-primary-100;
+}
+
+.directorBGColour {
+  @apply bg-gradient-to-t from-white to-primary-50;
+}
+
+.pictureWrapper {
+  @apply relative flex h-64 w-64 items-center justify-center;
+}
+
+.picture {
+  @apply h-64 w-64 rounded-full object-cover transition-opacity duration-300;
+}
+
+.linkedInIcon {
+  @apply absolute h-16 opacity-0 transition-opacity duration-300;
+}
+
+.linkedInIcon > img {
+  filter: invert(20%) sepia(100%) saturate(5000%) hue-rotate(200deg)
+    brightness(90%) contrast(90%);
+}
+
+.hoverEnabled:hover .picture {
+  @apply opacity-30;
+}
+
+.hoverEnabled:hover .linkedInIcon {
+  @apply opacity-100;
+}
+
+.descriptionContainer {
+  @apply flex flex-col;
+}
+
+.textContainer {
+  @apply flex flex-col items-center justify-start pt-5;
+}
+
+.name {
+  @apply text-center text-2xl font-semibold leading-tight;
+}
+
+.position {
+  @apply mb-8 text-center text-xl font-normal uppercase leading-normal text-gray-500;
+}
+
+.links {
+  @apply mt-auto flex flex-row justify-center gap-2;
+}
+
+.logo {
+  @apply h-8 px-1;
+  &:hover {
+    @apply scale-110;
+  }
+
+  &:active {
+    @apply scale-95;
+  }
+}
+
+.section {
+  @apply mb-8 w-full;
+}
+
+.sectionTitle {
+  @apply mt-4 text-center text-3xl font-bold text-primary-600;
+}
+
+.profileGrid {
+  @apply mt-10 flex flex-wrap justify-center gap-8;
+}

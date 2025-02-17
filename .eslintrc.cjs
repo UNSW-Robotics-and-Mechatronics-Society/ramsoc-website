@@ -4,20 +4,24 @@ module.exports = {
     node: true,
     es6: true,
   },
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
   ignorePatterns: [
-    'node_modules/*',
-    'public/mockServiceWorker.js',
-    'generators/*',
+    "node_modules/*",
+    "public/mockServiceWorker.js",
+    "generators/*",
   ],
-  extends: ['eslint:recommended', 'next/core-web-vitals'],
+  extends: [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
   overrides: [
     {
-      files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
+      files: ["**/*.ts", "**/*.tsx"],
+      parser: "@typescript-eslint/parser",
       settings: {
-        react: { version: 'detect' },
-        'import/resolver': {
+        react: { version: "detect" },
+        "import/resolver": {
           typescript: {},
         },
       },
@@ -27,100 +31,73 @@ module.exports = {
         es6: true,
       },
       extends: [
-        'eslint:recommended',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-        'plugin:import/typescript',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended',
-        'plugin:testing-library/react',
-        'plugin:jest-dom/recommended',
-        'plugin:tailwindcss/recommended',
-        'plugin:vitest/legacy-recommended',
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:tailwindcss/recommended",
       ],
       rules: {
-        '@next/next/no-img-element': 'off',
-        'import/no-restricted-paths': [
-          'error',
+        "@next/next/no-img-element": "off",
+        "import/no-restricted-paths": [
+          "error",
           {
             zones: [
               // enforce unidirectional codebase:
 
               // e.g. src/app can import from src/features but not the other way around
               {
-                target: './src/features',
-                from: './src/app',
+                target: "./src/features",
+                from: "./src/app",
               },
 
               // e.g src/features and src/app can import from these shared modules but not the other way around
               {
                 target: [
-                  './src/components',
-                  './src/hooks',
-                  './src/lib',
-                  './src/types',
-                  './src/utils',
+                  "./src/components",
+                  "./src/hooks",
+                  "./src/lib",
+                  "./src/types",
+                  "./src/utils",
                 ],
-                from: ['./src/features', './src/app'],
+                from: ["./src/features", "./src/app"],
               },
             ],
           },
         ],
-        'import/no-cycle': 'error',
-        'linebreak-style': ['error', 'unix'],
-        'react/prop-types': 'off',
-        'import/order': [
-          'error',
+        "import/no-cycle": "error",
+        "linebreak-style": ["error", "unix"],
+        "react/prop-types": "off",
+        "import/order": [
+          "error",
           {
             groups: [
-              'builtin',
-              'external',
-              'internal',
-              'parent',
-              'sibling',
-              'index',
-              'object',
+              "builtin",
+              "external",
+              "internal",
+              "parent",
+              "sibling",
+              "index",
+              "object",
             ],
-            'newlines-between': 'always',
-            alphabetize: { order: 'asc', caseInsensitive: true },
+            "newlines-between": "always",
+            alphabetize: { order: "asc", caseInsensitive: true },
           },
         ],
-        'import/default': 'off',
-        'import/no-named-as-default-member': 'off',
-        'import/no-named-as-default': 'off',
-        'react/react-in-jsx-scope': 'off',
-        'jsx-a11y/anchor-is-valid': 'off',
-        '@typescript-eslint/no-unused-vars': ['error'],
-        '@typescript-eslint/explicit-function-return-type': ['off'],
-        '@typescript-eslint/explicit-module-boundary-types': ['off'],
-        '@typescript-eslint/no-empty-function': ['off'],
-        '@typescript-eslint/no-explicit-any': ['off'],
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-      },
-    },
-    {
-      plugins: ['check-file'],
-      files: ['src/**/*'],
-      rules: {
-        'check-file/filename-naming-convention': [
-          'error',
-          {
-            '**/*.{ts,tsx}': 'KEBAB_CASE',
-          },
-          {
-            ignoreMiddleExtensions: true,
-          },
-        ],
-        'check-file/folder-naming-convention': [
-          'error',
-          {
-            '!(src/app)/**/*': 'KEBAB_CASE',
-            '!(**/__tests__)/**/*': 'KEBAB_CASE',
-          },
-        ],
+        "import/default": "off",
+        "import/no-named-as-default-member": "off",
+        "import/no-named-as-default": "off",
+        "react/react-in-jsx-scope": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "@typescript-eslint/explicit-function-return-type": ["off"],
+        "@typescript-eslint/explicit-module-boundary-types": ["off"],
+        "@typescript-eslint/no-empty-function": ["off"],
+        "@typescript-eslint/no-explicit-any": ["off"],
       },
     },
   ],

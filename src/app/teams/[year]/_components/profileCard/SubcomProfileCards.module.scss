@@ -1,0 +1,26 @@
+.subcomMainContainer {
+  @apply mx-auto flex max-w-6xl flex-wrap justify-center;
+}
+
+.subcomContainer {
+  @apply m-2 flex w-72 flex-col p-6;
+}
+
+.subcomPosition {
+  @apply pb-2 text-center text-2xl font-semibold text-primary-700;
+}
+.subcomName {
+  @apply text-center text-lg font-medium leading-normal text-gray-500;
+}
+
+.joinUsMessage {
+  @apply mt-8 text-center text-primary-50;
+}
+
+.buttonStyle {
+  @apply rounded-lg border-[1.5px] border-primary-800 px-6 py-3 text-lg font-normal text-primary-800 duration-100 hover:scale-[1.05] hover:border-primary-600 hover:bg-primary-600 hover:text-primary-50 hover:shadow;
+}
+
+.joinUsMessage p {
+  @apply mt-4 text-primary-700;
+}

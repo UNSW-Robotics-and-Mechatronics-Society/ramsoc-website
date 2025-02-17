@@ -1,0 +1,31 @@
+# Introduction
+
+This document sets a standard for security measures that should be enacted.
+
+# DO NOT PUSH `.env` and `.dev.vars` FILES TO REPO
+
+> ⚠️ **DANGER:** They contain sensitive information about the page token that you have generated which could be used maliciously.
+
+If you would like to indicate to contributors what should be in those files provide a template file appended by '.example' instead.
+
+**Do**
+
+Put an example in a file such as `.env.example`.
+
+```bash
+SECRET_TOKEN_FOR_MY_API=YOUR_SECRET_HERE;
+```
+
+**Don't**
+
+Push `.env` and `.dev.vars` files to our repo especially with the tokens.
+
+```bash
+SECRET_TOKEN_FOR_MY_API=AFDacf23dcusa3ihfiaf6Af...;
+```
+
+# DO NOT PUSH CODE WITH SENSITIVE DATA TO YOUR BRANCH
+
+Upon a successful push, the CI/CD pipeline will deploy a preview which can be accessed by people with the link to the preview.
+
+=== TODO: Complete this section ===
