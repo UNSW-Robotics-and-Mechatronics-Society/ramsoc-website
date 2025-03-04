@@ -6,7 +6,7 @@ export default function HeroSection() {
       <div className="absolute left-0 top-0 -z-10 size-full">
         <Image
           className="size-full object-cover"
-          src="/home/hero.jpg"
+          src="/home/hero.webp"
           width={1920}
           height={700}
           priority
