@@ -13,11 +13,11 @@ export default function MeetTheTeamSection() {
       <div className="absolute left-0 top-0 size-full">
         <Image
           className="size-full object-cover"
-          src="/home/team.jpg"
+          src="/home/team.webp"
           width={1920}
           height={700}
           priority
-          alt="Collage of events held by RAMSoc"
+          alt="Our team members"
         ></Image>
         <div className="absolute left-0 top-0 size-full bg-primary-950/75"></div>
       </div>
