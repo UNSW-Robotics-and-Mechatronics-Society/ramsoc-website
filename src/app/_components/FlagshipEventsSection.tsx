@@ -126,7 +126,7 @@ const FlagshipEventsSection = () => {
         <FlagshipEventCard
           name={"Sumobots"}
           imageSrc="/home/sumobots-finals.webp"
-          url={"https://projects.ramsocunsw.org/sumobots/2025"}
+          url={"https://sumobots.ramsocunsw.org"}
           description="Sumobots is a competition where robots are designed to push each other out of a ring. The robots are autonomous and must be able to detect the edge of the ring and the opponent."
         />
         {/* TODO: Change URL and description later */}
