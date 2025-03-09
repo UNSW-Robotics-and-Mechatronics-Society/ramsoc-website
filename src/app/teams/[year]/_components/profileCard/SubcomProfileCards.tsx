@@ -17,7 +17,7 @@ const SubcomProfileCards = ({
     <div className={styles.subcomMainContainer}>
       {subcomData.length === 0 ? (
         <div className={styles.joinUsMessage}>
-          <Link legacyBehavior href="">
+          <Link legacyBehavior href="https://forms.gle/y63AA6aayewJoygQ7">
             <a className="px-5 pb-5">
               <button className={styles.buttonStyle}>Join Our Team</button>
             </a>
