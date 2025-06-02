@@ -68,6 +68,13 @@ export default function Navbar() {
             Events
           </Link>
           <Link
+            href="/careers"
+            className="flex h-full items-center px-4 hover:bg-black/50"
+            aria-label="Go to careers page"
+          >
+            Careers
+          </Link>
+          <Link
             href="/teams"
             className="flex h-full items-center px-4 hover:bg-black/50"
             aria-label="Go to team page"
@@ -110,6 +117,13 @@ export default function Navbar() {
                 aria-label="Go to events page"
               >
                 Events
+              </Link>
+              <Link
+                href="/careers"
+                className="flex h-full items-center p-4 hover:bg-black/50"
+                aria-label="Go to careers page"
+              >
+                Careers
               </Link>
               <Link
                 onClick={() => setIsModalOpen(false)}
