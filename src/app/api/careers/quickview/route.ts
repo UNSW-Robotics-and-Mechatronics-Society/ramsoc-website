@@ -44,7 +44,9 @@ function transform(data: any) {
 
 export async function GET(request: Request) {
   const resp = await notionDbGet(request, {
-    params: { slug: process.env.NOTION_API_CAREERS_DB_KEY ?? "" },
+    params: new Promise(() => ({
+      slug: process.env.NOTION_API_CAREERS_DB_KEY ?? "",
+    })),
   });
 
   const rawData = await resp.json();

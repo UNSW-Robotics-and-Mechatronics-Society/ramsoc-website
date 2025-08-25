@@ -4,7 +4,7 @@ import { NotionCompatAPI } from "@/lib/notion-compat/src";
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   const notion = new NotionCompatAPI(
     new Client({

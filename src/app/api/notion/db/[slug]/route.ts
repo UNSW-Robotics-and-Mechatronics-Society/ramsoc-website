@@ -2,7 +2,7 @@ import { Client } from "@notionhq/client";
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   const dbKey = (await params).slug;
   const notion = new Client({
