@@ -6,3 +6,5 @@ export async function GET(
 ) {
   return notionPageGet(request, { params });
 }
+
+export const runtime = "edge";

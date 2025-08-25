@@ -10,3 +10,5 @@ export async function GET(
   });
   return Response.json(await notion.databases.query({ database_id: dbKey }));
 }
+
+export const runtime = "edge";

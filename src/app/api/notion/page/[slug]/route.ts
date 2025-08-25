@@ -22,3 +22,5 @@ export async function GET(
 
   return Response.json(recordMap);
 }
+
+export const runtime = "edge";
