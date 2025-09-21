@@ -1,26 +1,35 @@
 import { Client } from "@notionhq/client";
 
 import { NotionCompatAPI } from "@/lib/notion-compat/src";
+import { NextRequest, NextResponse } from "next/server";
+import { ExtendedRecordMap } from "notion-types";
+export const runtime = "edge";
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
-) {
+): Promise<NextResponse<ExtendedRecordMap | { error: string }>> {
+  const notionToken = process.env.NOTION_TOKEN;
+  if (!notionToken) {
+    return new NextResponse("Notion token not configured", { status: 500 });
+  }
+
+  const { slug: pageId } = await params;
+  if (!pageId) {
+    return new NextResponse("Missing Notion page ID", { status: 400 });
+  }
+
   const notion = new NotionCompatAPI(
     new Client({
-      auth: process.env.NOTION_API_READONLY_KEY,
+      auth: notionToken,
     }),
   );
 
-  const pageId = (await params).slug;
-
-  if (!pageId) {
-    return new Response("Missing Notion page ID", { status: 400 });
+  try {
+    const recordMap = await notion.getPage(pageId);
+    return NextResponse.json(recordMap);
+  } catch (error) {
+    console.error("Error fetching Notion page:", error);
+    return new NextResponse("Notion page not found", { status: 404 });
   }
-
-  const recordMap = await notion.getPage(pageId);
-
-  return Response.json(recordMap);
 }
-
-export const runtime = "edge";
