@@ -37,7 +37,8 @@
     "react-responsive": "^10.0.0",
     "sass": "^1.83.4",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tsup": "^8.5.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
