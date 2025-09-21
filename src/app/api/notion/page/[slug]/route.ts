@@ -1,23 +1,27 @@
 import { Client } from "@notionhq/client";
 import { NotionCompatAPI } from "@/lib/notion-compat/src";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } },
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> },
 ) {
+  const { slug: pageId } = await params;
+  if (!pageId) {
+    return new NextResponse("Missing Notion database ID", { status: 400 });
+  }
+  const notionToken = process.env.NOTION_TOKEN;
+  if (!notionToken) {
+    return new NextResponse("Missing Notion token", { status: 500 });
+  }
+
   const notion = new NotionCompatAPI(
     new Client({
-      auth: "redacted",
+      auth: notionToken,
     }),
   );
 
-  const pageId = params.slug;
-
-  if (!pageId) {
-    return new Response("Missing Notion page ID", { status: 400 });
-  }
-
   const recordMap = await notion.getPage(pageId);
 
-  return Response.json(recordMap);
+  return NextResponse.json(recordMap);
 }
