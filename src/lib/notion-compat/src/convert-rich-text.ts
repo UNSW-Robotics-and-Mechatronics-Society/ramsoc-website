@@ -1,7 +1,7 @@
 import type * as notion from 'notion-types'
 
-import type * as types from './types'
 import { convertColor } from './convert-color'
+import type * as types from './types'
 
 export function convertRichText(richText: types.RichText): notion.Decoration[] {
   return richText.map(convertRichTextItem).filter(Boolean)

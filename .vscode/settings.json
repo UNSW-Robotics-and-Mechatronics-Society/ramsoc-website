@@ -1,8 +1,11 @@
 {
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
-  "files.associations": { "*.scss": "postcss" },
+  "files.associations": {
+    "*.scss": "postcss"
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -12,5 +15,17 @@
     "vue",
     "markdown"
   ],
-  "eslint.workingDirectories": ["./"]
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "eslint.workingDirectories": [
+    "./"
+  ],
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

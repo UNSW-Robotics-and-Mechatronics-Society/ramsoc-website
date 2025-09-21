@@ -1,9 +1,9 @@
 import type * as notion from 'notion-types'
 
-import type * as types from './types'
 import { convertColor } from './convert-color'
 import { convertRichText } from './convert-rich-text'
 import { convertTime } from './convert-time'
+import type * as types from './types'
 
 export function convertBlock({
   block: partialBlock,

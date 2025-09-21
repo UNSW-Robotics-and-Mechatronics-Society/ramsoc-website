@@ -1,7 +1,7 @@
 import type * as notion from 'notion-types'
 
-import type * as types from './types'
 import { convertBlock } from './convert-block'
+import type * as types from './types'
 
 export function convertPage({
   pageId,

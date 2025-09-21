@@ -19,7 +19,7 @@ export default function PastEvents() {
     if (isIntersecting && hasNextPage && !isFetching) {
       fetchNextPage();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, fetchNextPage, hasNextPage, isFetching]);
 
   const termGroupedPastEvents = useMemo<
     [string, MetaEvent[]][] | undefined

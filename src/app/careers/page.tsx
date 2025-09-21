@@ -1,19 +1,20 @@
 "use client";
-import "react-notion-x/src/styles.css";
-import "prismjs/themes/prism-tomorrow.css";
 import "katex/dist/katex.min.css";
+import "prismjs/themes/prism-tomorrow.css";
+import "react-notion-x/src/styles.css";
 
-import { Container } from "@/components/ui/Container";
-import HeroSection from "./_components/HeroSection";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Link from "next/link";
+import { ExtendedRecordMap } from "notion-types";
 import { useMemo, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
-import { ExtendedRecordMap } from "notion-types";
+
+import { Container } from "@/components/ui/Container";
+
 import { CareerCard } from "./_components/CareerCard";
-import { Skeleton } from "@/components/ui/Skeleton";
+import HeroSection from "./_components/HeroSection";
 import { PostLoading } from "./_components/PostLoading";
-import Link from "next/link";
 
 interface CareerMetaData {
   id: string;
@@ -75,7 +76,7 @@ export default function CareersPage() {
       pagesMeta[pageMeta.id] = pageMeta;
     }
     return pagesMeta;
-  }, [queryDB.status]);
+  }, [queryDB.data]);
 
   return (
     <main className="mb-16 grid min-h-screen">
@@ -99,7 +100,7 @@ export default function CareersPage() {
                     onClick={() => {
                       setActiveId(id);
                     }}
-                  ></CareerCard>
+                  />
                 );
               })}
           </ul>
@@ -119,7 +120,7 @@ export default function CareersPage() {
                 nextImage: Image,
                 nextLink: Link,
               }}
-            ></NotionRenderer>
+            />
           ) : (
             <PostLoading />
           )}

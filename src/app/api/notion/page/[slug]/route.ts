@@ -1,6 +1,7 @@
 import { Client } from "@notionhq/client";
-import { NotionCompatAPI } from "@/lib/notion-compat/src";
 import { NextRequest, NextResponse } from "next/server";
+
+import { NotionCompatAPI } from "@/lib/notion-compat/src";
 
 export async function GET(
   request: NextRequest,
