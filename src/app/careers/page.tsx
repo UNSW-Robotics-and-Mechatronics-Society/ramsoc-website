@@ -28,11 +28,15 @@ interface CareerMetaData {
 export default function CareersPage() {
   const [activeId, setActiveId] = useState<string>();
 
+  const JOB_LISTING_DB_ID = process.env.NEXT_PUBLIC_JOB_LISTING_DB_ID;
+
+  if (!JOB_LISTING_DB_ID) console.error("No JOB_LISTING_DB_ID set");
+
   const queryDB = useQuery({
-    queryKey: ["notion", "db", "1f98f3d5ed48803fb34f000cb9a79810"],
-    queryFn: async ({ pageParam = undefined }) => {
+    queryKey: ["notion", "db", JOB_LISTING_DB_ID],
+    queryFn: async () => {
       return await axios
-        .get(`/api/notion/db/1f98f3d5ed48803fb34f000cb9a79810`)
+        .get(`/api/notion/db/${JOB_LISTING_DB_ID}`, {})
         .then((res) => res.data);
     },
     staleTime: 60 * 60 * 1000,
