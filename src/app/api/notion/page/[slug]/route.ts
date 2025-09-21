@@ -24,7 +24,11 @@ export async function GET(
     }),
   );
 
-  const recordMap = await notion.getPage(pageId);
-
-  return NextResponse.json(recordMap);
+  try {
+    const recordMap = await notion.getPage(pageId);
+    return NextResponse.json(recordMap);
+  } catch (error) {
+    console.error("Error querying Notion page:", error);
+    return new NextResponse("Error querying Notion page", { status: 500 });
+  }
 }

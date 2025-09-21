@@ -19,9 +19,13 @@ export async function GET(
   const notion = new Client({
     auth: notionToken,
   });
-
-  const db_result = await notion.databases.query({
-    database_id: databaseId,
-  });
-  return NextResponse.json(db_result);
+  try {
+    const db_result = await notion.databases.query({
+      database_id: databaseId,
+    });
+    return NextResponse.json(db_result);
+  } catch (error) {
+    console.error("Error querying Notion database:", error);
+    return new NextResponse("Error querying Notion database", { status: 500 });
+  }
 }
