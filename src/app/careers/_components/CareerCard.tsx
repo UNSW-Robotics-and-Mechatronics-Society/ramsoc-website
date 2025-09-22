@@ -68,7 +68,7 @@ export function CareerCard({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex-1 space-y-3">
             <div className="flex items-start gap-4">
-              <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg bg-stone-200">
+              <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg">
                 {logo && (
                   <Image
                     className="size-full object-cover"
@@ -76,7 +76,7 @@ export function CareerCard({
                     alt={`${company} logo`}
                     width={100}
                     height={100}
-                  ></Image>
+                  />
                 )}
               </div>
               <div className="w-full overflow-hidden break-words">
