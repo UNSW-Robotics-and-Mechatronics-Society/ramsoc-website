@@ -5,16 +5,17 @@ import "katex/dist/katex.min.css";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Link from "next/link";
+import { X, MapPin, DollarSign, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { ExtendedRecordMap } from "notion-types";
-import { NotionRenderer } from "react-notion-x";
-import { X, MapPin, DollarSign, Clock, Mail } from "lucide-react";
 import { useEffect } from "react";
+import { NotionRenderer } from "react-notion-x";
 
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import { CareerMetaData } from "@/types/careers";
+
 import { PostLoading } from "./PostLoading";
 
 interface CareerDetailsProps {
@@ -88,8 +89,16 @@ export function CareerDetails({
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 p-4"
       onClick={handleBackdropClick}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          onBack();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Close modal"
     >
-      <div className="relative flex h-full max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
+      <div className="relative flex size-full max-h-[90vh] max-w-4xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
         {/* Header with career metadata and close button */}
         <div className="border-b border-gray-200 p-6">
           <div className="flex items-start justify-between">
@@ -170,9 +179,9 @@ export function CareerDetails({
               variant="ghost"
               size="sm"
               onClick={onBack}
-              className="ml-4 h-8 w-8 p-0"
+              className="ml-4 size-8 p-0"
             >
-              <X className="h-4 w-4" />
+              <X className="size-4" />
             </Button>
           </div>
         </div>

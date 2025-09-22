@@ -1,7 +1,7 @@
 import { Client } from "@notionhq/client";
+import { NextRequest, NextResponse } from "next/server";
 
 import { NotionCompatAPI } from "@/lib/notion-compat/src";
-import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 

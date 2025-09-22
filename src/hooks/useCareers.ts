@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { CareerMetaData } from "@/types/careers";
 import axios from "axios";
+
+import { CareerMetaData } from "@/types/careers";
 
 const mapCareerMetaDatas = (data: any): { [key: string]: CareerMetaData } => {
   const pages = data.results;

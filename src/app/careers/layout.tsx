@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+
 import HeroSection from "./_components/HeroSection";
 
 export default function CareersLayout({

@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
+
+import { useCareerMetaDatas } from "@/hooks/useCareers";
 
 import { CareerCard } from "./_components/CareerCard";
 import { CareerCardLoading } from "./_components/CareerCardLoading";
 import { CareerDetails } from "./_components/CareerDetails";
-import { useCareerMetaDatas } from "@/hooks/useCareers";
 
 export default function CareersPage() {
   const [activeId, setActiveId] = useState<string>();
