@@ -2,13 +2,13 @@ import { Client } from "@notionhq/client";
 
 import { NotionCompatAPI } from "@/lib/notion-compat/src";
 import { NextRequest, NextResponse } from "next/server";
-import { ExtendedRecordMap } from "notion-types";
+
 export const runtime = "edge";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
-): Promise<NextResponse<ExtendedRecordMap | { error: string }>> {
+) {
   const notionToken = process.env.NOTION_TOKEN;
   if (!notionToken) {
     return new NextResponse("Notion token not configured", { status: 500 });
