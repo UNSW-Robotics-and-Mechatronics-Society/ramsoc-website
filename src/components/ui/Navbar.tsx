@@ -43,13 +43,14 @@ export default function Navbar() {
         isScrollingDown ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto hidden size-full max-w-[1200px] items-center text-primary-50 sm:flex">
+      <div className="mx-auto hidden size-full max-w-[3000px] items-center text-primary-50 sm:flex">
         <Link href="/" aria-label="Logo to go to home page">
           <Image
             src="/logo.svg"
             alt="logo for ramsoc"
-            width={91}
-            height={56}
+            width={24}
+            height={24}
+            className="size-16"
           ></Image>
         </Link>
         <div className="ml-auto flex h-full">
