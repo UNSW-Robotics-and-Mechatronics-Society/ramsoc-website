@@ -16,7 +16,9 @@ const mapCareerMetaDatas = (data: any): { [key: string]: CareerMetaData } => {
 
     const pageMeta: CareerMetaData = {
       id: page.id,
-      logo: properties["Logo"]?.files?.at(0)?.file?.url || null,
+      logo:
+        properties["Logo"]?.files?.at(0)?.file?.url ||
+        "./careers/company-placeholder.svg",
       company: properties.Company?.title?.at(0)?.plain_text || null,
       deadline: properties["Application Deadline"]?.date?.start || null,
       hasDetails: properties["Details Available"]?.checkbox || false,
@@ -57,8 +59,6 @@ export const useCareerMetaDatas = () => {
       }
 
       const res = await axios.get(`/api/notion/db/${dbId}`);
-
-      console.log("Notion careers DB response:", res.data);
 
       if (res.status !== 200) {
         throw new Error(`Failed to fetch careers: ${res.statusText}`);
