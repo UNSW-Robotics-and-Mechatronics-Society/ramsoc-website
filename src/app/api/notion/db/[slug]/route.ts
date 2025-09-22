@@ -1,4 +1,4 @@
-import { Client, GetDatabaseResponse } from "@notionhq/client";
+import { Client } from "@notionhq/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
