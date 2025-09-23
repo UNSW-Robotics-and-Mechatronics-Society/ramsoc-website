@@ -39,9 +39,11 @@ export default function SponsoredSection() {
             width={100}
             height={100}
           />,
-          <div className="flex size-full items-center justify-center">
+          <div
+            key={"pure matcha logo"}
+            className="flex size-full items-center justify-center"
+          >
             <Image
-              key={"pure matcha logo"}
               src="/home/purematcha-logo.avif"
               alt="pure matcha logo"
               width={100}
