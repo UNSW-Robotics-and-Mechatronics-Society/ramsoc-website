@@ -43,27 +43,26 @@ export function getUnswTermAndYear(dateString: string): SchoolTerm {
 export const fetchTeamData = async (year: number): Promise<TeamStructure> => {
   const response = await client.getEntries({
     content_type: "team",
+    "fields.year": year,
     order: ["fields.year", "fields.role", "fields.name"],
   });
 
-  const yearTeamData: TeamMember[] = response.items
-    .filter((item) => item.fields.year?.toString() === year.toString())
-    .map((item) => {
-      const selfieUrl = (item.fields.selfie as Asset)?.fields.file?.url; // without https
-      const formattedSelfieUrl = selfieUrl
-        ? `https:${selfieUrl}?fm=webp&fit=fill&w=500&h=500` // format: .webp, fitting: fill, dimention: 500px * 500px
-        : "";
+  const yearTeamData: TeamMember[] = response.items.map((item) => {
+    const selfieUrl = (item.fields.selfie as Asset)?.fields.file?.url; // without https
+    const formattedSelfieUrl = selfieUrl
+      ? `https:${selfieUrl}?fm=webp&fit=fill&w=500&h=500` // format: .webp, fitting: fill, dimention: 500px * 500px
+      : "";
 
-      return {
-        id: item.sys.id as string,
-        name: item.fields.name as string,
-        role: item.fields.role as string,
-        year: item.fields.year as number,
-        selfie: formattedSelfieUrl as string,
-        email: item.fields.email as string,
-        linkedin: item.fields.linkedin as string,
-      };
-    });
+    return {
+      id: item.sys.id as string,
+      name: item.fields.name as string,
+      role: item.fields.role as string,
+      year: item.fields.year as number,
+      selfie: formattedSelfieUrl as string,
+      email: item.fields.email as string,
+      linkedin: item.fields.linkedin as string,
+    };
+  });
 
   return categorizeTeamMembersByRole(yearTeamData);
 };
