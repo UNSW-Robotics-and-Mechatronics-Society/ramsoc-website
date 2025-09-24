@@ -43,13 +43,14 @@ export default function Navbar() {
         isScrollingDown ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto hidden size-full max-w-[1200px] items-center text-primary-50 sm:flex">
+      <div className="mx-auto hidden size-full max-w-[3000px] items-center text-primary-50 sm:flex">
         <Link href="/" aria-label="Logo to go to home page">
           <Image
             src="/logo.svg"
             alt="logo for ramsoc"
-            width={91}
-            height={56}
+            width={24}
+            height={24}
+            className="size-16"
           ></Image>
         </Link>
         <div className="ml-auto flex h-full">
@@ -66,6 +67,13 @@ export default function Navbar() {
             aria-label="Go to events page"
           >
             Events
+          </Link>
+          <Link
+            href="/careers"
+            className="flex h-full items-center px-4 hover:bg-black/50"
+            aria-label="Go to careers page"
+          >
+            Careers
           </Link>
           <Link
             href="/teams"
@@ -110,6 +118,13 @@ export default function Navbar() {
                 aria-label="Go to events page"
               >
                 Events
+              </Link>
+              <Link
+                href="/careers"
+                className="flex h-full items-center p-4 hover:bg-black/50"
+                aria-label="Go to careers page"
+              >
+                Careers
               </Link>
               <Link
                 onClick={() => setIsModalOpen(false)}

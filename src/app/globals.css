@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  overscroll-behavior: none;
+}
+
 body {
   font-family: Inter, Helvetica, sans-serif;
   @apply text-primary-800;

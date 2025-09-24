@@ -100,7 +100,7 @@ const FlagshipEventCard = ({
                 asChild
                 variant={"outline_prime_BW"}
                 size={"none"}
-                className="text-md w-fit px-3 py-2"
+                className="w-fit px-3 py-2"
               >
                 <a href={url} target="_blank" rel="noopener noreferrer">
                   CHECK IT OUT
