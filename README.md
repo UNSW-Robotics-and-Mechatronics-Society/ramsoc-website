@@ -60,6 +60,8 @@ The official website for the UNSW Robotics and Mechatronics Society (RAMSoc) - a
    NEXT_PUBLIC_NOTION_CAREERS_DB_ID=your_careers_database_id
    ```
 
+   > Ask the team for the actual values of these environment variables.
+
 4. **Start the development server**
 
    ```bash
