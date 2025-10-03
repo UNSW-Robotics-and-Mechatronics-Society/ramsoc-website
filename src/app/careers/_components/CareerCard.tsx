@@ -7,8 +7,8 @@ import { useMemo } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
-import { CareerMetaData } from "@/types/careers";
 import { normalizeCareerCtaUrlStrict } from "@/lib/utils";
+import { CareerMetaData } from "@/types/careers";
 
 interface Props extends CareerMetaData {
   id: string;
@@ -61,7 +61,10 @@ export function CareerCard({
   const normalizedctaUrl = normalizeCareerCtaUrlStrict(ctaUrl);
 
   return (
-    <Card className="cursor-pointer bg-stone-100/50 transition-shadow hover:shadow-md">
+    <Card
+      className="cursor-pointer bg-stone-100/50 transition-shadow hover:shadow-md"
+      onClick={() => onClick(id)}
+    >
       <CardContent className="p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex-1 space-y-3">

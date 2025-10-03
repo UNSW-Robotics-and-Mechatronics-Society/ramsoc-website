@@ -14,10 +14,10 @@ import { NotionRenderer } from "react-notion-x";
 
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { normalizeCareerCtaUrlStrict } from "@/lib/utils";
 import { CareerMetaData } from "@/types/careers";
 
 import { PostLoading } from "./PostLoading";
-import { normalizeCareerCtaUrlStrict } from "@/lib/utils";
 
 interface CareerDetailsProps {
   activeId: string;
