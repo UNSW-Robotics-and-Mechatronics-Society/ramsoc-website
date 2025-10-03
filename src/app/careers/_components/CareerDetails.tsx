@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/Button";
 import { CareerMetaData } from "@/types/careers";
 
 import { PostLoading } from "./PostLoading";
+import { normalizeCareerCtaUrlStrict } from "@/lib/utils";
 
 interface CareerDetailsProps {
   activeId: string;
@@ -71,12 +72,7 @@ export function CareerDetails({
 
   const { data, isLoading, error } = queryPage;
 
-  // Normalize external link: if starts with www., prepend https://
-  const normalizedCtaUrl = careerMeta?.ctaUrl
-    ? /^http?:\/\//i.test(careerMeta.ctaUrl)
-      ? careerMeta.ctaUrl
-      : `https://${careerMeta.ctaUrl}`
-    : null;
+  const normalizedCtaUrl = normalizeCareerCtaUrlStrict(careerMeta?.ctaUrl);
 
   // Handle backdrop click
   const handleBackdropClick = (event: React.MouseEvent) => {

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { CareerMetaData } from "@/types/careers";
+import { normalizeCareerCtaUrlStrict } from "@/lib/utils";
 
 interface Props extends CareerMetaData {
   id: string;
@@ -57,10 +58,7 @@ export function CareerCard({
     };
   }, [deadline]);
 
-  // Normalize external link: if starts with www., prepend https://
-  const normalizedctaUrl = /^http?:\/\//i.test(ctaUrl)
-    ? ctaUrl
-    : `https://${ctaUrl}`;
+  const normalizedctaUrl = normalizeCareerCtaUrlStrict(ctaUrl);
 
   return (
     <Card className="cursor-pointer bg-stone-100/50 transition-shadow hover:shadow-md">
