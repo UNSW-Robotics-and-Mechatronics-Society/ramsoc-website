@@ -125,7 +125,7 @@ export function CareerCard({
           </div>
 
           <div className="flex flex-col gap-4 sm:w-48">
-            {ctaUrl && (
+            {normalizedctaUrl && (
               <Button asChild className="flex-1 sm:w-full">
                 <Link
                   rel="noopener noreferrer"
