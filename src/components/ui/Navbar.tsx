@@ -89,6 +89,13 @@ export default function Navbar() {
           >
             Contact Us
           </Link>
+          <Link
+            href="/store"
+            className="flex h-full items-center px-4 hover:bg-black/50"
+            aria-label="Go to store page"
+          >
+            Store
+          </Link>
         </div>
       </div>
       <Sheet open={isModalOpen} onOpenChange={setIsModalOpen}>
