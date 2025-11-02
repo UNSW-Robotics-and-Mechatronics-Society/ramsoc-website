@@ -1,8 +1,8 @@
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 import Footer from "@/components/ui/Footer";
-import GoogleAnalytics from "@/components/ui/GoogleAnalytics";
 import Navbar from "@/components/ui/Navbar";
 import "./globals.css";
 
@@ -42,10 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <GoogleAnalytics />
-      </head>
-
+      <GoogleTagManager gtmId="GTM-WTTHQMLH" />
       <body className={`bg-stone-50 text-primary-800 antialiased`}>
         <Providers>
           <Navbar></Navbar>

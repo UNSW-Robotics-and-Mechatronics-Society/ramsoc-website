@@ -1,7 +1,12 @@
+//Phased out by built in google tag manager
+
 export default function GoogleAnalytics() {
   return (
     <>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGRQVZ3911"></script>
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-JGRQVZ3911"
+      ></script>
       <script
         dangerouslySetInnerHTML={{
           __html: `
