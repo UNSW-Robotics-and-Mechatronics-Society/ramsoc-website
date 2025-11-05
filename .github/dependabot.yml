@@ -8,4 +8,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "build: "
+      prefix: "build"
