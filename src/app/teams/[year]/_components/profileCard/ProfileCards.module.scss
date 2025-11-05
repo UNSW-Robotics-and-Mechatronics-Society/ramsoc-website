@@ -1,30 +1,73 @@
 .mainContainer {
-  @apply mx-auto flex flex-wrap justify-center gap-x-10 gap-y-7;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 2.5rem;
+  row-gap: 1.75rem;
 }
 
 .profileContainer {
-  @apply flex w-full max-w-96 flex-col items-center justify-center rounded-lg p-5 shadow-md duration-300;
-  @apply hover:-translate-y-3 hover:shadow-2xl hover:ease-out;
+  display: flex;
+  width: 100%;
+  max-width: 24rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition-duration: 300ms;
+
+  &:hover {
+    transform: translateY(-0.75rem);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
 .execBGColour {
-  @apply bg-gradient-to-t from-white to-primary-100;
+  background: linear-gradient(
+    to top,
+    rgb(255 255 255),
+    var(--color-primary-100)
+  );
 }
 
 .directorBGColour {
-  @apply bg-gradient-to-t from-white to-primary-50;
+  background: linear-gradient(
+    to top,
+    rgb(255 255 255),
+    var(--color-primary-50)
+  );
 }
 
 .pictureWrapper {
-  @apply relative flex h-64 w-64 items-center justify-center;
+  position: relative;
+  display: flex;
+  height: 16rem;
+  width: 16rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .picture {
-  @apply h-64 w-64 rounded-full object-cover transition-opacity duration-300;
+  height: 16rem;
+  width: 16rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  transition-property: opacity;
+  transition-duration: 300ms;
 }
 
 .linkedInIcon {
-  @apply absolute h-16 opacity-0 transition-opacity duration-300;
+  position: absolute;
+  height: 4rem;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 300ms;
 }
 
 .linkedInIcon > img {
@@ -33,52 +76,82 @@
 }
 
 .hoverEnabled:hover .picture {
-  @apply opacity-30;
+  opacity: 0.3;
 }
 
 .hoverEnabled:hover .linkedInIcon {
-  @apply opacity-100;
+  opacity: 1;
 }
 
 .descriptionContainer {
-  @apply flex flex-col;
+  display: flex;
+  flex-direction: column;
 }
 
 .textContainer {
-  @apply flex flex-col items-center justify-start pt-5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1.25rem;
 }
 
 .name {
-  @apply text-center text-2xl font-semibold leading-tight;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 600;
 }
 
 .position {
-  @apply mb-8 text-center text-xl font-normal uppercase leading-normal text-gray-500;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgb(107 114 128);
+  text-transform: uppercase;
 }
 
 .links {
-  @apply mt-auto flex flex-row justify-center gap-2;
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .logo {
-  @apply h-8 px-1;
+  height: 2rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+
   &:hover {
-    @apply scale-110;
+    transform: scale(1.1);
   }
 
   &:active {
-    @apply scale-95;
+    transform: scale(0.95);
   }
 }
 
 .section {
-  @apply mb-8 w-full;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
 .sectionTitle {
-  @apply mt-4 text-center text-3xl font-bold text-primary-600;
+  color: var(--color-primary-600);
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: 700;
 }
 
 .profileGrid {
-  @apply mt-10 flex flex-wrap justify-center gap-8;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }

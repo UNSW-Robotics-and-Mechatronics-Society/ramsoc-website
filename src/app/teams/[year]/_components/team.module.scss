@@ -1,22 +1,40 @@
 .mainContainer {
-  @apply flex flex-col h-full;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
-//.sectionContainer {
-//  @apply flex flex-col justify-center my-20 text-center text-xl mx-48;
-//}
 .sectionContainer {
-  @apply flex flex-col justify-center my-20 text-center text-xl;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25rem;
 }
-//media query later
+
+// media query later
 .title {
-  @apply text-4xl font-medium mb-10;
+  margin-bottom: 2.5rem;
+  font-size: 2.25rem;
+  font-weight: 500;
 }
 
 .executivesContainer {
-  @apply flex flex-row justify-between w-full max-w-[100%] pb-20;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5rem;
 }
 
 .profileContainer {
-  @apply flex flex-row justify-around w-full max-w-[100%] pb-20;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 5rem;
 }

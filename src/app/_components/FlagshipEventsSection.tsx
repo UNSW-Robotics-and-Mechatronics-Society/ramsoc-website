@@ -83,7 +83,7 @@ const FlagshipEventCard = ({
       onHoverEnd={() => setIsExpanded(false)}
     >
       <div
-        className={`flex size-full flex-col-reverse overflow-hidden lg:flex-row ${isExpanded ? "backdrop-brightness-50" : "backdrop-blur-sm backdrop-brightness-[.3]"}`}
+        className={`flex size-full flex-col-reverse overflow-hidden lg:flex-row ${isExpanded ? "backdrop-brightness-50" : "backdrop-blur-xs backdrop-brightness-[.3]"}`}
       >
         <div
           className={`flex flex-col ${isExpanded ? "h-1/2 w-full place-content-between bg-primary-950/60 md:h-1/3 lg:h-full lg:w-1/3" : "size-full place-content-center"} overflow-hidden px-4 py-8`}
@@ -127,7 +127,7 @@ const FlagshipEventsSection = () => {
           name={"Sumobots"}
           imageSrc="/home/sumobots-finals.webp"
           url={"https://sumobots.ramsocunsw.org"}
-          description="Sumobots is a competition where robots are designed to push each other out of a ring. The robots are autonomous and must be able to detect the edge of the ring and the opponent."
+          description="Sumobots is a competition where robots are designed to push each other out of a ring. The robots are autonomous and must be able to detect the edge of the ring-3 and the opponent."
         />
         {/* TODO: Change URL and description later */}
         <FlagshipEventCard

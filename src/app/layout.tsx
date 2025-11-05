@@ -43,11 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="GTM-WTTHQMLH" />
-      <body className={`bg-stone-50 text-primary-800 antialiased`}>
+      <body className={`text-primary-800 bg-stone-50 antialiased`}>
         <Providers>
-          <Navbar></Navbar>
+          <Navbar />
           {children}
-          <Footer></Footer>
+          <Footer />
           <Analytics />
         </Providers>
       </body>

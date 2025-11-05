@@ -77,7 +77,7 @@ const ProfileCard = ({
       </div>
       <div className={styles.links}>
         <a
-          className="text-primary-900 underline underline-offset-4 hover:text-primary-700"
+          className="text-primary-900 hover:text-primary-700 underline underline-offset-4"
           href={`mailto:${profile.email}`}
         >
           {profile.email}

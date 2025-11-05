@@ -12,7 +12,7 @@ interface EventCardProps {
 export default function EventCard({ data }: EventCardProps) {
   return (
     <div className="flex w-full flex-col bg-primary-950 sm:h-96 sm:flex-row">
-      <div className="relative aspect-video h-full bg-primary-950 sm:aspect-[3/4] md:aspect-[4/4]">
+      <div className="relative aspect-video h-full bg-primary-950 sm:aspect-3/4 md:aspect-4/4">
         {data.cover && (
           <>
             <Image

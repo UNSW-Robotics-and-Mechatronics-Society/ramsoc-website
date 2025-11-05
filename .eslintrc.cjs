@@ -1,104 +1,70 @@
-module.exports = {
-  root: true,
-  env: {
-    node: true,
-    es6: true,
+import { FlatCompat } from "@eslint/eslintrc";
+import tailwind from "eslint-plugin-tailwindcss";
+import fs from "fs";
+import path from "path";
+
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
+
+/**
+ * Recursively walks `dir`, looking for the first .css file
+ * that has a line starting with @import "tailwindcss
+ * @param {string} dir  absolute path to start searching from
+ * @returns {string|null}  absolute path to matching CSS, or null if none found
+ *
+ * @example
+ * const twCssPath = findTailwindImportCss(process.cwd())
+ */
+function findTailwindImportCss(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      const found = findTailwindImportCss(fullPath);
+      if (found) return found;
+    } else if (entry.isFile() && entry.name.endsWith(".css")) {
+      // read & scan lines
+      const lines = fs.readFileSync(fullPath, "utf8").split(/\r?\n/);
+      for (let line of lines) {
+        if (line.trim().startsWith('@import "tailwindcss')) {
+          return fullPath;
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+const eslintConfig = [
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "prisma/generated/**",
+    ],
   },
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-  ignorePatterns: [
-    "node_modules/*",
-    "public/mockServiceWorker.js",
-    "generators/*",
-  ],
-  extends: [
-    "eslint:recommended",
-    "next/core-web-vitals",
-    "plugin:storybook/recommended"
-  ],
-  overrides: [
-    {
-      files: ["**/*.ts", "**/*.tsx"],
-      parser: "@typescript-eslint/parser",
-      settings: {
-        react: { version: "detect" },
-        "import/resolver": {
-          typescript: {},
-        },
-      },
-      env: {
-        browser: true,
-        node: true,
-        es6: true,
-      },
-      extends: [
-        "eslint:recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:import/typescript",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:tailwindcss/recommended",
-      ],
-      rules: {
-        "@next/next/no-img-element": "off",
-        "import/no-restricted-paths": [
-          "error",
-          {
-            zones: [
-              // enforce unidirectional codebase:
-
-              // e.g. src/app can import from src/features but not the other way around
-              {
-                target: "./src/features",
-                from: "./src/app",
-              },
-
-              // e.g src/features and src/app can import from these shared modules but not the other way around
-              {
-                target: [
-                  "./src/components",
-                  "./src/hooks",
-                  "./src/lib",
-                  "./src/types",
-                  "./src/utils",
-                ],
-                from: ["./src/features", "./src/app"],
-              },
-            ],
-          },
-        ],
-        "import/no-cycle": "error",
-        "linebreak-style": ["error", "unix"],
-        "react/prop-types": "off",
-        "import/order": [
-          "error",
-          {
-            groups: [
-              "builtin",
-              "external",
-              "internal",
-              "parent",
-              "sibling",
-              "index",
-              "object",
-            ],
-            "newlines-between": "always",
-            alphabetize: { order: "asc", caseInsensitive: true },
-          },
-        ],
-        "import/default": "off",
-        "import/no-named-as-default-member": "off",
-        "import/no-named-as-default": "off",
-        "react/react-in-jsx-scope": "off",
-        "jsx-a11y/anchor-is-valid": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "@typescript-eslint/explicit-function-return-type": ["off"],
-        "@typescript-eslint/explicit-module-boundary-types": ["off"],
-        "@typescript-eslint/no-empty-function": ["off"],
-        "@typescript-eslint/no-explicit-any": ["off"],
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.config({
+    extends: ["next", "prettier", "next/typescript", "next/core-web-vitals"],
+    plugins: ["@typescript-eslint", "prettier"],
+  }),
+  ...tailwind.configs["flat/recommended"],
+  {
+    settings: {
+      tailwindcss: {
+        config: findTailwindImportCss(process.cwd()),
+        callees: ["cn", "classnames", "clsx", "ctl"],
+        removeDuplicates: true,
       },
     },
-  ],
-};
+  },
+];
+
+export default eslintConfig;
