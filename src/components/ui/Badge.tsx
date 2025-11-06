@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "aria-invalid:border-destructive focus-visible:border-ring aria-invalid:ring-destructive/20 focus-visible:ring-ring/50 dark:aria-invalid:ring-destructive/40 inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border px-2 py-0.5 text-xs font-medium transition-[color,box-shadow] focus-visible:ring [&>svg]:pointer-events-none [&>svg]:size-3",
+  "aria-invalid:border-destructive focus-visible:border-ring aria-invalid:ring-destructive/20 focus-visible:ring-ring/50 dark:aria-invalid:ring-destructive/40 inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border px-2 py-0.5 text-xs font-medium transition-[color,box-shadow] focus-visible:ring-3 [&>svg]:pointer-events-none [&>svg]:size-3",
   {
     variants: {
       variant: {

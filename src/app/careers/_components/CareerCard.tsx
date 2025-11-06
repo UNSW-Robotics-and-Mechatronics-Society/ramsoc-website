@@ -80,7 +80,7 @@ export function CareerCard({
                   />
                 )}
               </div>
-              <div className="w-full overflow-hidden break-words">
+              <div className="w-full overflow-hidden wrap-break-word">
                 <h3 className="text-2xl font-semibold">{position}</h3>
                 <p className="font-medium text-primary-900/90">{company}</p>
                 {email && (
