@@ -14,7 +14,7 @@ export const Tall = () => <Skeleton className="h-16 w-full"></Skeleton>;
 
 export const CardExample = () => (
   <div className="flex w-full flex-col bg-primary-950 sm:h-96 sm:flex-row">
-    <div className="relative aspect-video h-full sm:aspect-[3/4] md:aspect-[4/4]">
+    <div className="relative aspect-video h-full sm:aspect-3/4 md:aspect-4/4">
       <Skeleton className="size-full" />
     </div>
     <div className="flex max-h-fit w-full flex-col gap-2 overflow-hidden p-8 text-primary-50 sm:max-h-full">

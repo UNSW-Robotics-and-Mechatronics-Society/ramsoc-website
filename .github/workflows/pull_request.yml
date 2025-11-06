@@ -28,7 +28,7 @@ jobs:
             const labels = pr.labels.map(label => label.name);
             const assignees = pr.assignees;
 
-            const titleRegex = /^(feat|fix|docs|style|refactor|perf|test|chore)(\([^)]+\))?: .+$/;
+            const titleRegex = /^(feat|fix|docs|style|refactor|perf|test|chore|build)(\([^)]+\))?: .+$/;
             let errors = [];
 
             if (!titleRegex.test(prTitle)) {

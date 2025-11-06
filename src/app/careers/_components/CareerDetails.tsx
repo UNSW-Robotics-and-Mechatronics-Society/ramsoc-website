@@ -213,7 +213,7 @@ export function CareerDetails({
           {data && (
             <NotionRenderer
               recordMap={data}
-              className="!m-0 !p-0"
+              className="m-0! p-0!"
               components={{
                 nextImage: Image,
                 nextLink: Link,
