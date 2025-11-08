@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "Join RAMSoc events - workshops, competitions, and networking opportunities in robotics and mechatronics.",
     url: `${SITE_URL}/events`,
+    siteName: "RAMSoc UNSW",
     images: `${SITE_URL}${SITE_OG_IMAGE}`,
   },
   twitter: {

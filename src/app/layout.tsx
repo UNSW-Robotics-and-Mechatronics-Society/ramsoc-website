@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description:
       "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
     url: SITE_URL,
+    siteName: "RAMSoc UNSW",
     images: `${SITE_URL}${SITE_OG_IMAGE}`,
   },
   twitter: {

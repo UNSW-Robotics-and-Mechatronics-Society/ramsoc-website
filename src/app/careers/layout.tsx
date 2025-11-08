@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Explore career opportunities in robotics and mechatronics - internships, graduate roles, and jobs.",
     url: `${SITE_URL}/careers`,
+    siteName: "RAMSoc UNSW",
     images: `${SITE_URL}${SITE_OG_IMAGE}`,
   },
   twitter: {
