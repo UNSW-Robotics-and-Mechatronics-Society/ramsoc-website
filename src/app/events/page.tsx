@@ -1,5 +1,3 @@
-"use client";
-
 import { Hero } from "@/components/hero";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import type { Metadata } from "next";
