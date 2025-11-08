@@ -50,6 +50,7 @@ export function Hero({
           src={imageSrc}
           width={1920}
           height={700}
+          loading="lazy"
           priority
           alt={imageAlt}
         />
