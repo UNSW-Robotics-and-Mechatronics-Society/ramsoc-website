@@ -1,22 +1,21 @@
-import AboutUsSection from "@/app/_components/AboutUsSection";
-import ContactUsSection from "@/app/_components/ContactUsSection";
-import EventsSection from "@/app/_components/EventsSection";
-import HeroSection from "@/app/_components/HeroSection";
-import MeetTheTeamSection from "@/app/_components/MeetTheTeamSection";
-import SponsoredSection from "@/app/_components/SponsoredSection";
-
-import FlagshipEventsSection from "./_components/FlagshipEventsSection";
+import AboutUs from "@/app/_components/about-us";
+import ContactUs from "@/app/_components/contact-us";
+import Events from "@/app/_components/events";
+import Hero from "@/app/_components/hero";
+import MeetTheTeam from "@/app/_components/meet-the-team";
+import Sponsored from "@/app/_components/sponsors";
+import FlagshipEvents from "./_components/flagship-events";
 
 export default function HomePage() {
   return (
     <main>
-      <HeroSection></HeroSection>
-      <AboutUsSection></AboutUsSection>
-      <FlagshipEventsSection></FlagshipEventsSection>
-      <EventsSection></EventsSection>
-      <MeetTheTeamSection></MeetTheTeamSection>
-      <SponsoredSection></SponsoredSection>
-      <ContactUsSection></ContactUsSection>
+      <Hero />
+      <AboutUs />
+      <FlagshipEvents />
+      <Events />
+      <MeetTheTeam />
+      <Sponsored />
+      <ContactUs />
     </main>
   );
 }

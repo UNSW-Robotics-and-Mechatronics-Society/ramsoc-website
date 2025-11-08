@@ -1,6 +1,6 @@
-import { Container } from "@/components/ui/Container";
+import { Container } from "@/components/ui/container";
 
-import HeroSection from "./_components/HeroSection";
+import { Hero } from "@/components/hero";
 
 export default function CareersLayout({
   children,
@@ -9,7 +9,12 @@ export default function CareersLayout({
 }) {
   return (
     <main className="mb-16 min-h-screen">
-      <HeroSection />
+      <Hero
+        imageSrc="/careers/hero.webp"
+        imageAlt="Collage of careers at RAMSoc"
+      >
+        Careers
+      </Hero>
       <Container className="px-4">{children}</Container>
     </main>
   );

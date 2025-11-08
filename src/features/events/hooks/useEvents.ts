@@ -1,23 +1,14 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useMemo } from "react";
 
-import { MetaGraphAPIEventResponse } from "@/types/events";
+import { api } from "@/trpc/react";
 
-// React hook that fetches and manages event data with infinite scrolling capabilities.
-// The hook separates events into upcoming and past categories based on their start times.
 export default function useEvents() {
-  // Query our api
-  const query = useInfiniteQuery<MetaGraphAPIEventResponse>({
-    queryKey: ["events"],
-    queryFn: async ({ pageParam = undefined }) => {
-      return await axios
-        .get(`/api/events${pageParam ? `?cursor=${pageParam}` : ""}`)
-        .then((res) => res.data);
+  const query = api.events.getInfinite.useInfiniteQuery(
+    {},
+    {
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
     },
-    initialPageParam: undefined,
-    getNextPageParam: (lastPage) => lastPage.paging.cursors?.after,
-  });
+  );
 
   const allEvents = useMemo(() => {
     if (!query.data) return;
@@ -39,3 +30,13 @@ export default function useEvents() {
 
   return { allEvents, ...query };
 }
+
+export type UseEventsReturn = ReturnType<typeof useEvents>;
+
+export type Events = NonNullable<UseEventsReturn["allEvents"]>;
+
+export type UpcomingEvent = Events["upcomingEvents"][number];
+
+export type PastEvent = Events["pastEvents"][number];
+
+export type Event = UpcomingEvent | PastEvent;

@@ -1,13 +1,15 @@
 "use client";
-import HeroSection from "@/app/events/_components/HeroSection";
 
-import EventsSection from "./_components/EventsSection";
+import { Hero } from "@/components/hero";
+import Events from "./_components/events";
 
 export default function EventsPage() {
   return (
     <main className="w-full">
-      <HeroSection></HeroSection>
-      <EventsSection></EventsSection>
+      <Hero imageSrc="/events/hero.webp" imageAlt="Collage of events at RAMSoc">
+        Our Events
+      </Hero>
+      <Events />
     </main>
   );
 }

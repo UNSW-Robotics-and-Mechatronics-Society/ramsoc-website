@@ -1,16 +1,20 @@
 "use client";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { env } from "@/env";
+import { TRPCReactProvider } from "@/trpc/react";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-import { getQueryClient } from "@/lib/get-query-client";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  const queryClient = getQueryClient();
-
+  const gtmId = env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string;
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools></ReactQueryDevtools>
-    </QueryClientProvider>
+    <>
+      <GoogleTagManager gtmId={gtmId} />
+      <TRPCReactProvider>
+        {children}
+        <Analytics />
+        <ReactQueryDevtools />
+      </TRPCReactProvider>
+    </>
   );
 }

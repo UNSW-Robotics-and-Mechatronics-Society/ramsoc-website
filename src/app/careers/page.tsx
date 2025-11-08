@@ -1,32 +1,32 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useState } from "react";
 
-import { useCareerMetaDatas } from "@/hooks/useCareers";
-
-import { CareerCard } from "./_components/CareerCard";
-import { CareerCardLoading } from "./_components/CareerCardLoading";
-import { CareerDetails } from "./_components/CareerDetails";
+import {
+  CareerCard,
+  CareerCardLoading,
+  CareerDetails,
+} from "@/features/careers/components";
+import { api } from "@/trpc/react";
 
 export default function CareersPage() {
   const [activeId, setActiveId] = useState<string>();
-  const queryClient = useQueryClient();
+  const utils = api.useUtils();
 
   const { data: CareerMetaDatas, isLoading: isLoadingCareerMetaDatas } =
-    useCareerMetaDatas();
+    api.careers.getAll.useQuery(undefined, {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2,
+    });
 
   const handlePreloadCareer = (id: string) => {
     if (CareerMetaDatas?.[id]?.hasDetails) {
-      queryClient.prefetchQuery({
-        queryKey: ["notion", "page", id],
-        queryFn: async () => {
-          const res = await axios.get(`/api/notion/page/${id}`);
-          return res.data;
+      void utils.careers.getById.prefetch(
+        { id },
+        {
+          staleTime: 60 * 60 * 1000,
         },
-        staleTime: 60 * 60 * 1000,
-      });
+      );
     }
   };
 

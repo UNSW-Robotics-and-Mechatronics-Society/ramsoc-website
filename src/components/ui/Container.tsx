@@ -8,7 +8,7 @@ const outerContainerVariants = cva("w-full", {
   variants: {
     variant: {
       default: "bg-transparent",
-      gradient: "bg-linear-to-b from-neutral-50 via-primary-100 to-primary-100",
+      gradient: "bg-linear-to-b from-white via-primary-100 to-primary-100",
     },
   },
   defaultVariants: {

@@ -1,0 +1,171 @@
+.careerCard {
+  background-color: rgba(245, 245, 244, 0.5);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background-color: rgba(245, 245, 244, 0.8);
+  }
+}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: white;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0; // Prevent flex item from overflowing
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.position {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: inherit;
+  transition: color 0.2s ease;
+
+  .careerCard:hover & {
+    color: rgb(59 130 246); // blue-500
+  }
+}
+
+.company {
+  color: rgba(28, 25, 23, 0.9);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.typeBadge {
+  width: fit-content;
+  margin-top: 0.5rem;
+}
+
+.description {
+  color: rgba(28, 25, 23, 0.8);
+  line-height: 1.625;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: rgba(28, 25, 23, 0.9);
+  font-size: 0.875rem;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emailLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+}
+
+.applySection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    align-items: flex-start;
+    padding-top: 0.5rem;
+  }
+}
+
+.applyButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background-color: var(--color-primary-600);
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+}
+
+.applyIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
