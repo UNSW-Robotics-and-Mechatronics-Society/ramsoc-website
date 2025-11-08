@@ -7,29 +7,22 @@ import { type Metadata } from "next";
 
 import Providers from "./providers";
 
-const title = "RAMSoc UNSW";
-const description =
-  "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.";
-const url = SITE_URL;
-const image = `${SITE_URL}${SITE_OG_IMAGE}`;
-
 export const metadata: Metadata = {
-  title: "RAMSoc UNSW",
-  description,
-  icons: { icon: "/favicon.svg", apple: "/favicon.svg" },
+  title: "Home | RAMSoc UNSW",
+  description:
+    "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.",
   openGraph: {
-    url,
-    type: "website",
-    title,
-    description,
-    images: image,
+    title: "Home | RAMSoc UNSW",
+    description:
+      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
+    url: SITE_URL,
+    images: `${SITE_URL}${SITE_OG_IMAGE}`,
   },
   twitter: {
     card: "summary_large_image",
-    images: image,
-    description,
-    site: url,
-    title,
+    title: "Home | RAMSoc UNSW",
+    description:
+      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
   },
 };
 
