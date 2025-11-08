@@ -51,7 +51,6 @@ export function Hero({
           width={1920}
           height={700}
           loading="lazy"
-          priority
           alt={imageAlt}
         />
         <div
