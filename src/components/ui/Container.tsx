@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const outerContainerVariants = cva("w-full", {
+const outerContainerVariants = cva("w-full overflow-x-hidden", {
   variants: {
     variant: {
       default: "bg-transparent",
@@ -16,7 +16,7 @@ const outerContainerVariants = cva("w-full", {
   },
 });
 
-const innerContainerVariants = cva("mx-auto w-full", {
+const innerContainerVariants = cva("mx-auto w-full px-4 sm:px-6 lg:px-8", {
   variants: {
     width: {
       default: "max-w-[1200px]",

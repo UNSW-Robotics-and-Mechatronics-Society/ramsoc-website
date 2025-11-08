@@ -72,7 +72,7 @@ export default function ParallaxText({
    * dynamically generated number of children.
    */
   return (
-    <div className="m-0 flex flex-nowrap overflow-hidden whitespace-nowrap">
+    <div className="m-0 flex w-full max-w-full flex-nowrap overflow-hidden whitespace-nowrap">
       <motion.div
         className="flex flex-nowrap whitespace-nowrap uppercase select-none"
         style={{ x }}

@@ -2,7 +2,7 @@
 layer(base);
 @import "tailwindcss";
 
-@plugin 'tailwindcss-animate';
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -44,21 +44,33 @@ layer(base);
 
 /* Base layer - foundational styles */
 @layer base {
-  html,
-  body {
-    overflow-x: hidden;
+  * {
+    box-sizing: border-box;
   }
 
   html {
-    scrollbar-width: none;
-  } /* Firefox */
+    overflow-x: hidden;
+    width: 100%;
+    scrollbar-width: none; /* Firefox */
+  }
+
   body {
-    -ms-overflow-style: none;
-  } /* IE and Edge */
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
   body::-webkit-scrollbar,
   body::-webkit-scrollbar-button {
-    display: none;
-  } /* Chrome */
+    display: none; /* Chrome */
+  }
+
+  /* Ensure all direct children respect boundaries */
+  body > * {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
   body {
     font-family: Inter, Helvetica, sans-serif;
