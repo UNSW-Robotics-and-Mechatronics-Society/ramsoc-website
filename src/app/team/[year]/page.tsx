@@ -19,6 +19,7 @@ export async function generateMetadata(
       title: `${year} Team | RAMSoc UNSW`,
       description: `Meet the ${year} RAMSoc UNSW team - executives, directors, and subcommittee members.`,
       url: `${SITE_URL}/team/${year}`,
+      siteName: "RAMSoc UNSW",
       images: `${SITE_URL}${SITE_OG_IMAGE}`,
     },
     twitter: {
