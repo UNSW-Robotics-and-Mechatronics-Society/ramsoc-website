@@ -4,9 +4,9 @@ export const SITE_OG_IMAGE = "/og.svg";
 
 // Social Media
 export const LINKEDIN_URL =
-  "https://linkedin.com/company/unsw-mechatronics-society/";
-export const FACEBOOK_URL = "https://facebook.com/UNSWMTRNSOC";
-export const INSTAGRAM_URL = "https://instagram.com/@ramsocunsw";
+  "https://www.linkedin.com/company/robotics-and-mechatronics-society-unsw";
+export const FACEBOOK_URL = "https://www.facebook.com/RAMSOCUNSW";
+export const INSTAGRAM_URL = "https://www.instagram.com/ramsocunsw";
 export const DISCORD_URL = "https://discord.gg/invite/4dWMWAjWm9";
 
 // Membership & Events
