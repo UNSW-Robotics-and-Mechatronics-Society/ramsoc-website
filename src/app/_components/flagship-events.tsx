@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -70,12 +71,7 @@ const FlagshipEventCard = ({
   return (
     <motion.div
       ref={cardRef}
-      className="bg-primary-500 overflow-hidden"
-      style={{
-        backgroundImage: `url(${imageSrc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="bg-primary-500 relative overflow-hidden"
       initial="initial"
       animate={isExpanded ? "expanded" : "initial"}
       whileHover={isExpanded || isMobile ? {} : "hover"}
@@ -83,8 +79,17 @@ const FlagshipEventCard = ({
       onClick={handleClick}
       onHoverEnd={() => setIsExpanded(false)}
     >
+      <Image
+        src={imageSrc}
+        alt={name}
+        fill
+        sizes="(max-width: 1023px) 100vw, 50vw"
+        className="object-cover"
+        priority
+        quality={85}
+      />
       <div
-        className={`flex size-full flex-col-reverse overflow-hidden lg:flex-row ${isExpanded ? "backdrop-brightness-50" : "backdrop-blur-xs backdrop-brightness-[.3]"}`}
+        className={`relative z-10 flex size-full flex-col-reverse overflow-hidden lg:flex-row ${isExpanded ? "backdrop-brightness-50" : "backdrop-blur-xs backdrop-brightness-[.3]"}`}
       >
         <div
           className={`flex flex-col ${isExpanded ? "bg-primary-950/60 h-1/2 w-full place-content-between md:h-1/3 lg:h-full lg:w-1/3" : "size-full place-content-center"} overflow-hidden px-4 py-8`}
