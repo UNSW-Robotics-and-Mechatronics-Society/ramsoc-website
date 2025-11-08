@@ -6,24 +6,28 @@ import { api } from "@/trpc/server";
 import type { Metadata } from "next";
 import Team from "./_components/team";
 
-export const metadata: Metadata = {
-  title: "Home | RAMSoc UNSW",
-  description:
-    "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.",
-  openGraph: {
-    title: "Home | RAMSoc UNSW",
-    description:
-      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
-    url: SITE_URL,
-    images: `${SITE_URL}${SITE_OG_IMAGE}`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Home | RAMSoc UNSW",
-    description:
-      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
-  },
-};
+export async function generateMetadata(
+  props: PageProps<"/team/[year]">,
+): Promise<Metadata> {
+  const { year: yearStr } = await props.params;
+  const year = parseInt(yearStr, 10);
+
+  return {
+    title: `${year} Team | RAMSoc UNSW`,
+    description: `Meet the ${year} RAMSoc UNSW team - our executives, directors, and subcommittee members driving innovation in robotics and mechatronics.`,
+    openGraph: {
+      title: `${year} Team | RAMSoc UNSW`,
+      description: `Meet the ${year} RAMSoc UNSW team - executives, directors, and subcommittee members.`,
+      url: `${SITE_URL}/team/${year}`,
+      images: `${SITE_URL}${SITE_OG_IMAGE}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${year} Team | RAMSoc UNSW`,
+      description: `Meet the ${year} RAMSoc UNSW team - executives, directors, and subcommittee members.`,
+    },
+  };
+}
 
 export default async function TeamPage(props: PageProps<"/team/[year]">) {
   const { year: yearStr } = await props.params;
