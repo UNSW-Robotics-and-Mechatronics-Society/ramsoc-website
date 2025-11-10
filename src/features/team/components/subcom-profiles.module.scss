@@ -1,0 +1,66 @@
+.subcomMainContainer {
+  margin: 0 auto;
+  display: flex;
+  max-width: 72rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.subcomContainer {
+  margin: 0.5rem;
+  display: flex;
+  width: 18rem;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.subcomPosition {
+  color: var(--color-primary-600);
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.subcomName {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: rgb(107 114 128);
+}
+
+.joinUsMessage {
+  color: var(--color-primary-50);
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.buttonStyle {
+  border-color: var(--color-primary-800);
+  color: var(--color-primary-800);
+  border-radius: 0.5rem;
+  border-width: 1.5px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  transition-duration: 100ms;
+
+  &:hover {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+    color: var(--color-primary-50);
+    transform: scale(1.05);
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.joinUsMessage p {
+  color: var(--color-primary-700);
+  margin-top: 1rem;
+}

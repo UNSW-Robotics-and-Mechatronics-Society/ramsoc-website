@@ -1,0 +1,15 @@
+.execBGColour {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(var(--color-primary-100-rgb), 0.3)
+  );
+}
+
+.directorBGColour {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(var(--color-primary-50-rgb), 0.3)
+  );
+}
