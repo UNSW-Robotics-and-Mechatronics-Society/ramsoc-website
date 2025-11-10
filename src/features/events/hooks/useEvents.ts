@@ -1,28 +1,29 @@
 import { useMemo } from "react";
 
 import { api } from "@/trpc/react";
+import type { Event, EventsInfiniteOutput } from "../types";
 
 export default function useEvents() {
   const query = api.events.getInfinite.useInfiniteQuery(
     {},
     {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
+      getNextPageParam: (lastPage: EventsInfiniteOutput) => lastPage.nextCursor,
     },
   );
 
   const allEvents = useMemo(() => {
     if (!query.data) return;
     // Data comes back in many pages so we flatten to a singular dimension
-    const flattenedData = query.data.pages.flatMap((v) => {
-      return v.data;
-    });
+    const flattenedData = query.data.pages.flatMap(
+      (page: EventsInfiniteOutput) => page.data,
+    );
 
     // Seperate events in to upcoming and past
-    const upcomingEvents = flattenedData.filter((v) => {
-      return Date.parse(v.start_time) > Date.now();
+    const upcomingEvents = flattenedData.filter((event: Event) => {
+      return Date.parse(event.start_time) > Date.now();
     });
-    const pastEvents = flattenedData?.filter((v) => {
-      return Date.parse(v.start_time) <= Date.now();
+    const pastEvents = flattenedData?.filter((event: Event) => {
+      return Date.parse(event.start_time) <= Date.now();
     });
 
     return { upcomingEvents, pastEvents };
@@ -30,13 +31,3 @@ export default function useEvents() {
 
   return { allEvents, ...query };
 }
-
-export type UseEventsReturn = ReturnType<typeof useEvents>;
-
-export type Events = NonNullable<UseEventsReturn["allEvents"]>;
-
-export type UpcomingEvent = Events["upcomingEvents"][number];
-
-export type PastEvent = Events["pastEvents"][number];
-
-export type Event = UpcomingEvent | PastEvent;

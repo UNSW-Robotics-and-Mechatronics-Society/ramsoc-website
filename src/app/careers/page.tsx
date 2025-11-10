@@ -49,7 +49,7 @@ export default function CareersPage() {
       <div className="flex flex-col gap-8">
         {Object.entries(CareerMetaDatas).map(([id, meta]) => (
           <div key={id} onMouseEnter={() => handlePreloadCareer(id)}>
-            <CareerCard onClick={() => setActiveId(id)} {...meta} />
+            <CareerCard career={meta} onClick={() => setActiveId(id)} />
           </div>
         ))}
       </div>

@@ -11,7 +11,3 @@ export const useCareers = () => {
     retry: 2,
   });
 };
-
-export type CareersQueryResult = ReturnType<typeof useCareers>;
-export type Careers = NonNullable<CareersQueryResult["data"]>;
-export type Career = NonNullable<Careers>[string];

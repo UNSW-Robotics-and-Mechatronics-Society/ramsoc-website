@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import CurrentEvents from "@/features/events/components/current-events";
+import { CurrentEvents } from "@/features/events";
 
 export default function Events() {
   return (

@@ -1,6 +1,5 @@
 import { Container } from "@/components/ui/container";
-import CurrentEvents from "@/features/events/components/current-events";
-import PastEvents from "@/features/events/components/past-event";
+import { CurrentEvents, PastEvents } from "@/features/events";
 
 export default function Events() {
   return (

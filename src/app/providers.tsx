@@ -6,10 +6,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/next";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  const gtmId = env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string;
   return (
     <>
-      <GoogleTagManager gtmId={gtmId} />
+      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
       <TRPCReactProvider>
         {children}
         <Analytics />

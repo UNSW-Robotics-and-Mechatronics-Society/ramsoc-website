@@ -1,18 +1,16 @@
-import type { JSX } from "react";
-
 import SubcomProfiles from "@/features/team/components/subcom-profiles";
-import type { SubcomProfileData } from "@/features/team/hooks/useTeam";
+import type { SubcomProfile } from "@/features/team/types";
 
 import styles from "./team.module.scss";
 import { TitleHeader } from "./title-header";
 
-type SubcommitteeSectionProps = {
-  subcomProfileData: SubcomProfileData[];
-};
+interface SubcommitteeSectionProps {
+  subcomProfileData: SubcomProfile[];
+}
 
 export const SubcommitteeSection = ({
   subcomProfileData,
-}: SubcommitteeSectionProps): JSX.Element => {
+}: SubcommitteeSectionProps) => {
   return (
     <div className={styles.sectionContainer}>
       <TitleHeader text="Subcommittees" />

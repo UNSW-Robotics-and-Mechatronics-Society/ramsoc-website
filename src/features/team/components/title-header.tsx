@@ -1,11 +1,9 @@
-import type { JSX } from "react";
-
 import styles from "./team.module.scss";
 
-type TitleHeaderProps = {
+interface TitleHeaderProps {
   text: string;
-};
+}
 
-export const TitleHeader = ({ text }: TitleHeaderProps): JSX.Element => {
+export const TitleHeader = ({ text }: TitleHeaderProps) => {
   return <h1 className={styles.title}>{text.toUpperCase()}</h1>;
 };

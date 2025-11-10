@@ -1,4 +1,4 @@
-import type { TeamMember } from "@/features/team/hooks/useTeam";
+import type { TeamMember } from "@/features/team/types";
 
 export const groupProfilesByRole = (
   profileData: TeamMember[],

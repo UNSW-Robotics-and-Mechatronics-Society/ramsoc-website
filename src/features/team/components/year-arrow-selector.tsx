@@ -2,19 +2,18 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import type { JSX } from "react";
 
 import styles from "./year-arrow-selector.module.scss";
 
-type YearArrowSelectorProps = {
+interface YearArrowSelectorProps {
   selectedYear: number;
   availableYears: number[];
-};
+}
 
 export const YearArrowSelector = ({
   selectedYear,
   availableYears,
-}: YearArrowSelectorProps): JSX.Element => {
+}: YearArrowSelectorProps) => {
   const currentIndex = availableYears.indexOf(selectedYear);
   const router = useRouter();
 

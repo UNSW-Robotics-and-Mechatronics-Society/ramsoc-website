@@ -1,13 +1,13 @@
-import type { TeamMember } from "../hooks/useTeam";
+import type { TeamMember } from "../types";
 
 import { ProfileCard } from "./profile-card";
 import styles from "./profile-section.module.scss";
 
-type ProfileSectionProps = {
+interface ProfileSectionProps {
   group: string;
   profiles: TeamMember[];
   backgroundClass: string;
-};
+}
 
 export const ProfileSection = ({
   group,

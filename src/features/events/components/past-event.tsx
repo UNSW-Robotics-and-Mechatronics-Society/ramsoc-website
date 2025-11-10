@@ -2,7 +2,8 @@
 import { groupBy } from "lodash-es";
 import { Fragment, useEffect, useMemo } from "react";
 
-import useEvents, { type PastEvent } from "@/features/events/hooks/useEvents";
+import useEvents from "@/features/events/hooks/useEvents";
+import type { PastEvent } from "@/features/events/types";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { getUnswTermAndYear } from "../utils/unsw-date-fns";
 

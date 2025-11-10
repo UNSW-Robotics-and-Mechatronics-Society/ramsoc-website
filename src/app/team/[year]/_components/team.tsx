@@ -3,10 +3,10 @@ import {
   DirectorsSection,
   ExecutivesSection,
   SubcommitteeSection,
-} from "@/features/team/components";
-import type { TeamStructure } from "@/features/team/hooks";
+  type TeamStructure,
+} from "@/features/team";
 
-type TeamSectionProps = TeamStructure;
+interface TeamSectionProps extends TeamStructure {}
 
 const Team = (team: TeamSectionProps) => {
   return (

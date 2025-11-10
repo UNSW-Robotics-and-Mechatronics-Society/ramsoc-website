@@ -17,30 +17,31 @@ import { env } from "@/env";
 import { getNotionPageUrl } from "@/lib/constants/urls";
 import { normalizeCareerCtaUrlStrict } from "../utils/career-url";
 
-import type { Career } from "../hooks/useCareers";
+import type { Career } from "../types";
 import styles from "./career-card.module.scss";
 
-interface Props extends Career {
-  id: string;
+interface Props {
+  career: Career;
   onClick: (id: string) => void;
 }
 
-export function CareerCard({
-  company,
-  ctaUrl,
-  deadline,
-  description,
-  email,
-  id,
-  location,
-  logo,
-  pay,
-  position,
-  tags,
-  type,
-  hasDetails,
-  onClick,
-}: Props) {
+export function CareerCard({ career, onClick }: Props) {
+  const {
+    company,
+    ctaUrl,
+    deadline,
+    description,
+    email,
+    id,
+    location,
+    logo,
+    pay,
+    position,
+    tags,
+    type,
+    hasDetails,
+  } = career;
+
   const timeUntil = useMemo(() => {
     if (!deadline) {
       return;
@@ -174,8 +175,8 @@ export function CareerCard({
           {/* Tags */}
           {tags.length > 0 && (
             <div className={styles.tags}>
-              {tags.map((tag) => (
-                <Badge key={tag} variant="outline" className={styles.tag}>
+              {tags.map((tag: string) => (
+                <Badge key={tag} variant="secondary">
                   {tag}
                 </Badge>
               ))}

@@ -2,7 +2,7 @@ import { getFacebookEventUrl } from "@/lib/constants/urls";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import type { Event } from "../hooks/useEvents";
+import type { Event } from "../types";
 
 interface EventCardSmallProps {
   data: Event;
@@ -11,7 +11,7 @@ interface EventCardSmallProps {
 export default function EventCardSmall({ data }: EventCardSmallProps) {
   return (
     <Link
-      className="group bg-primary-950 flex w-full flex-col"
+      className="bg-primary-950 group flex w-full flex-col"
       href={getFacebookEventUrl(data.id)}
       target="_blank"
     >
@@ -21,7 +21,7 @@ export default function EventCardSmall({ data }: EventCardSmallProps) {
             <Image
               width={512}
               height={384}
-              className="absolute top-0 left-0 size-full scale-100 object-cover transition group-hover:scale-105"
+              className="absolute left-0 top-0 size-full scale-100 object-cover transition group-hover:scale-105"
               src={data.cover.source}
               alt={data.name}
               unoptimized
@@ -38,13 +38,13 @@ export default function EventCardSmall({ data }: EventCardSmallProps) {
         )}
       </div>
       <div className="text-primary-50 flex max-h-fit w-full flex-col overflow-hidden px-4 py-6">
-        <h3 className="overflow-hidden font-semibold text-nowrap text-ellipsis">
+        <h3 className="overflow-hidden text-ellipsis text-nowrap font-semibold">
           {data.name}
         </h3>
         <p className="text-primary-500/90 text-base font-semibold">
           {format(parseISO(data.start_time), "dd/MM/yy")}
         </p>
-        <p className="text-primary-500/90 overflow-hidden text-base text-nowrap text-ellipsis">
+        <p className="text-primary-500/90 overflow-hidden text-ellipsis text-nowrap text-base">
           {data.place?.name ?? "-"}
         </p>
       </div>

@@ -24,16 +24,3 @@ export const useAvailableTeamYears = () => {
     retry: 2,
   });
 };
-
-// Type exports derived from tRPC responses
-export type TeamByYearQueryResult = ReturnType<typeof useTeamByYear>;
-export type TeamStructure = NonNullable<TeamByYearQueryResult["data"]>;
-export type TeamMember = NonNullable<TeamStructure["executives"]>[number];
-export type SubcomProfileData = NonNullable<
-  TeamStructure["subcommittees"]
->[number];
-
-export type AvailableYearsQueryResult = ReturnType<
-  typeof useAvailableTeamYears
->;
-export type AvailableYears = NonNullable<AvailableYearsQueryResult["data"]>;

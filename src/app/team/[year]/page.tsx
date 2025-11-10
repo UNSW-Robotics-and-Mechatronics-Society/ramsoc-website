@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { YearArrowSelector } from "@/features/team/components/year-arrow-selector";
+import { YearArrowSelector } from "@/features/team";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import { getAvailableYears } from "@/server/api/routers/team/service";
 import { api } from "@/trpc/server";

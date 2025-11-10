@@ -21,7 +21,7 @@ import { getNotionPageUrl } from "@/lib/constants/urls";
 import { api } from "@/trpc/react";
 import { normalizeCareerCtaUrlStrict } from "../utils/career-url";
 
-import type { Career } from "../hooks/useCareers";
+import type { Career } from "../types";
 import { PostLoading } from "./post-loading";
 
 interface CareerDetailsProps {

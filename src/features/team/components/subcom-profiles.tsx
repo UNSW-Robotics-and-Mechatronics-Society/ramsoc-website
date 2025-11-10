@@ -1,18 +1,15 @@
 import Link from "next/link";
-import type { JSX } from "react";
 
-import type { SubcomProfileData } from "../hooks/useTeam";
+import type { SubcomProfile } from "../types";
 
 import { env } from "@/env";
 import styles from "./subcom-profiles.module.scss";
 
 type SubcomProfileCardsType = {
-  subcomData: SubcomProfileData[];
+  subcomData: SubcomProfile[];
 };
 
-export const SubcomProfiles = ({
-  subcomData,
-}: SubcomProfileCardsType): JSX.Element => {
+export const SubcomProfiles = ({ subcomData }: SubcomProfileCardsType) => {
   const year = new Date().getFullYear();
   return (
     <div className={styles.subcomMainContainer}>
@@ -36,7 +33,7 @@ export const SubcomProfiles = ({
               {team.portfolio.toLocaleUpperCase()}
             </h1>
             <div className={styles.subcomName}>
-              {team.members.map((memberName, index) => (
+              {team.members.map((memberName: string, index: number) => (
                 <p key={`${team.portfolio}-${memberName}-${index}`}>
                   {memberName}
                 </p>

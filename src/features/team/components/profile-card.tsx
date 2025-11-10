@@ -2,14 +2,14 @@ import Image from "next/image";
 import { FaLinkedinIn } from "react-icons/fa";
 
 import { Card, CardContent } from "@/components/ui/card";
-import type { TeamMember } from "../hooks/useTeam";
+import type { TeamMember } from "../types";
 
 import styles from "./profile-card.module.scss";
 
-type ProfileCardProps = {
+interface ProfileCardProps {
   profile: TeamMember;
   backgroundClass: string;
-};
+}
 
 export const ProfileCard = ({ profile, backgroundClass }: ProfileCardProps) => {
   const hasLinkedIn = profile.linkedin !== undefined && profile.linkedin !== "";

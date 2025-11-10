@@ -1,17 +1,19 @@
-import type { JSX } from "react";
-
-import type { ProfileCardsProps } from "../types/profile-cards.types";
+import type { TeamMember } from "../types";
 import { groupProfilesByRole } from "../utils/group-profiles";
 import { ProfileCard } from "./profile-card";
 import { ProfileSection } from "./profile-section";
 
 import bgStyles from "../styles/profile-backgrounds.module.scss";
-import styles from "./profile-cards.module.scss";
+import styles from "./profile-grid.module.scss";
 
-const ProfileCards = ({
-  profileData,
-  background,
-}: ProfileCardsProps): JSX.Element => {
+type Background = "director" | "executive";
+
+interface ProfileGridsProps {
+  profileData: TeamMember[];
+  background: Background;
+}
+
+export const ProfileGrid = ({ profileData, background }: ProfileGridsProps) => {
   const backgroundClass =
     background === "director"
       ? (bgStyles.directorBGColour ?? "")
@@ -25,9 +27,9 @@ const ProfileCards = ({
         {Object.entries(groupedProfiles).map(([group, profiles]) => (
           <ProfileSection
             key={group}
-            group={group}
             profiles={profiles}
             backgroundClass={backgroundClass}
+            group={group}
           />
         ))}
       </div>
@@ -36,7 +38,7 @@ const ProfileCards = ({
 
   return (
     <div className={styles.mainContainer}>
-      {profileData.map((profile) => (
+      {profileData.map((profile: TeamMember) => (
         <ProfileCard
           key={profile.id}
           profile={profile}
@@ -47,4 +49,4 @@ const ProfileCards = ({
   );
 };
 
-export default ProfileCards;
+export default ProfileGrid;
