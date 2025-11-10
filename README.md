@@ -64,6 +64,32 @@ Follow these steps to set up the project locally:
 
 3. **Set up environment variables**
 
+   **Option A: Using Vercel CLI (Recommended)**
+
+   If you have access to the RAMSoc Vercel project, you can pull environment variables directly:
+
+   ```bash
+   # Install Vercel CLI globally (if not already installed)
+   npm install -g vercel
+
+   # Login to Vercel using RAMSoc's Google account
+   vercel login
+   # Note: Sign in with the RAMSoc Google account when prompted
+
+   # Link your local project to the Vercel project
+   vercel link
+   # When prompted, select:
+   # - Scope: "ramsoc-unsws-projects"
+   # - Project: "ramsoc-website"
+
+   # Pull environment variables for development
+   vercel env pull .env.local
+   ```
+
+   This will automatically create a `.env.local` file with all required environment variables.
+
+   **Option B: Manual Setup**
+
    Create a `.env.local` file in the root directory:
 
    ```env
