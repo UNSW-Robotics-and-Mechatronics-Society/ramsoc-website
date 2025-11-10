@@ -1,0 +1,1 @@
+export { teamRouter } from "./router";

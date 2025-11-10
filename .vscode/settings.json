@@ -22,13 +22,7 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
-  "files.associations": {
-    "wrangler.toml": "toml"
-  },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "svg.preview.background": "custom",
-  "[sql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
-  }
 }

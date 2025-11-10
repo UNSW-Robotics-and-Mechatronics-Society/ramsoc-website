@@ -1,0 +1,12 @@
+.mainContainer {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+}

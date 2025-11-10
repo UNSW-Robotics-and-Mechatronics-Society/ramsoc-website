@@ -1,54 +1,42 @@
-import { GoogleTagManager } from "@next/third-parties/google";
-import { Analytics } from "@vercel/analytics/next";
-import type { Metadata } from "next";
+import "@/styles/globals.css";
 
-import Footer from "@/components/ui/Footer";
-import Navbar from "@/components/ui/Navbar";
-import "./globals.css";
+import Footer from "@/components/footer";
+import NavBar from "@/components/nav-bar";
+import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
+import { type Metadata } from "next";
 
 import Providers from "./providers";
 
-const title = "RAMSoc UNSW";
-const description =
-  "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.";
-const url = "https://ramsocunsw.org";
-const image = "https://ramsocunsw.org/og.svg";
-
 export const metadata: Metadata = {
-  title: "RAMSoc UNSW",
+  title: "Home | RAMSoc UNSW",
   description:
     "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.",
-  icons: { icon: "/favicon.svg", apple: "/favicon.svg" },
   openGraph: {
-    url,
-    type: "website",
-    title,
-    description,
-    images: image,
+    title: "Home | RAMSoc UNSW",
+    description:
+      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
+    url: SITE_URL,
+    siteName: "RAMSoc UNSW",
+    images: `${SITE_URL}${SITE_OG_IMAGE}`,
   },
   twitter: {
     card: "summary_large_image",
-    images: image,
-    description,
-    site: url,
-    title,
+    title: "Home | RAMSoc UNSW",
+    description:
+      "UNSW Robotics and Mechatronics Society - Connecting mechatronic students with opportunities and the professional community.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <GoogleTagManager gtmId="GTM-WTTHQMLH" />
-      <body className={`text-primary-800 bg-stone-50 antialiased`}>
+    <html lang="en" className="overflow-x-hidden">
+      <body className="overflow-x-hidden">
         <Providers>
-          <Navbar />
+          <NavBar />
           {children}
           <Footer />
-          <Analytics />
         </Providers>
       </body>
     </html>

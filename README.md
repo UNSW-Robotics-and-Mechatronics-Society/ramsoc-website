@@ -4,34 +4,50 @@ The official website for the UNSW Robotics and Mechatronics Society (RAMSoc) - a
 
 ![Website Preview](public/og.svg)
 
+## 🚀 Features
+
+- **Modern Tech Stack**: Built with Next.js 15, React 19, and TypeScript
+- **Responsive Design**: Optimized for all devices using Tailwind CSS v4
+- **Dynamic Content**: Integration with Contentful CMS and Notion API
+- **Interactive Components**: Smooth animations with Motion One
+- **Career Portal**: Job listings with real-time data from Notion
+- **Events System**: Showcase of past and upcoming events
+- **Team Showcase**: Dynamic team member profiles by year
+- **Type-Safe APIs**: tRPC for end-to-end type safety
+
 ## 🛠️ Tech Stack
 
 ### Frontend
 
 - **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + SCSS modules
+- **Language**: TypeScript 5.7
+- **Styling**: Tailwind CSS v4 + SCSS modules
 - **UI Components**: Radix UI primitives
-- **Animations**: Framer Motion
+- **Animations**: Motion One & Framer Motion
 - **Icons**: Lucide React
+- **Forms**: React Hook Form (planned)
+
+> Using T3 Stack as a base template
 
 ### Backend & Data
 
+- **API Layer**: tRPC for type-safe APIs
 - **CMS**: Contentful for content management
 - **Database**: Notion API for career listings
 - **State Management**: TanStack Query (React Query)
 - **HTTP Client**: Axios
 
-### Development & Deployment
+### Development & Tools
 
-- **Package Manager**: Yarn
-- **Linting**: ESLint with Next.js config
-- **Code Formatting**: Prettier
-- **Component Development**: Storybook
-- **Deployment**: Cloudflare Pages (to be migrated to Cloudflare Workers)
-- **Build Tool**: Turbopack
+- **Package Manager**: Yarn 1.22+
+- **Linting**: ESLint 9 with Next.js config
+- **Code Formatting**: Prettier with Tailwind plugin
+- **Deployment**: Vercel
+- **Build Tool**: Turbopack (Next.js 15)
 
-## 📦 Installation
+## ⚙️ Getting Started
+
+Follow these steps to set up the project locally:
 
 1. **Clone the repository**
 
@@ -47,6 +63,32 @@ The official website for the UNSW Robotics and Mechatronics Society (RAMSoc) - a
    ```
 
 3. **Set up environment variables**
+
+   **Option A: Using Vercel CLI (Recommended)**
+
+   If you have access to the RAMSoc Vercel project, you can pull environment variables directly:
+
+   ```bash
+   # Install Vercel CLI globally (if not already installed)
+   npm install -g vercel
+
+   # Login to Vercel using RAMSoc's Google account
+   vercel login
+   # Note: Sign in with the RAMSoc Google account when prompted
+
+   # Link your local project to the Vercel project
+   vercel link
+   # When prompted, select:
+   # - Scope: "ramsoc-unsws-projects"
+   # - Project: "ramsoc-website"
+
+   # Pull environment variables for development
+   vercel env pull .env.local
+   ```
+
+   This will automatically create a `.env.local` file with all required environment variables.
+
+   **Option B: Manual Setup**
 
    Create a `.env.local` file in the root directory:
 
@@ -75,46 +117,48 @@ The official website for the UNSW Robotics and Mechatronics Society (RAMSoc) - a
 ```txt
 src/
 ├── app/                          # Next.js App Router
-│   ├── _components/             # Page-specific components
-│   ├── api/                     # API routes
-│   ├── events/                  # Events pages
-│   ├── teams/                   # Team pages
-│   └── careers/                 # Career portal
+│   ├── _components/             # Homepage components
+│   ├── api/                     # API routes (tRPC, Notion)
+│   ├── careers/                 # Career portal with Notion integration
+│   ├── events/                  # Events page
+│   ├── team/                    # Team showcase by year
+│   ├── layout.tsx               # Root layout
+│   ├── page.tsx                 # Homepage
+│   └── providers.tsx            # React Query & context providers
 ├── components/                   # Reusable UI components
-│   └── ui/                      # Base UI components
-├── features/                    # Feature-specific components
-│   └── events/                  # Event-related components
+│   └── ui/                      # Base UI components (Button, Container, etc.)
+├── features/                    # Feature-specific components & logic
+│   ├── careers/                 # Career-related components & logic
+│   └── events/                  # Event-related components & logic
+│   └── team/                    # Team-related components & logic
 ├── hooks/                       # Custom React hooks
-├── lib/                         # Utility libraries
-├── types/                       # TypeScript type definitions
-└── data/                        # Static data files
+├── lib/                         # Utility libraries & helpers
+│   ├── contentful/              # Contentful CMS client
+│   ├── utils.ts                 # Shared utilities (cn, etc.)
+│   └── constants/               # App constants
+├── server/                      # Server-side code
+│   └── api/                     # tRPC routers & procedures
+├── styles/                      # Global styles
+│   └── globals.css              # Tailwind imports & global CSS
+└── trpc/                        # tRPC client configuration
 ```
 
 ## 🔧 Available Scripts
+
+### Development
 
 - `yarn dev` - Start development server with Turbopack
 - `yarn build` - Build for production
 - `yarn start` - Start production server
 - `yarn lint` - Run ESLint
 - `yarn check-types` - Type checking with TypeScript
-- `yarn storybook` - Start Storybook development server
-- `yarn build-storybook` - Build Storybook for production
 
-### Cloudflare Pages Deployment
+### Deployment (Vercel)
 
-- `yarn pages:build` - Build for Cloudflare Pages
-- `yarn preview` - Preview Cloudflare Pages build locally
-- `yarn deploy` - Deploy to Cloudflare Pages
+- `yarn pages:build` - Build for Vercel
+- `yarn preview` - Preview Vercel build locally
 
-## 🎨 Component Development
-
-This project uses Storybook for component development and documentation. To develop components in isolation:
-
-```bash
-yarn storybook
-```
-
-Visit `http://localhost:6006` to view the component library.
+> Note: Deployment is handled automatically via Vercel on pushes to the `main` branch.
 
 ## 📝 Content Management
 
@@ -122,71 +166,154 @@ Visit `http://localhost:6006` to view the component library.
 
 The website uses Contentful as a headless CMS for managing:
 
-- Event information
-- Team member profiles
-- General content
+- Event information and details
+- Team member profiles and bios
+- General content and assets
 
 ### Notion Integration
 
 Career listings are managed through Notion databases, providing:
 
 - Easy content management for non-technical users
-- Rich text editing capabilities
+- Rich text editing with Notion's block editor
 - Structured data for job postings
+- Real-time updates without redeployment
 
 ## 🔌 API Routes
+
+### Standard Next.js Routes
 
 - `/api/events` - Fetch events from Contentful
 - `/api/notion/db/[slug]` - Query Notion databases
 - `/api/notion/page/[slug]` - Fetch individual Notion pages
 
+### tRPC Endpoints
+
+- `/api/trpc/[trpc]` - Type-safe tRPC API endpoints
+
 ## 🎯 Key Features
 
 ### Career Portal
 
-- Interactive job listings with filtering
-- Modal overlays for detailed job descriptions
-- Direct application links
-- Responsive design for mobile and desktop
+- **Interactive Job Listings**: Browse available positions with filtering
+- **Modal Overlays**: Detailed job descriptions using Notion rendering
+- **Real-time Data**: Direct integration with Notion database
+- **Quick Apply**: Direct application links with URL normalization
+- **Responsive Design**: Optimized for mobile and desktop
+- **Loading States**: Skeleton loaders and React Query caching
+- **Keyboard Accessible**: Full keyboard navigation support
 
 ### Events System
 
-- Dynamic event cards with loading states
-- Past and current events separation
-- Contentful integration for easy content management
+- **Dynamic Event Cards**: Large and small card variations
+- **Loading States**: Skeleton components for smooth UX
+- **Past and Current Events**: Automatic separation by date
+- **Contentful Integration**: Easy content updates via CMS
+- **Image Optimization**: Next.js Image component for performance
 
 ### Team Showcase
 
-- Year-based team browsing
-- Profile cards with member information
-- Subcommittee organization
+- **Year-based Navigation**: Browse teams by academic year
+- **Profile Cards**: Interactive member profiles with hover effects
+- **Subcommittee Organization**: Grouped by role and responsibility
+- **Social Links**: LinkedIn and other profile links
+- **Responsive Grid**: Adaptive layout for all screen sizes
 
 ## 🚀 Deployment
 
-The website is deployed on Cloudflare Pages with automatic deployments from the main branch.
+The website is deployed on **Vercel** with automatic deployments from the `main` branch.
+
+### Build Configuration
+
+- **Build command**: `yarn pages:build`
+- **Output directory**: `.vercel/output/static`
+- **Node version**: 20.x
+- **Framework**: Next.js (Static Export)
 
 ### Environment Setup
 
-Ensure all required environment variables are set in your deployment platform:
+Ensure all required environment variables are set in your Vercel dashboard:
 
-- Contentful credentials
-- Notion API tokens
-- Any additional API keys
+**Required:**
+
+- `CONTENTFUL_SPACE_ID` - Contentful space identifier
+- `CONTENTFUL_ACCESS_TOKEN` - Contentful API access token
+- `NOTION_TOKEN` - Notion integration token
+- `NEXT_PUBLIC_NOTION_CAREERS_DB_ID` - Public Notion database ID for careers
+
+### Deployment Branches
+
+- **Production**: `main` branch → [ramsocunsw.org](https://ramsocunsw.org)
+- **Preview**: All other branches get preview deployments
 
 ## 🤝 Contributing
 
+We welcome contributions from RAMSoc members and the community!
+
+### Getting Started
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feat/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
+3. Make your changes
+4. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+5. Push to the branch (`git push origin feat/amazing-feature`)
+6. Open a Pull Request
+
+### Commit Convention
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `docs:` - Documentation changes
+- `style:` - Code style changes (formatting, etc.)
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
 
 ### Code Style
 
-- Follow the existing TypeScript and React patterns
-- Use Prettier for code formatting
-- Ensure ESLint passes before submitting
+- Follow existing TypeScript and React patterns
+- Use Prettier for code formatting (auto-format on save)
+- Ensure ESLint passes before submitting (`yarn lint`)
+- Run type checking (`yarn check-types`)
 - Write meaningful commit messages
+- Keep components focused and reusable
+- Use Tailwind CSS utilities over custom CSS when possible
+- Convert `@apply` directives to regular CSS in SCSS modules
+
+## 🏛️ Architecture Decisions
+
+### Why Tailwind CSS v4?
+
+- Modern CSS features with `@theme` and custom properties
+- Better performance with optimized CSS output
+- Improved developer experience with better error messages
+- Future-proof with CSS-first approach
+
+### Why No `@apply` in SCSS Modules?
+
+Tailwind v4 requires `@reference` directive for `@apply` in CSS modules, which causes linting issues. We convert `@apply` rules to regular CSS for:
+
+- Better compatibility across tools
+- Explicit CSS values (easier to debug)
+- No processing overhead
+- Consistent with Tailwind v4 best practices
+
+### Why tRPC?
+
+- End-to-end type safety from server to client
+- No code generation required
+- Automatic TypeScript inference
+- Better DX with autocomplete and type errors
+
+### Why React Query?
+
+- Automatic caching and background refetching
+- Optimistic updates
+- Request deduplication
+- Built-in loading and error states
+- Great DevTools for debugging
 
 ## 📄 License
 
