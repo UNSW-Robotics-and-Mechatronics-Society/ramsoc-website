@@ -35,7 +35,7 @@ export function MobileNav({ links }: MobileNavProps) {
       >
         <SheetHeader className="border-primary-800 border-b p-6 pb-4">
           <SheetTitle className="text-primary-200 text-left text-sm">
-            Robotics And Mechatronics Society
+            UNSW Robotics And Mechatronics Society
           </SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col gap-1 p-4 text-white">
