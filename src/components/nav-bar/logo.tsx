@@ -4,20 +4,11 @@ import Link from "next/link";
 interface LogoProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
   ariaLabel: string;
   showText?: boolean;
 }
 
-export function Logo({
-  src,
-  alt,
-  width,
-  height,
-  ariaLabel,
-  showText = true,
-}: LogoProps) {
+export function Logo({ src, alt, ariaLabel, showText = true }: LogoProps) {
   return (
     <Link
       href="/"
@@ -27,9 +18,9 @@ export function Logo({
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
-        className="size-16 transition-transform duration-300"
+        width={48}
+        height={48}
+        className="size-14 transition-transform duration-300"
       />
       {showText && (
         <div className="hidden flex-col leading-tight md:flex">
