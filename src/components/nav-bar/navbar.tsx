@@ -16,10 +16,10 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 z-50 h-24 w-full px-8 transition-all duration-500 ease-out",
+        "fixed top-0 left-0 z-50 w-full px-8 transition-all duration-500 ease-out",
         isScrolled
           ? "border-primary-800/30 bg-primary-950/95 h-20 border-b shadow-lg backdrop-blur-md"
-          : "bg-transparent",
+          : "bg-transparent h-24",
         isScrollingDown ? "-translate-y-full" : "translate-y-0",
       )}
     >
