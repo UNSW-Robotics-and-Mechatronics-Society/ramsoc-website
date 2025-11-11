@@ -12,3 +12,5 @@ updates:
     commit-message:
       # Prefix all commit messages with "build: "
       prefix: "build"
+    assignees:
+      - ramsocunsw
