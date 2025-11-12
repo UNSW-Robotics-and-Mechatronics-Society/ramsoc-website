@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import { type Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 
 import Providers from "./providers";
 
@@ -27,11 +28,20 @@ export const metadata: Metadata = {
   },
 };
 
+const SpaceGroteskFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  weight: ["400", "500", "600", "700"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html
+      lang="en"
+      className={`overflow-x-hidden ${SpaceGroteskFont.variable}`}
+    >
       <body className="overflow-x-hidden">
         <Providers>
           <NavBar />

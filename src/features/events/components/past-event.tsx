@@ -34,12 +34,14 @@ export default function PastEvents() {
   }, [allEvents?.pastEvents]);
 
   return (
-    <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {termGroupedPastEvents &&
         termGroupedPastEvents.map(([term, events]) => {
           return (
             <Fragment key={term}>
-              <h3 className="col-span-full mt-8 text-xl">{term}</h3>
+              <h3 className="text-primary-900 col-span-full mt-8 text-lg font-semibold first:mt-0">
+                {term}
+              </h3>
               {events.map((event) => (
                 <EventCardSmall data={event} key={event.id} />
               ))}
@@ -47,8 +49,8 @@ export default function PastEvents() {
           );
         })}
       <div ref={ref} className="h-px w-full"></div>
-      <div className="col-span-full text-center">
-        {hasNextPage ? "Loading" : "You have reached the end!"}
+      <div className="text-primary-600 col-span-full py-8 text-center text-sm">
+        {hasNextPage ? "Loading more events..." : "You've reached the end!"}
       </div>
     </div>
   );

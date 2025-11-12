@@ -23,6 +23,7 @@ export const env = createEnv({
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string(),
     NEXT_PUBLIC_NOTION_CAREERS_DB_SOURCE_ID: z.string(),
     NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL: z.string().url(),
+    NEXT_PUBLIC_ENABLE_MOCKING: z.string().optional(),
   },
 
   /**
@@ -41,6 +42,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
     NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL:
       process.env.NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL,
+    NEXT_PUBLIC_ENABLE_MOCKING: process.env.NEXT_PUBLIC_ENABLE_MOCKING,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

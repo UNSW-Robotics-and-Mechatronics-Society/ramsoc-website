@@ -1,21 +1,22 @@
-import Link from "next/link";
+"use client";
 
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { CurrentEvents } from "@/features/events";
+import { EventCarousel, useEvents } from "@/features/events";
 
 export default function Events() {
+  const { isFetching, allEvents, isError } = useEvents();
+
   return (
-    <Container outerProps={{ variant: "gradient" }}>
-      <div className="w-full">
-        <div className="mx-auto flex size-full max-w-[1200px] flex-col items-center justify-between gap-16 py-16">
-          <h2 className="text-center">Events</h2>
-          <CurrentEvents />
-          <Button className="w-fit" variant="outline" asChild>
-            <Link href="/events">See Past Events</Link>
-          </Button>
+    <section className="bg-primary-50/30 py-20">
+      <Container className="px-0 sm:px-0 lg:px-8">
+        <div className="mx-auto max-w-[1400px]">
+          <EventCarousel
+            events={allEvents}
+            isFetching={isFetching}
+            isError={isError}
+          />
         </div>
-      </div>
-    </Container>
+      </Container>
+    </section>
   );
 }

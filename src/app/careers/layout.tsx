@@ -30,14 +30,18 @@ export default function CareersLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="mb-16 min-h-screen">
+    <main className="min-h-screen">
       <Hero
         imageSrc="/careers/hero.webp"
         imageAlt="Collage of careers at RAMSoc"
       >
         Careers
       </Hero>
-      <Container className="px-4">{children}</Container>
+      <section className="bg-primary-50/30 py-20">
+        <Container>
+          <div className="mx-auto max-w-[1400px]">{children}</div>
+        </Container>
+      </section>
     </main>
   );
 }

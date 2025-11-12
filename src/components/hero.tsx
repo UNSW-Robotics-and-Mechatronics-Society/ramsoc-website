@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -16,14 +19,9 @@ interface HeroProps {
   imageAlt: string;
   /**
    * Height of the hero section
-   * @default "800px"
+   * @default "500px"
    */
   height?: string;
-  /**
-   * Opacity of the dark overlay (0-100)
-   * @default 75
-   */
-  overlayOpacity?: number;
   /**
    * Whether to wrap children in an h1 element
    * @default true
@@ -34,17 +32,29 @@ interface HeroProps {
 export function Hero({
   children,
   imageSrc,
-  imageAlt = "Collage of events held by RAMSoc",
-  height = "800px",
-  overlayOpacity = 75,
+  imageAlt = "RAMSoc events",
+  height = "500px",
   wrapInHeading = true,
 }: HeroProps) {
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+  };
+
   return (
-    <div
-      className="relative mb-16 flex w-full items-center justify-center"
+    <section
+      className="relative mb-16 flex w-full items-center justify-center overflow-hidden"
       style={{ height }}
     >
-      <div className="absolute top-0 left-0 -z-10 size-full">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
         <Image
           className="size-full object-cover"
           src={imageSrc}
@@ -52,20 +62,27 @@ export function Hero({
           height={700}
           loading="lazy"
           alt={imageAlt}
+          quality={90}
         />
-        <div
-          className="bg-primary-950 absolute top-0 left-0 size-full"
-          style={{ opacity: overlayOpacity / 100 }}
-        />
+        {/* Gradient overlay */}
+        <div className="from-primary-950/95 via-primary-900/90 to-primary-800/85 absolute inset-0 bg-linear-to-br" />
       </div>
 
-      {wrapInHeading ? (
-        <h1 className="text-primary-50 block text-6xl md:contents xl:text-8xl">
-          {children}
-        </h1>
-      ) : (
-        children
-      )}
-    </div>
+      {/* Content */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={textVariants}
+        className="relative z-10 px-4 text-center"
+      >
+        {wrapInHeading ? (
+          <h1 className="text-6xl font-bold text-white drop-shadow-lg md:text-7xl lg:text-8xl">
+            {children}
+          </h1>
+        ) : (
+          children
+        )}
+      </motion.div>
+    </section>
   );
 }
