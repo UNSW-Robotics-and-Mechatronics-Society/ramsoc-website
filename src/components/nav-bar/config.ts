@@ -26,6 +26,11 @@ export const NAV_LINKS: NavLink[] = [
     ariaLabel: "Go to team page",
   },
   {
+    label: "Sponsors",
+    href: "/#sponsors",
+    ariaLabel: "Go to sponsors page",
+  },
+  {
     label: "Contact Us",
     href: "/#contact",
     ariaLabel: "Go to contact us section",
