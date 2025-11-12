@@ -20,7 +20,7 @@ export function MobileNav({ links, sheetState }: MobileNavProps) {
       <AnimatedMenuButton
         isOpen={isOpen}
         onClick={toggle}
-        className="size-12 sm:hidden"
+        className="size-12"
       />
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent

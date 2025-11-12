@@ -13,7 +13,7 @@ export function NavLinks({
   onLinkClick,
   mobile = false,
 }: NavLinksProps) {
-  const baseStyles = "flex items-center transition-all duration-200";
+  const baseStyles = "flex items-center transition-all duration-200 shrink-0";
   const desktopStyles =
     "h-full px-4 hover:bg-primary-800/30 hover:text-primary-50 relative group";
   const mobileStyles =
