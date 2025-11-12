@@ -2,13 +2,45 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 import { InfiniteMovingCards } from "@/components/infinite-moving-cards";
 import { Container } from "@/components/ui/container";
 
 export default function SponsoredSection() {
+  const sponsors = [
+    {
+      name: "UNSW Arc",
+      logo: "/home/unsw-arc-logo.png",
+      url: "https://www.arc.unsw.edu.au/",
+    },
+    {
+      name: "UNSW Engineering",
+      logo: "/home/unsw-engineering-logo.png",
+      url: "https://www.engineering.unsw.edu.au/",
+    },
+    {
+      name: "UNSW Founders",
+      logo: "/home/unsw-founders-logo.png",
+      url: "https://www.founders.unsw.edu.au/",
+    },
+    {
+      name: "Engineers Australia",
+      logo: "/home/engineers-australia-logo.png",
+      url: "https://www.engineersaustralia.org.au/",
+    },
+    {
+      name: "Pure Matcha",
+      logo: "/home/purematcha-logo.avif",
+      url: "https://purematcha.com.au/",
+    },
+  ];
+
   return (
-    <section className="border-primary-200/50 bg-primary-50/50 border-y py-20">
+    <section
+      className="border-primary-200/50 bg-primary-50/50 border-y py-20"
+      id="sponsors"
+    >
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,10 +49,10 @@ export default function SponsoredSection() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-3">Proudly Sponsored By</h2>
+          <h2 className="mb-3">Our Sponsors & Partners</h2>
           <p className="text-primary-700 mx-auto max-w-2xl">
             Supported by leading organizations that believe in fostering the
-            next generation of engineers
+            next generation of mechatronics engineers
           </p>
         </motion.div>
 
@@ -32,48 +64,24 @@ export default function SponsoredSection() {
         >
           <InfiniteMovingCards
             direction="left"
-            pauseOnHover={false}
-            items={[
-              <Image
-                key={"unsw arc logo"}
-                src="/home/unsw-arc-logo.png"
-                alt="unsw arc logo"
-                width={100}
-                height={100}
-              />,
-              <Image
-                key={"unsw engineering logo"}
-                src="/home/unsw-engineering-logo.png"
-                alt="unsw engineering logo"
-                width={100}
-                height={100}
-              />,
-              <Image
-                key={"unsw founders logo"}
-                src="/home/unsw-founders-logo.png"
-                alt="unsw founders logo"
-                width={100}
-                height={100}
-              />,
-              <Image
-                key={"engineers australia logo"}
-                src="/home/engineers-australia-logo.png"
-                alt="engineers australia logo"
-                width={100}
-                height={100}
-              />,
-              <div
-                key={"pure matcha logo"}
-                className="flex size-full items-center justify-center"
+            pauseOnHover={true}
+            items={sponsors.map((sponsor) => (
+              <Link
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex size-full items-center justify-center transition-transform duration-300 hover:scale-110"
               >
                 <Image
-                  src="/home/purematcha-logo.avif"
-                  alt="pure matcha logo"
-                  width={100}
-                  height={100}
+                  src={sponsor.logo}
+                  alt={`${sponsor.name} logo`}
+                  width={120}
+                  height={120}
+                  className="object-contain transition-opacity duration-300 group-hover:opacity-80"
                 />
-              </div>,
-            ]}
+              </Link>
+            ))}
           />
         </motion.div>
       </Container>
