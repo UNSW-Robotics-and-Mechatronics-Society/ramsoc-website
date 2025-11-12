@@ -25,7 +25,7 @@ export default function AboutUs() {
     },
     {
       icon: LuRocket,
-      number: "10+",
+      number: "30+",
       label: "Annual Events",
     },
   ];
