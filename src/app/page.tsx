@@ -1,4 +1,5 @@
 import AboutUs from "@/app/_components/about-us";
+import CareersPreview from "@/app/_components/careers-preview";
 import ContactUs from "@/app/_components/contact-us";
 import Events from "@/app/_components/events";
 import Hero from "@/app/_components/hero";
@@ -13,6 +14,7 @@ export default function HomePage() {
       <AboutUs />
       <FlagshipEvents />
       <Events />
+      <CareersPreview />
       <MeetTheTeam />
       <Sponsored />
       <ContactUs />
