@@ -2,21 +2,38 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function EventCardLoading() {
   return (
-    <div className="bg-primary-950 flex w-full flex-col sm:h-96 sm:flex-row">
-      <div className="relative aspect-video h-full sm:aspect-3/4 md:aspect-4/4">
-        <Skeleton className="size-full" />
-      </div>
-      <div className="text-primary-50 flex max-h-fit w-full flex-col gap-2 overflow-hidden p-8 sm:max-h-full">
-        <Skeleton className="h-8 w-8/12" />
-        <Skeleton className="h-7 w-4/12" />
-        <Skeleton className="h-7 w-5/12" />
-        <div>
-          <Skeleton className="mt-2 h-4 w-11/12" />
-          <Skeleton className="mt-2 h-4 w-full" />
-          <Skeleton className="mt-2 h-4 w-10/12" />
-          <Skeleton className="mt-2 h-4 w-11/12" />
+    <div className="grid w-full gap-8 md:grid-cols-2">
+      {[1, 2].map((i) => (
+        <div
+          key={i}
+          className="border-primary-200/50 overflow-hidden rounded-2xl border bg-white shadow-lg"
+        >
+          {/* Image skeleton */}
+          <Skeleton className="aspect-video w-full" />
+
+          {/* Content skeleton */}
+          <div className="flex flex-col gap-4 p-6">
+            {/* Title */}
+            <Skeleton className="h-7 w-3/4" />
+
+            {/* Date and location */}
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-1/2" />
+            </div>
+
+            {/* Description lines */}
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-4/5" />
+            </div>
+
+            {/* Button */}
+            <Skeleton className="mt-2 h-10 w-full" />
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
