@@ -49,7 +49,7 @@ export default function AboutUs() {
 
   return (
     <section className="bg-primary-50/30 py-20">
-      <Container>
+      <Container className="overflow-hidden">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
