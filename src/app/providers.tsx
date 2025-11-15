@@ -1,10 +1,11 @@
 "use client";
-import { env } from "@/env";
+import { env, isDev } from "@/env";
 import { initMocks } from "@/mocks/init";
 import { TRPCReactProvider } from "@/trpc/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   if (env.NEXT_PUBLIC_ENABLE_MOCKING === "true") {
@@ -16,7 +17,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <TRPCReactProvider>
         {children}
         <Analytics />
-        <ReactQueryDevtools />
+        {isDev && (
+          <>
+            <ReactQueryDevtools />
+            <VercelToolbar />
+          </>
+        )}
       </TRPCReactProvider>
     </>
   );
