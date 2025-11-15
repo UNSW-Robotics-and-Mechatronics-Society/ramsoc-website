@@ -18,16 +18,29 @@ export const ProfileCard = ({ profile, backgroundClass }: ProfileCardProps) => {
     <Card className={`${styles.profileCard} ${backgroundClass}`}>
       <CardContent className={styles.cardContent}>
         <div className={styles.imageContainer}>
-          <Image
-            src={profile.selfie}
-            alt={profile.name}
-            className={styles.picture}
-            width={320}
-            height={256}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
-            loading="lazy"
-            quality={85}
-          />
+          {profile.selfie ? (
+            <Image
+              src={profile.selfie}
+              alt={profile.name}
+              className={styles.picture}
+              width={320}
+              height={256}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+              loading="lazy"
+              quality={85}
+            />
+          ) : (
+            <div className={styles.defaultImageWrapper}>
+              <Image
+                src="/team/rambo.svg"
+                alt="Default profile"
+                className={styles.defaultImage}
+                width={200}
+                height={200}
+                priority={false}
+              />
+            </div>
+          )}
         </div>
 
         <div className={styles.profileInfo}>
