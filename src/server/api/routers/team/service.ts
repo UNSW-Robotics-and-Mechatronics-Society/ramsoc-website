@@ -1,7 +1,15 @@
-import { client } from "@/lib/contentful/client";
-import type { Asset } from "contentful";
+import { apolloClient } from "@/lib/contentful/client";
 
+import { EXECUTIVES_IN_ORDER, YEAR_SEARCH_RANGE } from "./constants";
 import { ContentfulApiException, TeamNotFoundException } from "./exceptions";
+import {
+  CHECK_IF_TEAM_EXISTS_IN_YEAR,
+  GET_TEAM_MEMBERS_BY_YEAR,
+} from "./graphql";
+import {
+  type GetTeamByYearData,
+  type GetTeamMembersByYearData,
+} from "./graphql.types";
 import type {
   SubcomProfileSchema,
   TeamMemberSchema,
@@ -24,18 +32,6 @@ const categorizeTeamMembersByRole = (
   const execs: TeamMemberSchema[] = [];
   const directors: TeamMemberSchema[] = [];
   const subcoms: SubcomProfileSchema[] = [];
-
-  const execOrder = [
-    "president",
-    "vice president",
-    "secretary",
-    "arc delegate",
-    "treasurer",
-    "grievance & edi officer",
-    "marketing executive",
-    "technical executive",
-    "industry & sponsorships executive",
-  ];
 
   teamMembers.forEach((member) => {
     const role = member.role;
@@ -62,8 +58,8 @@ const categorizeTeamMembersByRole = (
 
   execs.sort(
     (a, b) =>
-      execOrder.indexOf(a.role.toLowerCase()) -
-      execOrder.indexOf(b.role.toLowerCase()),
+      EXECUTIVES_IN_ORDER.indexOf(a.role.toLowerCase()) -
+      EXECUTIVES_IN_ORDER.indexOf(b.role.toLowerCase()),
   );
   directors.sort((a, b) => a.role.localeCompare(b.role));
 
@@ -75,7 +71,7 @@ const categorizeTeamMembersByRole = (
 };
 
 /**
- * Fetches team data for a specific year from Contentful CMS
+ * Fetches team data for a specific year from Contentful CMS using Apollo Client GraphQL
  * @throws {TeamNotFoundException} if no team members found for the year
  * @throws {ContentfulApiException} if Contentful API request fails
  */
@@ -83,73 +79,111 @@ export const getTeamByYear = async (
   year: number,
 ): Promise<TeamStructureSchema> => {
   try {
-    const response = await client.getEntries({
-      content_type: "team",
-      "fields.year": year,
-      order: ["fields.year", "fields.role", "fields.name"],
-    });
+    const allTeamMembers: TeamMemberSchema[] = [];
+    const batchSize = 100;
+    let skip = 0;
+    let hasMore = true;
+    let total = 0;
 
-    if (response.items.length === 0) {
-      throw new TeamNotFoundException(year);
+    // Paginate through all team members for this year
+    while (hasMore) {
+      const { data } = await apolloClient.query<GetTeamMembersByYearData>({
+        query: GET_TEAM_MEMBERS_BY_YEAR,
+        variables: {
+          year,
+          limit: batchSize,
+          skip,
+        },
+      });
+
+      if (!data?.teamCollection) {
+        throw new Error("No team collection data returned from GraphQL");
+      }
+
+      // Store total from first request
+      if (skip === 0) {
+        total = data.teamCollection.total;
+
+        // If no members found, throw error
+        if (total === 0) {
+          throw new TeamNotFoundException(year);
+        }
+      }
+
+      // Process and add team members from this batch
+      const batchMembers: TeamMemberSchema[] = data.teamCollection.items.map(
+        (item) => {
+          const selfieUrl = item.selfie?.url;
+          const formattedSelfieUrl = selfieUrl
+            ? `${selfieUrl}?fm=webp&fit=fill&w=400&h=400&q=85`
+            : "";
+
+          return {
+            id: item.sys.id,
+            name: item.name,
+            role: item.role,
+            year: item.year,
+            selfie: formattedSelfieUrl,
+            email: item.email,
+            linkedin: item.linkedin,
+          };
+        },
+      );
+
+      allTeamMembers.push(...batchMembers);
+
+      // Check if we need to fetch more
+      const fetched = skip + data.teamCollection.items.length;
+      hasMore = fetched < total;
+      skip += batchSize;
     }
 
-    const yearTeamData: TeamMemberSchema[] = response.items.map((item) => {
-      const selfieAsset = item.fields.selfie as Asset | undefined;
-      const selfieFileUrl = selfieAsset?.fields.file?.url;
-      const formattedSelfieUrl =
-        selfieFileUrl && typeof selfieFileUrl === "string"
-          ? `https:${selfieFileUrl}?fm=webp&fit=fill&w=400&h=400&q=85` // Optimized: webp format, 400x400, quality 85
-          : "";
-
-      return {
-        id: item.sys.id,
-        name: item.fields.name as string,
-        role: item.fields.role as string,
-        year: item.fields.year as number,
-        selfie: formattedSelfieUrl,
-        email: item.fields.email as string,
-        linkedin: item.fields.linkedin as string,
-      };
-    });
-
-    return categorizeTeamMembersByRole(yearTeamData);
+    return categorizeTeamMembersByRole(allTeamMembers);
   } catch (error: unknown) {
     // Re-throw custom exceptions
     if (error instanceof TeamNotFoundException) {
       throw error;
     }
 
-    // Wrap Contentful errors
+    // Wrap GraphQL/Apollo errors
     throw new ContentfulApiException(
-      "Failed to fetch team data from Contentful",
+      `Failed to fetch team data from Contentful: ${error}`,
     );
   }
 };
 
 /**
- * Fetches all available team years from Contentful CMS
+ * Fetches all available team years from Contentful CMS using Apollo Client GraphQL
  * @throws {ContentfulApiException} if Contentful API request fails
  */
 export const getAvailableYears = async (): Promise<number[]> => {
   try {
-    const response = await client.getEntries({
-      content_type: "team",
-      order: ["fields.year"],
-    });
+    // Query all years in parallel: each query only checks total count for efficiency
+    const results = await Promise.all(
+      YEAR_SEARCH_RANGE.map((year) =>
+        apolloClient
+          .query<GetTeamByYearData>({
+            query: CHECK_IF_TEAM_EXISTS_IN_YEAR,
+            variables: { year },
+          })
+          .then((result) => ({
+            year,
+            exists: (result.data?.teamCollection?.total ?? 0) > 0,
+          }))
+          .catch(() => ({ year, exists: false })),
+      ),
+    );
 
-    const availableYears: number[] = [];
-    response.items.forEach((item) => {
-      if (item.fields?.year) {
-        const year: number = item.fields.year as number;
-        if (!availableYears.includes(year)) {
-          availableYears.push(year);
-        }
-      }
-    });
+    // Filter to only years that have team members
+    const availableYears = results
+      .filter((r) => r.exists)
+      .map((r) => r.year)
+      .sort((a, b) => a - b);
+
     return availableYears;
   } catch (error: unknown) {
     throw new ContentfulApiException(
-      "Failed to fetch available team years from Contentful",
+      `Failed to fetch available team years from Contentful: ${error}`,
     );
   }
 };
