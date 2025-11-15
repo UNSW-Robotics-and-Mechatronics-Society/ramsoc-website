@@ -15,9 +15,9 @@ export const teamMemberSchema = z.object({
   name: z.string(),
   role: z.string(),
   year: z.number(),
-  selfie: z.string(),
+  selfie: z.string().optional(),
   email: z.string(),
-  linkedin: z.string(),
+  linkedin: z.string().optional(),
 });
 
 /**
