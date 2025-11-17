@@ -634,10 +634,10 @@
   resolved "https://registry.yarnpkg.com/@nolyfill/is-core-module/-/is-core-module-1.0.39.tgz#3dc35ba0f1e66b403c00b39344f870298ebb1c8e"
   integrity sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==
 
-"@notionhq/client@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@notionhq/client/-/client-5.3.0.tgz#7048d4ab38c708bfbeb426be173a6878c6e09880"
-  integrity sha512-pISuJLrP6XwxnmMZ79jT2XkMHFtbQvslfs6Rqdd29ge0KAmJOuhtWZxE1WXO7h03cj/gVAL2PiAjpFuIWrWJ3w==
+"@notionhq/client@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@notionhq/client/-/client-5.4.0.tgz#5f10af391730c1755dd7b821298287117aff73f3"
+  integrity sha512-SJsprS26S0Wi9CoTQp4vC8/nPpAIo1gMB4H7aJ2E/k0fWnNGIEAg984KwtzK6h9ZGaPcEaryVRSz1VVClJcVUw==
 
 "@open-draft/deferred-promise@^2.2.0":
   version "2.2.0"
