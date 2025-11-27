@@ -1,7 +1,22 @@
 import { env } from "@/env";
-import { createClient } from "contentful";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
-export const client = createClient({
-  space: `${env.CONTENTFUL_SPACE_ID}`,
-  accessToken: `${env.CONTENTFUL_ACCESS_TOKEN}`,
+/**
+ * Apollo Client for Contentful GraphQL API
+ * Used for type-safe queries with proper caching
+ */
+export const apolloClient = new ApolloClient({
+  link: new HttpLink({
+    uri: `https://graphql.contentful.com/content/v1/spaces/${env.CONTENTFUL_SPACE_ID}`,
+    headers: {
+      Authorization: `Bearer ${env.CONTENTFUL_ACCESS_TOKEN}`,
+    },
+  }),
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: "cache-first",
+      errorPolicy: "all",
+    },
+  },
 });

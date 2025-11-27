@@ -1,0 +1,143 @@
+.subcomMainContainer {
+  margin: 0 auto;
+  display: flex;
+  max-width: 72rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.subcomContainer {
+  margin: 0.5rem;
+  display: flex;
+  width: 18rem;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.subcomPosition {
+  color: var(--color-primary-600);
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.subcomName {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: rgb(107 114 128);
+}
+
+// Empty state styles
+.emptyStateContainer {
+  width: 100%;
+  max-width: 48rem;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.emptyStateContent {
+  background-color: var(--color-primary-50);
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.05),
+    0 1px 2px -1px rgb(0 0 0 / 0.05);
+}
+
+.emptyStateTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-900);
+  margin-bottom: 1rem;
+}
+
+.emptyStateDescription {
+  color: var(--color-primary-700);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emptyStateActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.joinButton {
+  display: inline-block;
+  background-color: var(--color-primary-600);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  &:hover {
+    background-color: var(--color-primary-700);
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.emptyStateFooter {
+  color: var(--color-primary-600);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+// Legacy styles (keep for backwards compatibility if needed)
+.joinUsMessage {
+  color: var(--color-primary-50);
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.buttonStyle {
+  border-color: var(--color-primary-800);
+  color: var(--color-primary-800);
+  border-radius: 0.5rem;
+  border-width: 1.5px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  transition-duration: 100ms;
+
+  &:hover {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+    color: var(--color-primary-50);
+    transform: scale(1.05);
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.joinUsMessage p {
+  color: var(--color-primary-700);
+  margin-top: 1rem;
+}

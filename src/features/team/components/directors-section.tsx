@@ -6,5 +6,21 @@ interface DirectorsSectionProps {
 }
 
 export const DirectorsSection = ({ directors }: DirectorsSectionProps) => {
-  return <ProfileGrid profileData={directors} background="director" />;
+  if (directors.length === 0) {
+    return null;
+  }
+  return (
+    <div className="mb-20">
+      <div className="mb-8">
+        <h3 className="text-primary-900 mb-3 text-2xl font-semibold">
+          Directors
+        </h3>
+        <p className="text-primary-700 max-w-2xl text-sm leading-relaxed">
+          Our directors oversee key areas of the society, from events and
+          sponsorships to marketing and IT infrastructure.
+        </p>
+      </div>
+      <ProfileGrid profileData={directors} background="director" />
+    </div>
+  );
 };
