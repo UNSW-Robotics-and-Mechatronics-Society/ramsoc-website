@@ -29,6 +29,7 @@
     "@trpc/react-query": "^11.0.0",
     "@trpc/server": "^11.0.0",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/toolbar": "^0.1.41",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
