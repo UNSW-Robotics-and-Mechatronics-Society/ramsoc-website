@@ -42,57 +42,50 @@ export default function ContactUs() {
   ];
 
   return (
-    <section className="bg-primary-50/30 py-20">
+    <section className="bg-white py-16 border-b border-[#d4d4d4]">
       <Container>
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="border-primary-200/50 mx-auto max-w-2xl overflow-hidden rounded-2xl border bg-white p-12 shadow-lg"
+          className="mx-auto max-w-3xl text-center"
         >
-          <h2 id="contact" className="text-primary-900 mb-6 text-center">
+          <h2 id="contact" className="text-black mb-4 text-2xl font-normal font-mono uppercase tracking-tight border-b-4 border-[#1076eb] pb-2 inline-block">
             Get In Touch
           </h2>
 
           {/* Email */}
           <motion.a
             href="mailto:info@ramsocunsw.org"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-primary-600 hover:text-primary-900 mb-10 block text-center text-xl transition-colors"
+            transition={{ duration: 0.6 }}
+            className="text-[#1076eb] hover:text-[#0d5fc7] mb-8 mt-8 block text-center text-base font-mono transition-none border-2 border-[#d4d4d4] p-4 bg-white hover:bg-[#f5f5f5]"
           >
             info@ramsocunsw.org
           </motion.a>
 
           {/* Social Links */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center gap-6"
+            transition={{ duration: 0.6 }}
+            className="flex justify-center gap-0 border border-[#d4d4d4] mt-8"
           >
             {socialLinks.map((social, index) => (
-              <motion.div
+              <Link
                 key={social.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
+                href={social.url}
+                target="_blank"
+                title={social.name}
+                aria-label={`Go to our ${social.name}`}
+                className={`text-black hover:bg-[#1076eb] hover:text-white transition-none p-4 flex-1 flex items-center justify-center ${index !== socialLinks.length - 1 ? 'border-r border-[#d4d4d4]' : ''}`}
               >
-                <Link
-                  href={social.url}
-                  target="_blank"
-                  title={social.name}
-                  aria-label={`Go to our ${social.name}`}
-                  className="text-primary-500 hover:text-primary-700 transition-colors duration-300"
-                >
-                  <social.icon size={28} />
-                </Link>
-              </motion.div>
+                <social.icon size={24} />
+              </Link>
             ))}
           </motion.div>
         </motion.div>

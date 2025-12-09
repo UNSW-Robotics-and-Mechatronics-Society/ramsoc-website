@@ -1,3 +1,4 @@
+// FILE: src/app/_components/hero.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -33,81 +34,89 @@ export default function HomeHero() {
   };
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/home/hero.webp"
-          alt="RAMSoc events collage"
-          fill
-          className="object-cover"
-          quality={90}
-          priority
-        />
-        <div className="from-primary-950/95 via-primary-900/90 to-primary-800/85 absolute inset-0 bg-linear-to-br" />
-      </div>
-
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white border-b border-[#d4d4d4]">
       <motion.div
-        className="relative z-10 flex flex-col items-center justify-center gap-10 px-4 py-32 text-white md:gap-12"
+        className="relative z-10 flex w-full max-w-3xl flex-col items-center justify-center gap-8 px-6 md:px-12 py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
+        {/* Main content - centered */}
         <motion.div
-          className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-8"
+          className="flex flex-col items-center gap-8 w-full text-center"
           variants={itemVariants}
         >
-          <Image
-            className="w-[180px] drop-shadow-2xl sm:w-[220px] lg:w-[280px]"
-            src="/logo.svg"
-            alt="RAMSoc logo"
-            width={280}
-            height={173}
-            priority
-          />
-
-          <div className="flex flex-row items-baseline gap-2 text-7xl font-bold sm:text-8xl md:flex-col lg:text-9xl">
-            <span className="text-white">RAM</span>
-            <span className="text-primary-200 font-light">SOC</span>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="bg-primary-300/50 h-px w-full max-w-2xl"
-          variants={itemVariants}
-        />
-
-        <motion.h1
-          id="hero-subtitle"
-          className="max-w-3xl text-center text-base font-medium tracking-widest sm:text-lg lg:text-xl"
-          variants={itemVariants}
-        >
-          UNSW ROBOTICS AND MECHATRONICS SOCIETY
-        </motion.h1>
-
-        <motion.div variants={itemVariants}>
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary-500 hover:bg-primary-400 px-8 py-6 text-base font-semibold shadow-xl transition-all hover:shadow-2xl"
+          {/* Title Section */}
+          <motion.div
+            className="flex flex-col gap-2 items-center"
+            variants={itemVariants}
           >
-            <Link href={JOIN_US_URL} target="_blank">
-              Join Us On SpArc
-            </Link>
-          </Button>
-        </motion.div>
-      </motion.div>
+            <h1
+              id="hero-subtitle"
+              className="text-4xl md:text-6xl font-normal tracking-tighter text-black font-mono uppercase border-b-4 border-[#1076eb] pb-2"
+            >
+              RAMSOC
+            </h1>
+            <p className="text-xs md:text-sm font-normal text-[#999999] font-mono uppercase tracking-tight mt-2">
+              UNSW ROBOTICS AND MECHATRONICS SOCIETY
+            </p>
+          </motion.div>
 
-      <motion.div
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <HiChevronDown className="text-primary-200 size-6" />
+          {/* Description */}
+          <motion.div
+            className="max-w-2xl"
+            variants={itemVariants}
+          >
+            <p className="text-sm leading-relaxed text-black font-mono">
+              Empowering students through hands-on learning, industry connections,
+              and cutting-edge innovation in robotics and mechatronics
+              engineering.
+            </p>
+          </motion.div>
+
+          {/* Buttons */}
+          <motion.div
+            className="flex flex-col gap-3 sm:flex-row justify-center"
+            variants={itemVariants}
+          >
+            <Button asChild size="default" variant="default">
+              <Link href={JOIN_US_URL} target="_blank">
+                Join Us
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="default"
+            >
+              <Link href="/events">Events</Link>
+            </Button>
+          </motion.div>
+
+          {/* Stats - grid format */}
+          <motion.div
+            className="mt-8 w-full max-w-2xl grid grid-cols-2 md:grid-cols-4 gap-0 border border-[#d4d4d4]"
+            variants={itemVariants}
+          >
+            {[
+              { number: "900+", label: "Members" },
+              { number: "50+", label: "Workshops" },
+              { number: "20+", label: "Partners" },
+              { number: "30+", label: "Events" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center py-6 px-4 border-r border-b border-[#d4d4d4] last:border-r-0 md:[&:nth-child(4)]:border-r-0 [&:nth-child(3)]:border-r-0 md:[&:nth-child(3)]:border-r [&:nth-child(n+3)]:border-b-0"
+              >
+                <span className="text-2xl font-mono font-normal text-[#1076eb] mb-1">
+                  {stat.number}
+                </span>
+                <span className="text-xs font-mono uppercase tracking-tight text-[#999999]">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

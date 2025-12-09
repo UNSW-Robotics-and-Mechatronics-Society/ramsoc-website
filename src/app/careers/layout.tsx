@@ -31,13 +31,10 @@ export default function CareersLayout({
 }) {
   return (
     <main className="min-h-screen">
-      <Hero
-        imageSrc="/careers/hero.webp"
-        imageAlt="Collage of careers at RAMSoc"
-      >
+      <Hero>
         Careers
       </Hero>
-      <section className="bg-primary-50/30 py-20">
+      <section className="bg-white py-16 border-b border-[#d4d4d4]">
         <Container>
           <div className="mx-auto max-w-[1400px]">{children}</div>
         </Container>

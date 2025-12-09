@@ -53,17 +53,19 @@ export default function CareersPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-12 max-w-3xl overflow-hidden"
+        className="mb-12 max-w-3xl mx-auto overflow-hidden text-center"
       >
-        <h2 className="mb-4">Career Opportunities</h2>
-        <p className="text-primary-700 mb-6 leading-relaxed">
+        <h2 className="text-black mb-4 text-2xl font-normal font-mono uppercase tracking-tight border-b-4 border-[#1076eb] pb-2 inline-block">
+          Career Opportunities
+        </h2>
+        <p className="text-black mb-6 leading-relaxed text-sm font-mono mt-4">
           Explore exciting career opportunities in robotics, mechatronics, and
           engineering. We curate positions from leading companies and startups
           looking for talented individuals passionate about innovation and
           technology.
         </p>
-        <div className="bg-primary-50 border-primary-200 rounded-lg border p-4">
-          <p className="text-primary-900 text-lg font-semibold">
+        <div className="bg-white border-2 border-[#d4d4d4] p-4">
+          <p className="text-[#1076eb] text-base font-normal font-mono uppercase tracking-tight">
             {jobCount} {jobCount === 1 ? "Position" : "Positions"} Available
           </p>
         </div>

@@ -1,3 +1,4 @@
+// FILE: src/components/nav-bar/navbar.tsx
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -24,26 +25,23 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 z-50 w-full px-4 transition-all duration-500 ease-out md:px-8",
+        "fixed top-0 left-0 z-50 w-full px-0 transition-none",
         isScrolled || sheetState.isOpen
-          ? "border-primary-800/30 bg-primary-950/95 h-20 border-b shadow-lg backdrop-blur-md"
-          : "h-24 bg-transparent",
+          ? "bg-white h-16 border-b border-[#d4d4d4]"
+          : "h-16 bg-white border-b border-[#d4d4d4]",
         isScrollingDown ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      {/* Desktop Navigation */}
-      <div
-        className="text-primary-50 mx-auto hidden size-full items-center md:flex"
-        style={{ maxWidth: NAVBAR_CONFIG.maxWidth }}
-      >
+      {/* Desktop Navigation - Left aligned narrow column */}
+      <div className="flex h-full items-center pl-6 md:pl-12">
         <Logo {...NAVBAR_CONFIG.logo} showText={showLogo} />
-        <nav className="ml-auto flex h-full">
+        <nav className="ml-12 flex h-full gap-0">
           <NavLinks links={NAV_LINKS} />
         </nav>
       </div>
 
       {/* Mobile Navigation */}
-      <div className="z-50 flex size-full items-center justify-between md:hidden">
+      <div className="z-50 flex size-full items-center justify-between px-6 md:hidden">
         <Logo {...NAVBAR_CONFIG.logo} showText={false} showLogo={showLogo} />
         <MobileNav links={NAV_LINKS} sheetState={sheetState} />
       </div>

@@ -6,24 +6,22 @@
 
 /* Theme configuration */
 @theme {
-  /* Primary color palette */
-  --color-primary-50: #effcfc;
-  --color-primary-100: #d5f4f8;
-  --color-primary-200: #b1e9f0;
-  --color-primary-300: #7ad7e6;
-  --color-primary-400: #3dbcd3;
-  --color-primary-500: #21a0b9;
-  --color-primary-600: #1e809c;
-  --color-primary-700: #1f687f;
-  --color-primary-800: #225568;
-  --color-primary-900: #204859;
-  --color-primary-950: #0d2631;
+  /* Ultra-minimalist blue accent color - single saturated blue */
+  --color-blue: #1076eb;
+  --color-blue-dark: #0d5fc7;
 
-  /* Border radius tokens */
-  --radius: 0.5rem;
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Monochrome palette for terminal aesthetic */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #e5e5e5;
+  --color-gray-medium: #999999;
+  --color-gray-border: #d4d4d4;
+
+  /* No border radius - stark geometric */
+  --radius: 0;
+  --radius-lg: 0;
+  --radius-md: 0;
+  --radius-sm: 0;
 
   /* Custom breakpoint */
   --breakpoint-xs: 425px;
@@ -72,24 +70,29 @@
   }
 
   body {
-    font-family: var(--font-geist-sans), system-ui, sans-serif;
-    @apply text-primary-800;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    @apply text-black;
+    background: #ffffff;
   }
 
   h1 {
-    @apply text-8xl font-bold;
+    @apply text-4xl font-normal tracking-tight;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
   }
 
   h2 {
-    @apply text-5xl;
+    @apply text-2xl font-normal tracking-tight;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
   }
 
   h3 {
-    @apply text-lg font-semibold;
+    @apply text-lg font-normal;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
   }
 
   p {
-    @apply text-lg;
+    @apply text-sm leading-relaxed;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
   }
 
   /* Border compatibility for Tailwind v4 */
@@ -149,38 +152,32 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.147 0.004 49.25);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.147 0.004 49.25);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.147 0.004 49.25);
-  --primary: oklch(0.216 0.006 56.043);
-  --primary-foreground: oklch(0.985 0.001 106.423);
-  --secondary: oklch(0.97 0.001 106.424);
-  --secondary-foreground: oklch(0.216 0.006 56.043);
-  --muted: oklch(0.97 0.001 106.424);
-  --muted-foreground: oklch(0.553 0.013 58.071);
-  --accent: oklch(0.97 0.001 106.424);
-  --accent-foreground: oklch(0.216 0.006 56.043);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.923 0.003 48.717);
-  --input: oklch(0.923 0.003 48.717);
-  --ring: oklch(0.709 0.01 56.259);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.001 106.423);
-  --sidebar-foreground: oklch(0.147 0.004 49.25);
-  --sidebar-primary: oklch(0.216 0.006 56.043);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.97 0.001 106.424);
-  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
-  --sidebar-border: oklch(0.923 0.003 48.717);
-  --sidebar-ring: oklch(0.709 0.01 56.259);
+  --radius: 0;
+  /* Ultra-minimalist terminal theme - stark black on white with blue accents */
+  --background: 255 255 255; /* pure white */
+  --foreground: 0 0 0; /* pure black */
+  --card: 255 255 255; /* white cards */
+  --card-foreground: 0 0 0;
+  --popover: 255 255 255;
+  --popover-foreground: 0 0 0;
+  --primary: 16 118 235; /* #1076eb - saturated blue */
+  --primary-foreground: 255 255 255;
+  --secondary: 229 229 229; /* #e5e5e5 - light gray */
+  --secondary-foreground: 0 0 0;
+  --muted: 245 245 245; /* #f5f5f5 */
+  --muted-foreground: 153 153 153; /* #999999 */
+  --accent: 16 118 235; /* blue accent */
+  --accent-foreground: 255 255 255;
+  --destructive: 220 38 38; /* red */
+  --destructive-foreground: 255 255 255;
+  --border: 212 212 212; /* #d4d4d4 - hairline gray */
+  --input: 212 212 212;
+  --ring: 16 118 235; /* blue ring */
+  --chart-1: 16 118 235;
+  --chart-2: 13 95 199;
+  --chart-3: 153 153 153;
+  --chart-4: 0 0 0;
+  --chart-5: 229 229 229;
 }
 
 .dark {

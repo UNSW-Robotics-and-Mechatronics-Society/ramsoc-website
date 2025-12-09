@@ -1,12 +1,12 @@
 .profileCard {
   width: 100%;
   max-width: 20rem;
-  transition: all 0.2s ease;
+  transition: none;
   padding: 0;
-  border-radius: 0.5rem;
+  border-radius: 0;
 
   &:hover {
-    transform: translateY(-4px);
+    background-color: #f5f5f5;
   }
 
   @media (max-width: 640px) {
@@ -28,7 +28,7 @@
   height: 16rem;
   overflow: hidden;
   flex-shrink: 0;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: 0;
 
   @media (max-width: 640px) {
     height: 14rem;
@@ -81,11 +81,11 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  transition: color 0.2s ease;
+  transition: none;
   word-break: break-all;
 
   &:hover {
-    color: var(--color-primary-600);
+    color: #1076eb;
   }
 
   @media (max-width: 640px) {
@@ -100,14 +100,14 @@
   margin-top: 0.25rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
-  color: rgb(10 102 194);
-  border: 1px solid rgb(10 102 194);
-  border-radius: 0.375rem;
+  color: #1076eb;
+  border: 2px solid #1076eb;
+  border-radius: 0;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: none;
 
   &:hover {
-    background-color: rgb(10 102 194);
+    background-color: #1076eb;
     color: white;
   }
 

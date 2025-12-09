@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import type { ReactNode } from "react";
 
 interface HeroProps {
@@ -10,16 +9,16 @@ interface HeroProps {
    */
   children: ReactNode;
   /**
-   * Path to the background image (relative to public folder)
+   * Path to the background image (relative to public folder) - NOT USED in minimalist design
    */
-  imageSrc: string;
+  imageSrc?: string;
   /**
-   * Alt text for the background image
+   * Alt text for the background image - NOT USED in minimalist design
    */
-  imageAlt: string;
+  imageAlt?: string;
   /**
    * Height of the hero section
-   * @default "500px"
+   * @default "300px"
    */
   height?: string;
   /**
@@ -33,7 +32,7 @@ export function Hero({
   children,
   imageSrc,
   imageAlt = "RAMSoc events",
-  height = "500px",
+  height = "300px",
   wrapInHeading = true,
 }: HeroProps) {
   const textVariants = {
@@ -50,25 +49,10 @@ export function Hero({
 
   return (
     <section
-      className="relative mb-16 flex w-full items-center justify-center overflow-hidden"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-white border-b-2 border-[#d4d4d4]"
       style={{ height }}
     >
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          className="size-full object-cover"
-          src={imageSrc}
-          width={1920}
-          height={700}
-          loading="lazy"
-          alt={imageAlt}
-          quality={90}
-        />
-        {/* Gradient overlay */}
-        <div className="from-primary-950/95 via-primary-900/90 to-primary-800/85 absolute inset-0 bg-linear-to-br" />
-      </div>
-
-      {/* Content */}
+      {/* Content - Terminal style */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -76,7 +60,7 @@ export function Hero({
         className="relative z-10 px-4 text-center"
       >
         {wrapInHeading ? (
-          <h1 className="text-6xl font-bold text-white drop-shadow-lg md:text-7xl lg:text-8xl">
+          <h1 className="text-4xl md:text-5xl font-normal tracking-tighter text-black font-mono uppercase border-b-4 border-[#1076eb] pb-2 inline-block">
             {children}
           </h1>
         ) : (

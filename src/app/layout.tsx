@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 import NavBar from "@/components/nav-bar";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import { type Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 
 import Providers from "./providers";
 
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
 };
 
-const SpaceGroteskFont = Space_Grotesk({
+const JetBrainsMonoFont = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-jetbrains-mono",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -40,9 +40,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`overflow-x-hidden ${SpaceGroteskFont.variable}`}
+      className={`overflow-x-hidden ${JetBrainsMonoFont.variable}`}
     >
-      <body className="overflow-x-hidden">
+      <body className="overflow-x-hidden font-mono">
         <Providers>
           <NavBar />
           {children}

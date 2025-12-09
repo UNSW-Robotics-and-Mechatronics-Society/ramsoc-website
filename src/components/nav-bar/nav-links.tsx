@@ -1,4 +1,8 @@
+// FILE: src/components/nav-bar/nav-links.tsx
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import type { NavLink } from "./config";
 
@@ -13,11 +17,20 @@ export function NavLinks({
   onLinkClick,
   mobile = false,
 }: NavLinksProps) {
-  const baseStyles = "flex items-center transition-all duration-200 shrink-0";
+  const pathname = usePathname();
+
+  const baseStyles = "flex items-center transition-none shrink-0 font-mono text-xs uppercase tracking-tight";
   const desktopStyles =
-    "h-full px-4 hover:bg-primary-800/30 hover:text-primary-50 relative group";
+    "h-full px-6 border-r border-[#d4d4d4] relative";
   const mobileStyles =
-    "w-full border-b border-primary-800/30 py-4 text-2xl font-normal hover:text-primary-300 active:text-primary-400";
+    "w-full border-b border-[#d4d4d4] py-4 text-sm";
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    // Don't mark hash links as active since they're anchors within the page
+    if (href.startsWith("/#")) return false;
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
@@ -25,14 +38,11 @@ export function NavLinks({
         <Link
           key={link.href}
           href={link.href}
-          className={`${baseStyles} ${mobile ? mobileStyles : desktopStyles} ${mobile && index === links.length - 1 ? "border-b-0" : ""}`}
+          className={`${baseStyles} ${mobile ? mobileStyles : desktopStyles} ${mobile && index === links.length - 1 ? "border-b-0" : ""} ${isActive(link.href) ? "bg-[#1076eb] text-white hover:bg-[#0d5fc7] hover:text-white" : "text-black hover:bg-[#f5f5f5] hover:text-black"}`}
           aria-label={link.ariaLabel}
           onClick={onLinkClick}
         >
           {link.label}
-          {!mobile && (
-            <span className="bg-primary-400 absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" />
-          )}
         </Link>
       ))}
     </>

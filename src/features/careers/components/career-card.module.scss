@@ -1,12 +1,9 @@
 .careerCard {
-  background-color: rgba(245, 245, 244, 0.5);
-  transition: all 0.2s ease;
+  background-color: white;
+  transition: none;
 
   &:hover {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-    background-color: rgba(245, 245, 244, 0.8);
+    background-color: #f5f5f5;
   }
 }
 
@@ -28,7 +25,7 @@
   align-items: center;
   width: 100%;
   height: 8rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   overflow: hidden;
   background-color: white;
   flex-shrink: 0;
@@ -65,10 +62,10 @@
   font-weight: 600;
   line-height: 1.2;
   cursor: inherit;
-  transition: color 0.2s ease;
+  transition: none;
 
   .careerCard:hover & {
-    color: rgb(59 130 246); // blue-500
+    color: #1076eb;
   }
 }
 
@@ -118,10 +115,10 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: underline;
-  transition: opacity 0.2s ease;
+  transition: none;
 
   &:hover {
-    opacity: 0.7;
+    color: #1076eb;
   }
 }
 
@@ -157,12 +154,6 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.25rem;
-  background-color: var(--color-primary-600);
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0.75rem;
 }
 
 .applyIcon {
