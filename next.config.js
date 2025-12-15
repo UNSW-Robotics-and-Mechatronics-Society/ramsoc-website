@@ -2,10 +2,11 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
+import createWithVercelToolbar from "@vercel/toolbar/plugins/next";
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -44,4 +45,5 @@ const config = {
   },
 };
 
-export default config;
+const withVercelToolbar = createWithVercelToolbar();
+export default withVercelToolbar(nextConfig);
