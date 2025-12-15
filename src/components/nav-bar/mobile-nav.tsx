@@ -1,8 +1,14 @@
 "use client";
 
 import { AnimatedMenuButton } from "@/components/ui/animated-menu-button";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import type { NavLink } from "./config";
 import type { useSheet } from "./hooks";
 import { NavLinks } from "./nav-links";
@@ -29,6 +35,11 @@ export function MobileNav({ links, sheetState }: MobileNavProps) {
           overlayClassName="z-40 top-20 bg-black/30"
           hideCloseButton
         >
+          <VisuallyHidden>
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+          </VisuallyHidden>
           <div className="flex h-full flex-col overflow-y-auto">
             <nav className="flex flex-col gap-0.5 px-8 py-4 text-white">
               <NavLinks links={links} onLinkClick={close} mobile />
