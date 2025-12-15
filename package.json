@@ -18,7 +18,7 @@
   "dependencies": {
     "@babel/runtime": "^7.26.0",
     "@motionone/utils": "^10.18.0",
-    "@next/third-parties": "^16.0.1",
+    "@next/third-parties": "^16.0.10",
     "@notionhq/client": "^5.4.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",
