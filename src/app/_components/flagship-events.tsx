@@ -40,6 +40,7 @@ const FlagshipEventCard = ({
 }: EventCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 1023 });
 
   const handleClick = () => {
@@ -53,20 +54,24 @@ const FlagshipEventCard = ({
   };
 
   useEffect(() => {
+    setIsMounted(true);
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
+  // Use desktop values during SSR to prevent hydration mismatch
+  const isEffectiveMobile = isMounted ? isMobile : false;
+
   const cardVariants = {
-    initial: isMobile
+    initial: isEffectiveMobile
       ? { width: "100%", height: "50%", cursor: "pointer" }
       : { width: "50%", height: "100%", cursor: "pointer" },
-    expanded: isMobile
+    expanded: isEffectiveMobile
       ? { width: "100%", height: "200%", cursor: "default" }
       : { width: "200%", height: "100%", cursor: "default" },
-    hover: isMobile
+    hover: isEffectiveMobile
       ? { width: "100%", height: "75%", cursor: "pointer" }
       : { width: "75%", height: "100%", cursor: "pointer" },
   };
@@ -77,7 +82,7 @@ const FlagshipEventCard = ({
       className="group relative overflow-hidden"
       initial="initial"
       animate={isExpanded ? "expanded" : "initial"}
-      whileHover={isExpanded || isMobile ? {} : "hover"}
+      whileHover={isExpanded || isEffectiveMobile ? {} : "hover"}
       variants={cardVariants}
       onClick={handleClick}
       onHoverEnd={() => setIsExpanded(false)}

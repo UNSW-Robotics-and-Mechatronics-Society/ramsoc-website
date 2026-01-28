@@ -27,7 +27,7 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     label: "Sponsors",
-    href: "/#sponsors",
+    href: "/sponsors",
     ariaLabel: "Go to sponsors page",
   },
   {

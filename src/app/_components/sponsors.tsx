@@ -30,6 +30,11 @@ export default function SponsoredSection() {
       url: "https://www.engineersaustralia.org.au/",
     },
     {
+      name: "Jinro",
+      logo: "/home/Jinro_logo_-_no_background.png",
+      url: "https://jinro.com.au/",
+    },
+    {
       name: "Pure Matcha",
       logo: "/home/purematcha-logo.avif",
       url: "https://purematcha.com.au/",
