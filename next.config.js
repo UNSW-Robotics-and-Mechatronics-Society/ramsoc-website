@@ -41,6 +41,17 @@ const nextConfig = {
         destination: `/team/${currentYear}`,
         permanent: true,
       },
+      // for backwards compatibility
+      {
+        source: "/teams",
+        destination: `/team/${currentYear}`,
+        permanent: true,
+      },
+      {
+        source: "/teams/:year",
+        destination: `/team/${currentYear}`,
+        permanent: true,
+      },
     ];
   },
 };
