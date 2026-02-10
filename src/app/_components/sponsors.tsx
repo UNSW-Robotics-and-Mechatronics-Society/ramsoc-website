@@ -39,6 +39,16 @@ export default function SponsoredSection() {
       logo: "/home/purematcha-logo.avif",
       url: "https://purematcha.com.au/",
     },
+    {
+      name: "Domino's",
+      logo: "/home/dominos.svg",
+      url: "https://www.dominos.com.au/",
+    },
+    {
+      name: "KOKO amuesment",
+      logo: "/home/koko.jpg",
+      url: "https://kokoamusement.com.au/",
+    },
   ];
 
   return (
