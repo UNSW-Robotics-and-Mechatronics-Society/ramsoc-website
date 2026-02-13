@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,8 +13,6 @@ export function Logo({
   src,
   alt,
   ariaLabel,
-  showText = true,
-  showLogo = true,
 }: LogoProps) {
   return (
     <Link
@@ -28,19 +25,11 @@ export function Logo({
         alt={alt}
         width={48}
         height={48}
-        className={cn(
-          "size-14 transition-opacity duration-300",
-          showLogo ? "opacity-100" : "opacity-0",
-        )}
+        className="size-14"
       />
-      <div
-        className={cn(
-          "flex flex-col leading-tight transition-opacity duration-300",
-          showText ? "opacity-100" : "opacity-0",
-        )}
-      >
-        <span className="text-primary-100 text-sm font-bold">UNSW</span>
-        <span className="text-primary-50 text-xs">
+      <div className="flex flex-col leading-tight">
+        <span className="text-sm font-bold opacity-80">UNSW</span>
+        <span className="text-xs opacity-70">
           <span className="font-bold">R</span>obotics{" "}
           <span className="font-bold">A</span>nd{" "}
           <span className="font-bold">M</span>echatronics{" "}

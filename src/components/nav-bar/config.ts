@@ -39,7 +39,7 @@ export const NAV_LINKS: NavLink[] = [
 
 export const NAVBAR_CONFIG = {
   logo: {
-    src: "/logo.svg",
+    src: "/logo-blue.svg",
     alt: "RAMSOC Logo",
     width: 24,
     height: 24,

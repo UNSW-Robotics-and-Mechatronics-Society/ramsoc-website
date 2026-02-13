@@ -9,7 +9,6 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 
-import { Container } from "@/components/ui/container";
 import {
   DISCORD_URL,
   FACEBOOK_URL,
@@ -19,84 +18,92 @@ import {
 
 export default function ContactUs() {
   const socialLinks = [
-    {
-      name: "LinkedIn",
-      url: LINKEDIN_URL,
-      icon: FaLinkedin,
-    },
-    {
-      name: "Facebook",
-      url: FACEBOOK_URL,
-      icon: FaFacebookSquare,
-    },
-    {
-      name: "Instagram",
-      url: INSTAGRAM_URL,
-      icon: FaInstagram,
-    },
-    {
-      name: "Discord",
-      url: DISCORD_URL,
-      icon: FaDiscord,
-    },
+    { name: "LinkedIn", url: LINKEDIN_URL, icon: FaLinkedin },
+    { name: "Facebook", url: FACEBOOK_URL, icon: FaFacebookSquare },
+    { name: "Instagram", url: INSTAGRAM_URL, icon: FaInstagram },
+    { name: "Discord", url: DISCORD_URL, icon: FaDiscord },
   ];
 
   return (
-    <section className="bg-primary-50/30 py-20">
-      <Container>
+    <section className="relative overflow-hidden bg-white py-32">
+      {/* Giant decorative text */}
+      <motion.span
+        className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 select-none text-[14rem] font-black leading-none tracking-tighter text-transparent lg:block"
+        style={{
+          WebkitTextStroke: "1px rgba(51, 102, 255, 0.08)",
+        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2 }}
+      >
+        HELLO
+      </motion.span>
+
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="border-primary-200/50 mx-auto max-w-2xl overflow-hidden rounded-2xl border bg-white p-12 shadow-lg"
+          className="max-w-xl"
         >
-          <h2 id="contact" className="text-primary-900 mb-6 text-center">
+          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            // 06 — Connect
+          </span>
+
+          <h2
+            id="contact"
+            className="mb-8 text-5xl font-bold text-primary-950 md:text-6xl lg:text-7xl"
+          >
             Get In Touch
           </h2>
 
-          {/* Email */}
+          {/* Email — large, underlined */}
           <motion.a
             href="mailto:info@ramsocunsw.org"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-primary-600 hover:text-primary-900 mb-10 block text-center text-xl transition-colors"
+            className="mb-16 inline-block border-b-2 border-primary-500/50 pb-2 text-2xl text-primary-500 transition-colors hover:border-primary-400 hover:text-primary-400 md:text-3xl"
           >
             info@ramsocunsw.org
           </motion.a>
 
-          {/* Social Links */}
+          {/* Social Links — displayed as labeled links, not just icons */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center gap-6"
+            className="flex flex-wrap gap-6"
           >
             {socialLinks.map((social, index) => (
               <motion.div
                 key={social.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
+                transition={{ duration: 0.3, delay: 0.4 + index * 0.08 }}
               >
                 <Link
                   href={social.url}
                   target="_blank"
                   title={social.name}
                   aria-label={`Go to our ${social.name}`}
-                  className="text-primary-500 hover:text-primary-700 transition-colors duration-300"
+                  className="group flex items-center gap-2 text-neutral-400 transition-colors duration-300 hover:text-primary-500"
                 >
-                  <social.icon size={28} />
+                  <social.icon size={20} />
+                  <span className="text-sm font-medium uppercase tracking-wider">
+                    {social.name}
+                  </span>
                 </Link>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
-      </Container>
+      </div>
     </section>
   );
 }
