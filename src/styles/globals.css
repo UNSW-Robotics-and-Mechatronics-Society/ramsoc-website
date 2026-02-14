@@ -6,18 +6,18 @@
 
 /* Theme configuration */
 @theme {
-  /* Primary color palette */
-  --color-primary-50: #effcfc;
-  --color-primary-100: #d5f4f8;
-  --color-primary-200: #b1e9f0;
-  --color-primary-300: #7ad7e6;
-  --color-primary-400: #3dbcd3;
-  --color-primary-500: #21a0b9;
-  --color-primary-600: #1e809c;
-  --color-primary-700: #1f687f;
-  --color-primary-800: #225568;
-  --color-primary-900: #204859;
-  --color-primary-950: #0d2631;
+  /* Primary color palette — bold cobalt blue */
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #dbe4ff;
+  --color-primary-200: #b8ccff;
+  --color-primary-300: #8aadff;
+  --color-primary-400: #5c8aff;
+  --color-primary-500: #3366ff;
+  --color-primary-600: #1a4dff;
+  --color-primary-700: #0d3de6;
+  --color-primary-800: #1033b8;
+  --color-primary-900: #132d8a;
+  --color-primary-950: #0b1a52;
 
   /* Border radius tokens */
   --radius: 0.5rem;

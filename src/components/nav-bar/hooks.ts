@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useScrollBehavior(threshold: number = 125) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -81,4 +81,66 @@ export function useHeroSubtitleVisibility() {
   }, []);
 
   return isVisible;
+}
+
+/**
+ * Detects whether the navbar is over a light or dark section by sampling
+ * the background color of the element directly behind the navbar's midpoint.
+ */
+export function useNavTheme() {
+  const [isOverLight, setIsOverLight] = useState(false);
+
+  const check = useCallback(() => {
+    // Sample a point just below the top of the viewport (navbar midpoint ~40px)
+    const sampleY = 40;
+    const sampleX = window.innerWidth / 2;
+
+    // Temporarily hide the nav so elementFromPoint hits the content behind it
+    const nav = document.querySelector("nav");
+    if (!nav) return;
+    const prevPointerEvents = nav.style.pointerEvents;
+    const prevVisibility = nav.style.visibility;
+    nav.style.pointerEvents = "none";
+    nav.style.visibility = "hidden";
+
+    const el = document.elementFromPoint(sampleX, sampleY);
+
+    nav.style.pointerEvents = prevPointerEvents;
+    nav.style.visibility = prevVisibility;
+
+    if (!el) return;
+
+    // Walk up to find the nearest section or element with a background
+    let target: Element | null = el;
+    while (target) {
+      const bg = getComputedStyle(target).backgroundColor;
+      // Skip transparent backgrounds
+      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
+        // Parse the rgb values
+        const match = bg.match(/\d+/g);
+        if (match) {
+          const r = Number(match[0]);
+          const g = Number(match[1]);
+          const b = Number(match[2]);
+          // Luminance check: light if > 128
+          const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+          setIsOverLight(luminance > 128);
+        }
+        return;
+      }
+      target = target.parentElement;
+    }
+  }, []);
+
+  useEffect(() => {
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [check]);
+
+  return isOverLight;
 }
