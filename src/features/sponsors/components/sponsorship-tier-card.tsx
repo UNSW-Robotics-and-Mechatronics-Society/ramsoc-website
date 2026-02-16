@@ -20,47 +20,52 @@ export function SponsorshipTierCard({ tier, index }: SponsorshipTierCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className={cn(
-        "relative overflow-hidden rounded-lg border bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl",
-        tier.featured
-          ? "border-primary-300 ring-primary-200 ring-2"
-          : "border-neutral-200",
+        "relative bg-white p-8 md:p-10",
+        tier.featured && "ring-2 ring-primary-500 ring-inset",
       )}
     >
       {tier.featured && (
-        <div className="bg-primary-600 absolute right-6 top-6 rounded-full px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute top-6 right-6 bg-primary-500 px-3 py-1 text-[0.65rem] font-bold tracking-[0.2em] text-white uppercase">
           Most Popular
-        </div>
+        </span>
       )}
 
-      <div className="mb-6">
-        <div className={cn("mb-2 inline-block rounded px-3 py-1", tier.color)}>
-          <span className="text-sm font-bold text-white">{tier.name}</span>
-        </div>
+      <div className="mb-8">
+        <span
+          className={cn(
+            "mb-3 inline-block px-3 py-1 text-[0.65rem] font-bold tracking-[0.2em] text-white uppercase",
+            tier.color,
+          )}
+        >
+          {tier.name}
+        </span>
         <div className="flex items-baseline gap-2">
-          <span className="text-5xl font-bold text-neutral-900">
+          <span className="text-5xl font-black tracking-tight text-primary-950 md:text-7xl">
             ${tier.price}
           </span>
-          <span className="text-neutral-600">AUD</span>
+          <span className="text-xs font-medium tracking-[0.2em] text-neutral-400 uppercase">
+            AUD
+          </span>
         </div>
       </div>
 
       <a
         href={`mailto:industry@ramsocunsw.org?subject=Sponsorship Inquiry - ${tier.name} Tier`}
         className={cn(
-          "mb-6 block w-full rounded-lg py-3 text-center font-semibold transition-all duration-300",
+          "mb-8 block w-full py-3 text-center text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300",
           tier.featured
-            ? "bg-primary-600 text-white hover:bg-primary-700"
-            : "border-primary-600 text-primary-600 hover:bg-primary-50 border-2",
+            ? "bg-primary-500 text-white hover:bg-primary-400"
+            : "border border-neutral-200 text-primary-950 hover:border-primary-500 hover:text-primary-500",
         )}
       >
         Get Started
       </a>
 
       <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+        <p className="text-xs font-bold tracking-[0.3em] text-neutral-400 uppercase">
           Key Benefits
         </p>
-        <ul className="space-y-2">
+        <ul className="space-y-2.5">
           {tier.tier === "silver" && (
             <>
               <BenefitItem text="Official Sumobots sponsor" />
@@ -96,9 +101,9 @@ export function SponsorshipTierCard({ tier, index }: SponsorshipTierCardProps) {
 
 function BenefitItem({ text }: { text: string }) {
   return (
-    <li className="flex items-start gap-2">
-      <Check className="text-primary-600 mt-0.5 size-5 shrink-0" />
-      <span className="text-sm text-neutral-700">{text}</span>
+    <li className="flex items-start gap-2.5">
+      <Check className="mt-0.5 size-4 shrink-0 text-primary-500" />
+      <span className="text-sm text-neutral-500">{text}</span>
     </li>
   );
 }
