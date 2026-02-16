@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HiCalendar, HiMapPin } from "react-icons/hi2";
+import { HiArrowRight, HiCalendar, HiMapPin } from "react-icons/hi2";
 import type { Event } from "../types";
 
 interface EventCardSmallProps {
@@ -12,52 +12,49 @@ export default function EventCardSmall({ data }: EventCardSmallProps) {
 
   return (
     <Link
-      className="group border-primary-200/50 block overflow-hidden rounded-xl border bg-white shadow-md transition-all duration-300 hover:shadow-xl"
+      className="group flex gap-5 border-b border-neutral-100 py-5 transition-colors hover:border-primary-500/30"
       href={eventUrl}
       target="_blank"
     >
-      {/* Event Image */}
-      <div className="bg-primary-100 relative aspect-video w-full overflow-hidden">
+      {/* Small square thumbnail */}
+      <div className="relative size-20 shrink-0 overflow-hidden bg-neutral-100 md:size-24">
         {data.cover ? (
-          <>
-            <Image
-              width={512}
-              height={384}
-              className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
-              src={data.cover.source}
-              alt={data.name}
-              unoptimized
-            />
-            <div className="from-primary-950/40 absolute inset-0 bg-linear-to-t to-transparent" />
-          </>
+          <Image
+            src={data.cover.source}
+            alt={data.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            sizes="96px"
+            unoptimized
+          />
         ) : (
-          <div className="bg-primary-100 flex size-full items-center justify-center">
-            <HiCalendar className="text-primary-300 size-16" />
+          <div className="flex size-full items-center justify-center">
+            <HiCalendar className="size-8 text-neutral-300" />
           </div>
         )}
       </div>
 
-      {/* Event Content */}
-      <div className="flex flex-col gap-2 p-4">
-        <h3 className="text-primary-900 line-clamp-2 text-base font-semibold">
+      {/* Info */}
+      <div className="flex min-w-0 flex-1 flex-col justify-center">
+        {data.start_time && (
+          <span className="mb-1 text-[0.65rem] font-semibold tracking-[0.2em] text-primary-500/70 uppercase">
+            {data.start_time}
+          </span>
+        )}
+        <h4 className="line-clamp-2 text-sm font-bold leading-snug text-primary-950 transition-colors group-hover:text-primary-500 md:text-base">
           {data.name}
-        </h3>
+        </h4>
+        {data.place && (
+          <span className="mt-1 line-clamp-1 flex items-center gap-1.5 text-xs text-neutral-400">
+            <HiMapPin className="size-3 shrink-0" />
+            {data.place.name}
+          </span>
+        )}
+      </div>
 
-        {/* Date and Location */}
-        <div className="space-y-1">
-          {data.start_time && (
-            <div className="text-primary-600 flex items-center gap-1.5 text-xs">
-              <HiCalendar className="size-3.5 shrink-0" />
-              <span className="font-medium">{data.start_time}</span>
-            </div>
-          )}
-          {data.place && (
-            <div className="text-primary-600 flex items-center gap-1.5 text-xs">
-              <HiMapPin className="size-3.5 shrink-0" />
-              <span className="line-clamp-1">{data.place.name}</span>
-            </div>
-          )}
-        </div>
+      {/* Arrow */}
+      <div className="flex shrink-0 items-center">
+        <HiArrowRight className="size-4 text-neutral-300 transition-all group-hover:translate-x-1 group-hover:text-primary-500" />
       </div>
     </Link>
   );

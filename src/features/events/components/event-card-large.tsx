@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HiCalendar, HiMapPin } from "react-icons/hi2";
+import { HiArrowRight, HiCalendar, HiMapPin } from "react-icons/hi2";
 
-import { Button } from "@/components/ui/button";
 import type { Event } from "../types";
 
 interface EventCardProps {
@@ -13,59 +12,57 @@ export default function EventCard({ data }: EventCardProps) {
   const eventUrl = data.url ?? "#";
 
   return (
-    <div className="group border-primary-200/50 flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
-      <div className="bg-primary-100 relative aspect-video overflow-hidden">
+    <Link
+      href={eventUrl}
+      target="_blank"
+      className="group relative block h-full overflow-hidden"
+    >
+      {/* Image fills card */}
+      <div className="relative aspect-video w-full overflow-hidden bg-neutral-100">
         {data.cover ? (
-          <>
-            <Image
-              width={512}
-              height={384}
-              className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
-              src={data.cover.source}
-              alt={data.name}
-              unoptimized
-            />
-            <div className="from-primary-950/60 absolute inset-0 bg-linear-to-t to-transparent" />
-          </>
+          <Image
+            src={data.cover.source}
+            alt={data.name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            unoptimized
+          />
         ) : (
-          <div className="bg-primary-100 flex size-full items-center justify-center">
-            <HiCalendar className="text-primary-300 size-24" />
+          <div className="flex size-full items-center justify-center bg-neutral-100">
+            <HiCalendar className="size-16 text-neutral-300" />
           </div>
         )}
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-primary-950 via-primary-950/50 to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-primary-900 mb-3 line-clamp-2 text-xl font-semibold">
+      {/* Content overlaid at bottom */}
+      <div className="absolute inset-x-0 bottom-0 p-5">
+        {data.start_time && (
+          <span className="mb-2 block text-[0.65rem] font-semibold tracking-[0.2em] text-white/50 uppercase">
+            {data.start_time}
+          </span>
+        )}
+
+        <h3 className="mb-1 line-clamp-2 text-lg font-bold text-white md:text-xl">
           {data.name}
         </h3>
 
-        <div className="mb-4 space-y-2">
-          {data.start_time && (
-            <div className="text-primary-600 flex items-center gap-2 text-sm">
-              <HiCalendar className="size-4 shrink-0" />
-              <span className="font-medium">{data.start_time}</span>
-            </div>
-          )}
-          {data.place && (
-            <div className="text-primary-600 flex items-center gap-2 text-sm">
-              <HiMapPin className="size-4 shrink-0" />
-              <span className="line-clamp-1">{data.place.name}</span>
-            </div>
-          )}
-        </div>
-
-        {data.description && (
-          <p className="text-primary-700 mb-6 line-clamp-3 text-sm leading-relaxed">
-            {data.description}
-          </p>
+        {data.place && (
+          <div className="flex items-center gap-1.5 text-xs text-white/40">
+            <HiMapPin className="size-3 shrink-0" />
+            <span className="line-clamp-1">{data.place.name}</span>
+          </div>
         )}
 
-        <Button asChild className="mt-auto w-full" size="sm">
-          <Link href={eventUrl} target="_blank">
-            Learn More
-          </Link>
-        </Button>
+        {/* Hover arrow */}
+        <div className="mt-3 flex items-center gap-2 text-xs font-bold tracking-[0.15em] text-primary-400 uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span>View</span>
+          <HiArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
