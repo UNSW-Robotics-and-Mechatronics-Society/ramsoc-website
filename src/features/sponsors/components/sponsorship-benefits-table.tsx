@@ -14,34 +14,31 @@ export function SponsorshipBenefitsTable() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-md"
+      className="overflow-hidden border border-white/10"
     >
       {/* Desktop view */}
       <div className="hidden lg:block">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-neutral-50">
-              <tr>
-                <th className="border-neutral-200 border-b px-6 py-4 text-left">
-                  <span className="text-sm font-semibold uppercase tracking-wide text-neutral-600">
+            <thead>
+              <tr className="border-b border-white/10">
+                <th className="px-6 py-5 text-left">
+                  <span className="text-xs font-bold tracking-[0.3em] text-white/30 uppercase">
                     Benefits
                   </span>
                 </th>
                 {SPONSORSHIP_TIERS.map((tier) => (
-                  <th
-                    key={tier.tier}
-                    className="border-neutral-200 border-b px-6 py-4 text-center"
-                  >
+                  <th key={tier.tier} className="px-6 py-5 text-center">
                     <div className="flex flex-col items-center gap-2">
                       <span
                         className={cn(
-                          "rounded px-3 py-1 text-sm font-bold text-white",
+                          "px-3 py-1 text-[0.65rem] font-bold tracking-[0.2em] text-white uppercase",
                           tier.color,
                         )}
                       >
                         {tier.name}
                       </span>
-                      <span className="text-2xl font-bold text-neutral-900">
+                      <span className="text-2xl font-black text-white">
                         ${tier.price}
                       </span>
                     </div>
@@ -50,7 +47,7 @@ export function SponsorshipBenefitsTable() {
               </tr>
             </thead>
             <tbody>
-              {SPONSORSHIP_BENEFITS.map((category, categoryIdx) => (
+              {SPONSORSHIP_BENEFITS.map((category) => (
                 <TableCategory key={category.category} category={category} />
               ))}
             </tbody>
@@ -66,20 +63,20 @@ export function SponsorshipBenefitsTable() {
             className={cn(
               "p-6",
               tierIdx !== SPONSORSHIP_TIERS.length - 1 &&
-                "border-neutral-200 border-b",
+                "border-b border-white/10",
             )}
           >
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <span
                   className={cn(
-                    "mb-2 inline-block rounded px-3 py-1 text-sm font-bold text-white",
+                    "mb-2 inline-block px-3 py-1 text-[0.65rem] font-bold tracking-[0.2em] text-white uppercase",
                     tier.color,
                   )}
                 >
                   {tier.name}
                 </span>
-                <div className="text-2xl font-bold text-neutral-900">
+                <div className="text-2xl font-black text-white">
                   ${tier.price}
                 </div>
               </div>
@@ -88,7 +85,7 @@ export function SponsorshipBenefitsTable() {
             <div className="space-y-4">
               {SPONSORSHIP_BENEFITS.map((category) => (
                 <div key={category.category}>
-                  <h4 className="mb-2 font-semibold text-neutral-900">
+                  <h4 className="mb-2 text-xs font-bold tracking-[0.2em] text-white/30 uppercase">
                     {category.category}
                   </h4>
                   <ul className="space-y-2">
@@ -101,19 +98,19 @@ export function SponsorshipBenefitsTable() {
                         >
                           {typeof value === "boolean" ? (
                             value ? (
-                              <Check className="text-primary-600 mt-0.5 size-5 shrink-0" />
+                              <Check className="mt-0.5 size-4 shrink-0 text-primary-400" />
                             ) : (
-                              <X className="mt-0.5 size-5 shrink-0 text-neutral-300" />
+                              <X className="mt-0.5 size-4 shrink-0 text-white/15" />
                             )
                           ) : (
-                            <Check className="text-primary-600 mt-0.5 size-5 shrink-0" />
+                            <Check className="mt-0.5 size-4 shrink-0 text-primary-400" />
                           )}
-                          <span className="text-neutral-700">
+                          <span className="text-white/50">
                             {benefit.name}
                             {typeof value === "string" && (
-                              <span className="text-neutral-500">
+                              <span className="text-white/30">
                                 {" "}
-                                - {value}
+                                &mdash; {value}
                               </span>
                             )}
                           </span>
@@ -138,10 +135,10 @@ function TableCategory({
 }) {
   return (
     <>
-      <tr className="bg-neutral-50">
+      <tr className="border-b border-white/10 bg-white/3">
         <td
           colSpan={4}
-          className="border-neutral-200 border-b px-6 py-3 text-sm font-semibold uppercase tracking-wide text-neutral-700"
+          className="px-6 py-3 text-xs font-bold tracking-[0.2em] text-white/30 uppercase"
         >
           {category.category}
         </td>
@@ -150,16 +147,16 @@ function TableCategory({
         <tr
           key={benefit.name}
           className={cn(
-            "transition-colors hover:bg-neutral-50",
+            "transition-colors hover:bg-white/3",
             benefitIdx !== category.benefits.length - 1 &&
-              "border-neutral-200 border-b",
+              "border-b border-white/5",
           )}
         >
           <td className="px-6 py-4">
             <div>
-              <span className="text-sm text-neutral-900">{benefit.name}</span>
+              <span className="text-sm text-white/70">{benefit.name}</span>
               {benefit.description && (
-                <span className="ml-2 text-xs text-neutral-500">
+                <span className="ml-2 text-xs text-white/30">
                   ({benefit.description})
                 </span>
               )}
@@ -171,12 +168,12 @@ function TableCategory({
               <td key={tier.tier} className="px-6 py-4 text-center">
                 {typeof value === "boolean" ? (
                   value ? (
-                    <Check className="text-primary-600 mx-auto size-5" />
+                    <Check className="mx-auto size-4 text-primary-400" />
                   ) : (
-                    <X className="mx-auto size-5 text-neutral-300" />
+                    <X className="mx-auto size-4 text-white/15" />
                   )
                 ) : (
-                  <span className="text-sm text-neutral-700">{value}</span>
+                  <span className="text-sm text-white/50">{value}</span>
                 )}
               </td>
             );

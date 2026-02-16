@@ -225,7 +225,8 @@ Development mode adds 100-400ms artificial delay to simulate network latency ([s
 - Page-specific sections: `src/app/[page]/_components/`
 - Reusable UI primitives: `src/components/ui/`
 - Feature components: `src/features/[feature]/components/`
-- Global components: `src/components/` (NavBar, Footer, Hero)
+- Global components: `src/components/` (NavBar, Footer)
+- Design system reference: `.claude/design.md` — comprehensive guide for the editorial magazine-style aesthetic (colors, typography, section patterns, component patterns, animation conventions)
 
 ### Error Handling Pattern
 Services throw custom exceptions (e.g., `CareerNotFoundException`). tRPC catches these and formats errors with Zod validation details for client consumption.

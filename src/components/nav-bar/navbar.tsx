@@ -22,8 +22,8 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 z-50 w-full px-4 transition-all duration-500 ease-out md:px-8",
         isScrolled || sheetState.isOpen
-          ? "h-20 border-b border-neutral-200/50 bg-white/80 shadow-lg backdrop-blur-xl backdrop-saturate-150"
-          : "h-24 bg-white/60 backdrop-blur-md",
+          ? "h-16 border-b border-neutral-200 bg-white/95 backdrop-blur-sm"
+          : "h-20 bg-white",
       )}
     >
       {/* Desktop Navigation */}

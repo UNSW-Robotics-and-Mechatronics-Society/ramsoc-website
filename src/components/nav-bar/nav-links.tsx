@@ -13,26 +13,38 @@ export function NavLinks({
   onLinkClick,
   mobile = false,
 }: NavLinksProps) {
-  const baseStyles = "flex items-center transition-all duration-200 shrink-0";
-  const desktopStyles =
-    "h-full px-4 hover:bg-primary-800/30 hover:text-primary-50 relative group";
-  const mobileStyles =
-    "w-full border-b border-primary-800/30 py-4 text-2xl font-normal hover:text-primary-300 active:text-primary-400";
+  if (mobile) {
+    return (
+      <>
+        {links.map((link, index) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`flex items-center py-4 text-lg font-medium tracking-[0.05em] text-white/80 transition-colors hover:text-primary-400 ${
+              index !== links.length - 1 ? "border-b border-white/10" : ""
+            }`}
+            aria-label={link.ariaLabel}
+            onClick={onLinkClick}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
-      {links.map((link, index) => (
+      {links.map((link) => (
         <Link
           key={link.href}
           href={link.href}
-          className={`${baseStyles} ${mobile ? mobileStyles : desktopStyles} ${mobile && index === links.length - 1 ? "border-b-0" : ""}`}
+          className="group relative flex h-full shrink-0 items-center px-4 text-sm font-medium tracking-[0.05em] text-primary-950 transition-colors hover:text-primary-500"
           aria-label={link.ariaLabel}
           onClick={onLinkClick}
         >
           {link.label}
-          {!mobile && (
-            <span className="bg-primary-400 absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" />
-          )}
+          <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary-500 transition-all duration-300 group-hover:w-full" />
         </Link>
       ))}
     </>

@@ -8,6 +8,7 @@ export const LINKEDIN_URL =
 export const FACEBOOK_URL = "https://www.facebook.com/RAMSOCUNSW";
 export const INSTAGRAM_URL = "https://www.instagram.com/ramsocunsw";
 export const DISCORD_URL = "https://discord.gg/invite/4dWMWAjWm9";
+export const LINKTREE_URL = "https://linktr.ee/RAMSocUNSW";
 
 // Membership & Events
 export const JOIN_US_URL =

@@ -1,7 +1,7 @@
-import { Hero } from "@/components/hero";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import type { Metadata } from "next";
 import Events from "./_components/events";
+import EventsHero from "./_components/events-hero";
 
 export const metadata: Metadata = {
   title: "Events | RAMSoc UNSW",
@@ -26,9 +26,7 @@ export const metadata: Metadata = {
 export default function EventsPage() {
   return (
     <main className="w-full">
-      <Hero imageSrc="/events/hero.webp" imageAlt="Collage of events at RAMSoc">
-        Our Events
-      </Hero>
+      <EventsHero />
       <Events />
     </main>
   );

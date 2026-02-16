@@ -6,18 +6,18 @@
 
 /* Theme configuration */
 @theme {
-  /* Primary color palette — bold cobalt blue */
-  --color-primary-50: #f0f4ff;
-  --color-primary-100: #dbe4ff;
-  --color-primary-200: #b8ccff;
-  --color-primary-300: #8aadff;
-  --color-primary-400: #5c8aff;
-  --color-primary-500: #3366ff;
-  --color-primary-600: #1a4dff;
-  --color-primary-700: #0d3de6;
-  --color-primary-800: #1033b8;
-  --color-primary-900: #132d8a;
-  --color-primary-950: #0b1a52;
+  /* Primary color palette — RAMSoc brand teal/cyan */
+  --color-primary-50: #e6f7fc;
+  --color-primary-100: #cdeff9;
+  --color-primary-200: #a3e1f5;
+  --color-primary-300: #7bdaf1;
+  --color-primary-400: #4cc6ed;
+  --color-primary-500: #29abe2;
+  --color-primary-600: #218cbd;
+  --color-primary-700: #196c97;
+  --color-primary-800: #114d71;
+  --color-primary-900: #0a2e4c;
+  --color-primary-950: #0d2631;
 
   /* Border radius tokens */
   --radius: 0.5rem;

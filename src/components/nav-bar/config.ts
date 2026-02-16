@@ -31,6 +31,11 @@ export const NAV_LINKS: NavLink[] = [
     ariaLabel: "Go to sponsors page",
   },
   {
+    label: "Rambo",
+    href: "/rambo",
+    ariaLabel: "Meet Rambo, our mascot",
+  },
+  {
     label: "Contact Us",
     href: "/#contact",
     ariaLabel: "Go to contact us section",

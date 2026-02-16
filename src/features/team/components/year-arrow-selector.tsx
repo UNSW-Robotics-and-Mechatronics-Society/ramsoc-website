@@ -19,16 +19,24 @@ export const YearArrowSelector = ({
   const currentYear = new Date().getFullYear();
   const isCurrentYear = currentYear === selectedYear;
 
+  const isFirst = currentIndex <= 0;
+  const isLast =
+    currentIndex === -1 || currentIndex === availableYears.length - 1;
+
   return (
-    <div className="bg-primary-50/30 border-primary-200/50 border-b py-6">
+    <div className="border-y border-neutral-200 bg-white py-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-4 px-4">
         <button
-          onClick={() => router.push(`${selectedYear - 1}/`, { scroll: false })}
-          disabled={currentIndex === 0}
-          className="border-primary-300 hover:bg-primary-50 group flex size-10 items-center justify-center rounded-full border bg-white transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
+          onClick={() => {
+            const prevYear = availableYears[currentIndex - 1];
+            if (prevYear != null)
+              router.push(`/team/${prevYear}`, { scroll: false });
+          }}
+          disabled={isFirst}
+          className="group flex size-10 items-center justify-center border border-neutral-200 bg-white transition-all hover:border-primary-500/30 disabled:cursor-not-allowed disabled:opacity-30"
           aria-label="Previous year"
         >
-          <HiChevronLeft className="text-primary-600 size-5 transition-transform group-hover:-translate-x-0.5" />
+          <HiChevronLeft className="size-5 text-primary-950 transition-transform group-hover:-translate-x-0.5" />
         </button>
 
         <motion.div
@@ -40,7 +48,7 @@ export const YearArrowSelector = ({
         >
           <span
             className={`text-3xl font-bold transition-colors ${
-              isCurrentYear ? "text-primary-500" : "text-primary-900"
+              isCurrentYear ? "text-primary-500" : "text-primary-950"
             }`}
           >
             {selectedYear}
@@ -48,12 +56,16 @@ export const YearArrowSelector = ({
         </motion.div>
 
         <button
-          onClick={() => router.push(`${selectedYear + 1}/`, { scroll: false })}
-          disabled={currentIndex === availableYears.length - 1}
-          className="border-primary-300 hover:bg-primary-50 group flex size-10 items-center justify-center rounded-full border bg-white transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
+          onClick={() => {
+            const nextYear = availableYears[currentIndex + 1];
+            if (nextYear != null)
+              router.push(`/team/${nextYear}`, { scroll: false });
+          }}
+          disabled={isLast}
+          className="group flex size-10 items-center justify-center border border-neutral-200 bg-white transition-all hover:border-primary-500/30 disabled:cursor-not-allowed disabled:opacity-30"
           aria-label="Next year"
         >
-          <HiChevronRight className="text-primary-600 size-5 transition-transform group-hover:translate-x-0.5" />
+          <HiChevronRight className="size-5 text-primary-950 transition-transform group-hover:translate-x-0.5" />
         </button>
       </div>
     </div>

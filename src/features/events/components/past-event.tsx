@@ -1,56 +1,46 @@
 "use client";
-import { groupBy } from "lodash-es";
-import { Fragment, useEffect, useMemo } from "react";
 
 import useEvents from "@/features/events/hooks/useEvents";
-import type { PastEvent } from "@/features/events/types";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { getUnswTermAndYear } from "../utils/unsw-date-fns";
+import { motion } from "framer-motion";
 
 import EventCardSmall from "./event-card-small";
 
 export default function PastEvents() {
-  const { allEvents, fetchNextPage, hasNextPage, isFetching } = useEvents();
-  const { isIntersecting, ref } = useIntersectionObserver({
-    threshold: 0.5,
-  });
+  const { allEvents, isFetching } = useEvents();
 
-  useEffect(() => {
-    if (isIntersecting && hasNextPage && !isFetching) {
-      fetchNextPage();
-    }
-  }, [isIntersecting]);
+  const pastEvents = allEvents?.pastEvents ?? [];
 
-  const termGroupedPastEvents = useMemo(() => {
-    if (allEvents) {
-      const eventsByTerm = groupBy(allEvents.pastEvents, (event) => {
-        const termAndYear = getUnswTermAndYear(event.start_time);
-        return `${termAndYear.year} Term ${termAndYear.term}`;
-      });
-      return Object.keys(eventsByTerm).map(
-        (key) => [key, eventsByTerm[key]] as [string, PastEvent[]],
-      );
-    }
-  }, [allEvents?.pastEvents]);
+  if (isFetching && pastEvents.length === 0) {
+    return (
+      <div className="col-span-full py-8 text-center text-sm tracking-wider text-neutral-400 uppercase">
+        Loading past events...
+      </div>
+    );
+  }
+
+  if (pastEvents.length === 0) {
+    return (
+      <div className="col-span-full py-8 text-center text-sm tracking-wider text-neutral-400 uppercase">
+        No past events to show.
+      </div>
+    );
+  }
 
   return (
-    <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-      {termGroupedPastEvents &&
-        termGroupedPastEvents.map(([term, events]) => {
-          return (
-            <Fragment key={term}>
-              <h3 className="text-primary-900 col-span-full mt-8 text-lg font-semibold first:mt-0">
-                {term}
-              </h3>
-              {events.map((event) => (
-                <EventCardSmall data={event} key={event.id} />
-              ))}
-            </Fragment>
-          );
-        })}
-      <div ref={ref} className="h-px w-full"></div>
-      <div className="text-primary-600 col-span-full py-8 text-center text-sm">
-        {hasNextPage ? "Loading more events..." : "You've reached the end!"}
+    <div className="grid gap-x-12 md:grid-cols-2">
+      {pastEvents.map((event, idx) => (
+        <motion.div
+          key={event.id}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: idx * 0.05 }}
+        >
+          <EventCardSmall data={event} />
+        </motion.div>
+      ))}
+      <div className="col-span-full py-12 text-center text-xs font-bold tracking-[0.3em] text-neutral-300 uppercase">
+        You&apos;ve reached the end
       </div>
     </div>
   );

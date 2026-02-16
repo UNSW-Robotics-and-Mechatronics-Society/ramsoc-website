@@ -1,57 +1,41 @@
-import axios from "axios";
-
-import { env } from "@/env";
-import type { MetaGraphAPIEventResponse } from "./types";
-
-import {
-  InvalidCursorException,
-  InvalidMetaTokenException,
-  MetaApiException,
-} from "./exceptions";
 import type { GetInfiniteEventsInput } from "./schemas";
+import { fetchRubricLandingPage } from "./rubric.provider";
+import type { RubricEvent } from "./rubric.types";
+
+function mapRubricEvent(e: RubricEvent) {
+  return {
+    id: e.eventid,
+    name: e.title.trim(),
+    description: "",
+    start_time: e.formatteddate ?? "",
+    end_time: "",
+    place: e.subtitle ? { name: e.subtitle } : undefined,
+    cover: e.image
+      ? { offset_x: 0, offset_y: 0, source: e.image }
+      : undefined,
+    upcoming: e.upcoming === 1,
+    url: e.destination ?? undefined,
+    info: e.info ?? undefined,
+  };
+}
 
 /**
- * Fetches events from Meta Graph API with cursor-based pagination
- * @param input - Contains optional cursor for pagination
- * @returns Events data with pagination information
- * @throws InvalidMetaTokenException if Meta API token is invalid
- * @throws InvalidCursorException if pagination cursor is invalid
- * @throws MetaApiException if API request fails
+ * Fetches events from the Rubric API
  */
-export async function getInfiniteEvents(input: GetInfiniteEventsInput) {
-  try {
-    const res = await axios.get<MetaGraphAPIEventResponse>(
-      `https://graph.facebook.com/v21.0/me/events?access_token=${env.META_API_PAGE_ACCESS_TOKEN}&fields=cover%2Cdescription%2Cend_time%2Cstart_time%2Cplace%2Cname%2Cid&limit=25${input.cursor ? `&after=${input.cursor}` : ""}`,
-    );
+export async function getInfiniteEvents(_input: GetInfiniteEventsInput) {
+  const data = await fetchRubricLandingPage();
 
-    const data = res.data;
+  const eventsSection = data?.sections?.find(
+    (section) => section.sectionname === "Events",
+  );
 
-    return {
-      data: data.data,
-      paging: { cursors: data.paging?.cursors },
-      nextCursor: data.paging?.cursors?.after,
-    };
-  } catch (err: unknown) {
-    if (axios.isAxiosError(err)) {
-      if (!err.response) {
-        throw new MetaApiException("Meta API request failed");
-      }
+  const events: RubricEvent[] = eventsSection?.array ?? [];
 
-      const wwwAuthenticate = err.response.headers["www-authenticate"] as
-        | string
-        | undefined;
+  const sorted = [...events].sort(
+    (a, b) => (a.eventsortindex ?? 0) - (b.eventsortindex ?? 0),
+  );
 
-      if (wwwAuthenticate?.includes("invalid_token")) {
-        throw new InvalidMetaTokenException();
-      }
-
-      if (wwwAuthenticate?.includes("cursor")) {
-        throw new InvalidCursorException();
-      }
-
-      throw new MetaApiException(err.message);
-    }
-
-    throw new MetaApiException("Failed to fetch events");
-  }
+  return {
+    data: sorted.map(mapRubricEvent),
+  };
 }

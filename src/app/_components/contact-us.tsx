@@ -8,12 +8,14 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
+import { SiLinktree } from "react-icons/si";
 
 import {
   DISCORD_URL,
   FACEBOOK_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
+  LINKTREE_URL,
 } from "@/lib/constants/urls";
 
 export default function ContactUs() {
@@ -22,6 +24,7 @@ export default function ContactUs() {
     { name: "Facebook", url: FACEBOOK_URL, icon: FaFacebookSquare },
     { name: "Instagram", url: INSTAGRAM_URL, icon: FaInstagram },
     { name: "Discord", url: DISCORD_URL, icon: FaDiscord },
+    { name: "Linktree", url: LINKTREE_URL, icon: SiLinktree },
   ];
 
   return (
@@ -30,7 +33,7 @@ export default function ContactUs() {
       <motion.span
         className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 select-none text-[14rem] font-black leading-none tracking-tighter text-transparent lg:block"
         style={{
-          WebkitTextStroke: "1px rgba(51, 102, 255, 0.08)",
+          WebkitTextStroke: "1px rgba(41, 171, 226, 0.08)",
         }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

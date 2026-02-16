@@ -1,39 +1,33 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function CareerCardLoading() {
   return (
-    <Card className="cursor-pointer bg-stone-100/50 transition-shadow hover:shadow-md">
-      <CardContent className="p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex-1">
-            <div className="mb-8 flex items-start gap-4">
-              <div className="aspect-square w-16 flex-none">
-                <Skeleton className="size-full opacity-70"></Skeleton>
-              </div>
-              <div className="flex w-full flex-col gap-2">
-                <Skeleton className="h-6 w-9/12 opacity-70" />
-                <Skeleton className="h-6 w-2/12 opacity-70" />
-                <Skeleton className="h-4 w-4/12 opacity-70" />
-              </div>
-            </div>
+    <div className="border border-white/10 bg-white/3 p-6 md:p-8">
+      <div className="flex flex-col gap-6 md:flex-row md:items-start">
+        {/* Logo skeleton */}
+        <Skeleton className="h-28 w-full shrink-0 bg-white/5 md:size-32" />
 
-            <div className="mb-8 flex flex-col gap-2">
-              <Skeleton className="h-4 w-9/12 opacity-70" />
-              <Skeleton className="h-4 w-2/12 opacity-70" />
-              <Skeleton className="h-4 w-4/12 opacity-70" />
-              <Skeleton className="h-4 w-5/12 opacity-70" />
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <Skeleton className="h-6 w-28 opacity-70" />
-              <Skeleton className="h-6 w-16 opacity-70" />
-              <Skeleton className="h-6 w-12 opacity-70" />
-              <Skeleton className="h-6 w-24 opacity-70" />
-            </div>
+        {/* Content skeleton */}
+        <div className="flex-1 space-y-4">
+          <div className="space-y-2">
+            <Skeleton className="h-5 w-3/4 bg-white/5" />
+            <Skeleton className="h-3 w-1/4 bg-white/5" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-full bg-white/5" />
+            <Skeleton className="h-4 w-4/5 bg-white/5" />
+          </div>
+          <div className="flex gap-3">
+            <Skeleton className="h-3 w-24 bg-white/5" />
+            <Skeleton className="h-3 w-20 bg-white/5" />
+          </div>
+          <div className="flex gap-2">
+            <Skeleton className="h-5 w-16 bg-white/5" />
+            <Skeleton className="h-5 w-14 bg-white/5" />
+            <Skeleton className="h-5 w-20 bg-white/5" />
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
