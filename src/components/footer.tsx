@@ -43,12 +43,15 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-950 text-primary-100">
-      <div className="mx-auto max-w-[1400px] px-6 py-12 md:px-12">
-        <div className="grid gap-10 md:grid-cols-4">
+    <footer className="bg-[#030a18] text-white">
+      {/* Decorative top border */}
+      <div className="h-px bg-white/10" />
+
+      <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-12 lg:px-20">
+        <div className="grid gap-12 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="mb-4 flex items-center gap-3">
+            <Link href="/" className="mb-6 flex items-center gap-3">
               <Image
                 src="/logo.svg"
                 alt="RAMSoc Logo"
@@ -57,15 +60,15 @@ export default function Footer() {
                 className="size-10"
               />
               <div className="flex flex-col leading-tight">
-                <span className="text-sm font-medium text-white">
+                <span className="text-xs font-bold tracking-[0.15em] text-white uppercase">
                   RAMSoc
                 </span>
-                <span className="text-xs text-primary-300">
-                  UNSW Robotics &amp; Mechatronics
+                <span className="text-[0.6rem] tracking-[0.1em] text-white/30 uppercase">
+                  UNSW Robotics
                 </span>
               </div>
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-primary-400">
+            <p className="mt-4 text-sm leading-relaxed text-white/40">
               UNSW&apos;s largest mechatronics society. Hands-on learning,
               industry connections, and a passionate community.
             </p>
@@ -73,15 +76,15 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-300">
+            <h4 className="mb-5 text-xs font-bold tracking-[0.2em] text-white/30 uppercase">
               Navigate
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-primary-400 transition-colors hover:text-white"
+                    className="text-sm text-white/50 transition-colors hover:text-primary-400"
                   >
                     {link.label}
                   </Link>
@@ -92,17 +95,17 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-300">
+            <h4 className="mb-5 text-xs font-bold tracking-[0.2em] text-white/30 uppercase">
               Resources
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {resourceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary-400 transition-colors hover:text-white"
+                    className="text-sm text-white/50 transition-colors hover:text-primary-400"
                   >
                     {link.label}
                   </Link>
@@ -113,22 +116,22 @@ export default function Footer() {
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-300">
+            <h4 className="mb-5 text-xs font-bold tracking-[0.2em] text-white/30 uppercase">
               Contact
             </h4>
             <a
               href="mailto:info@ramsocunsw.org"
-              className="mb-4 block text-sm text-primary-400 transition-colors hover:text-white"
+              className="mb-3 block text-sm text-white/50 transition-colors hover:text-primary-400"
             >
               info@ramsocunsw.org
             </a>
             <a
               href="mailto:industry@ramsocunsw.org"
-              className="mb-6 block text-sm text-primary-400 transition-colors hover:text-white"
+              className="mb-6 block text-sm text-white/50 transition-colors hover:text-primary-400"
             >
               industry@ramsocunsw.org
             </a>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <Link
                   key={social.name}
@@ -137,7 +140,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   title={social.name}
                   aria-label={social.name}
-                  className="text-primary-500 transition-colors hover:text-white"
+                  className="text-white/30 transition-colors hover:text-primary-400"
                 >
                   <social.icon size={18} />
                 </Link>
@@ -147,8 +150,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 border-t border-primary-800 pt-6 text-center">
-          <p className="text-xs text-primary-500">
+        <div className="mt-14 border-t border-white/10 pt-6">
+          <p className="text-center text-[0.65rem] tracking-[0.2em] text-white/20 uppercase">
             &copy; {new Date().getFullYear()} UNSW Robotics and Mechatronics
             Society. All rights reserved.
           </p>
