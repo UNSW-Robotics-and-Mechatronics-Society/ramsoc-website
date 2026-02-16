@@ -1,6 +1,3 @@
-import { Container } from "@/components/ui/container";
-
-import { Hero } from "@/components/hero";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import type { Metadata } from "next";
 
@@ -29,19 +26,5 @@ export default function CareersLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <main className="min-h-screen">
-      <Hero
-        imageSrc="/careers/hero.webp"
-        imageAlt="Collage of careers at RAMSoc"
-      >
-        Careers
-      </Hero>
-      <section className="bg-primary-50/30 py-20">
-        <Container>
-          <div className="mx-auto max-w-[1400px]">{children}</div>
-        </Container>
-      </section>
-    </main>
-  );
+  return <main className="min-h-screen bg-white">{children}</main>;
 }

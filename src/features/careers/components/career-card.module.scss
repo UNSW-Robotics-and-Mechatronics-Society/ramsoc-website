@@ -1,12 +1,10 @@
 .careerCard {
-  background-color: rgba(245, 245, 244, 0.5);
-  transition: all 0.2s ease;
+  background-color: white;
+  border: 1px solid rgb(229 229 229); // neutral-200
+  transition: all 0.3s ease;
 
   &:hover {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-    background-color: rgba(245, 245, 244, 0.8);
+    border-color: rgb(41 171 226 / 0.3); // primary-500/30
   }
 }
 
@@ -19,6 +17,7 @@
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
+    padding: 2rem;
   }
 }
 
@@ -28,9 +27,8 @@
   align-items: center;
   width: 100%;
   height: 8rem;
-  border-radius: 0.5rem;
   overflow: hidden;
-  background-color: white;
+  background-color: rgb(250 250 250); // neutral-50
   flex-shrink: 0;
 
   @media (min-width: 768px) {
@@ -51,7 +49,7 @@
   flex-direction: column;
   gap: 1rem;
   flex: 1;
-  min-width: 0; // Prevent flex item from overflowing
+  min-width: 0;
 }
 
 .header {
@@ -61,21 +59,24 @@
 }
 
 .position {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1.2;
   cursor: inherit;
-  transition: color 0.2s ease;
+  color: rgb(13 38 49); // primary-950
+  transition: color 0.3s ease;
 
   .careerCard:hover & {
-    color: rgb(59 130 246); // blue-500
+    color: rgb(41 171 226); // primary-500
   }
 }
 
 .company {
-  color: rgba(28, 25, 23, 0.9);
+  color: rgb(163 163 163); // neutral-400
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .typeBadge {
@@ -84,7 +85,8 @@
 }
 
 .description {
-  color: rgba(28, 25, 23, 0.8);
+  color: rgb(115 115 115); // neutral-500
+  font-size: 0.875rem;
   line-height: 1.625;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -97,8 +99,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  color: rgba(28, 25, 23, 0.9);
-  font-size: 0.875rem;
+  color: rgb(163 163 163); // neutral-400
+  font-size: 0.8125rem;
 
   @media (min-width: 640px) {
     flex-direction: row;
@@ -118,16 +120,18 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: underline;
-  transition: opacity 0.2s ease;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
 
   &:hover {
-    opacity: 0.7;
+    color: rgb(41 171 226); // primary-500
   }
 }
 
 .icon {
-  width: 1rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
   flex-shrink: 0;
 }
 
@@ -158,14 +162,20 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
-  background-color: var(--color-primary-600);
+  background-color: rgb(41 171 226); // primary-500
   color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 0;
+
+  &:hover {
+    background-color: rgb(76 198 237); // primary-400
+  }
 }
 
 .applyIcon {
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 0.75rem;
+  height: 0.75rem;
 }

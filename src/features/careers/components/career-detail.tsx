@@ -35,7 +35,6 @@ export function CareerDetails({
   careerMeta,
   onBack,
 }: CareerDetailsProps) {
-  // Disable body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -43,14 +42,12 @@ export function CareerDetails({
     };
   }, []);
 
-  // Handle escape key press
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onBack();
       }
     };
-
     document.addEventListener("keydown", handleEscape);
     return () => {
       document.removeEventListener("keydown", handleEscape);
@@ -63,7 +60,6 @@ export function CareerDetails({
       staleTime: 60 * 60 * 1000,
       enabled: !!activeId,
       retry: (failureCount, error: any) => {
-        // Don't retry on 404
         if (error?.data?.code === "NOT_FOUND") return false;
         return failureCount < 3;
       },
@@ -71,15 +67,12 @@ export function CareerDetails({
   );
 
   const normalizedCtaUrl = normalizeCareerCtaUrlStrict(careerMeta?.ctaUrl);
-
-  // Generate Notion database URL with filter for this specific job
   const notionApplyUrl = normalizedCtaUrl
     ? normalizedCtaUrl
     : activeId
       ? getNotionPageUrl(activeId)
       : null;
 
-  // Handle backdrop click
   const handleBackdropClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
       onBack();
@@ -88,7 +81,7 @@ export function CareerDetails({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
       onClick={handleBackdropClick}
       onKeyDown={(event) => {
         if (event.key === "Escape") {
@@ -99,14 +92,14 @@ export function CareerDetails({
       tabIndex={0}
       aria-label="Close modal"
     >
-      <div className="relative flex size-full max-h-[90vh] max-w-4xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
-        {/* Header with career metadata and close button */}
-        <div className="border-b border-gray-200 p-6">
+      <div className="relative flex size-full max-h-[90vh] max-w-4xl flex-col overflow-hidden border border-neutral-200 bg-white shadow-2xl">
+        {/* Header */}
+        <div className="border-b border-neutral-200 p-6 md:p-8">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="mb-4 flex items-start gap-4">
                 {careerMeta?.logo && (
-                  <div className="flex size-16 flex-none items-center justify-center overflow-hidden rounded-lg bg-white p-2">
+                  <div className="flex size-16 flex-none items-center justify-center overflow-hidden bg-neutral-50 p-2">
                     <Image
                       className="size-full object-contain"
                       src={careerMeta.logo}
@@ -118,38 +111,38 @@ export function CareerDetails({
                   </div>
                 )}
                 <div>
-                  <h2 className="text-2xl font-semibold">
+                  <h2 className="text-xl font-bold text-primary-950 md:text-2xl">
                     {careerMeta?.position || "Career Details"}
                   </h2>
-                  <p className="text-primary-900/90 text-lg font-medium">
+                  <p className="text-sm font-medium tracking-wider text-neutral-400 uppercase">
                     {careerMeta?.company}
                   </p>
                 </div>
               </div>
 
-              {/* Career metadata */}
-              <div className="text-primary-900/90 mb-3 flex flex-wrap items-center gap-4 text-sm">
+              {/* Metadata */}
+              <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-neutral-400">
                 {careerMeta?.location && (
-                  <div className="flex items-center gap-1">
-                    <FaMapMarkerAlt className="size-4" />
+                  <div className="flex items-center gap-1.5">
+                    <FaMapMarkerAlt className="size-3.5" />
                     {careerMeta.location}
                   </div>
                 )}
                 {careerMeta?.pay && (
-                  <div className="flex items-center gap-1">
-                    <FaDollarSign className="size-4" />
+                  <div className="flex items-center gap-1.5">
+                    <FaDollarSign className="size-3.5" />
                     {careerMeta.pay}
                   </div>
                 )}
                 {careerMeta?.email && (
-                  <div className="flex items-center gap-1">
-                    <FaEnvelope className="size-4" />
+                  <div className="flex items-center gap-1.5">
+                    <FaEnvelope className="size-3.5" />
                     {careerMeta.email}
                   </div>
                 )}
               </div>
 
-              {/* Tags and Type */}
+              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {careerMeta?.type && (
                   <Badge variant="secondary">{careerMeta.type}</Badge>
@@ -161,13 +154,13 @@ export function CareerDetails({
                 ))}
               </div>
 
-              {/* Quick Apply Button */}
+              {/* Apply */}
               {notionApplyUrl && (
                 <div className="mt-4">
                   <Button
                     asChild
                     size="sm"
-                    className="bg-primary-600 rounded-lg text-white"
+                    className="rounded-none bg-primary-500 text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-primary-400"
                   >
                     <Link
                       href={notionApplyUrl}
@@ -187,7 +180,7 @@ export function CareerDetails({
               variant="ghost"
               size="sm"
               onClick={onBack}
-              className="ml-4 size-8 p-0"
+              className="ml-4 size-8 p-0 text-neutral-400 hover:text-primary-950"
             >
               <FaTimes className="size-4" />
             </Button>
@@ -195,15 +188,15 @@ export function CareerDetails({
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 md:p-8">
           {isLoading && <PostLoading />}
 
           {error && (
             <div className="flex flex-col items-center justify-center py-12 text-center">
-              <h3 className="mb-2 text-lg font-medium text-gray-900">
+              <p className="mb-2 text-sm font-bold tracking-wider text-neutral-300 uppercase">
                 Content Not Available
-              </h3>
-              <p className="mb-4 text-gray-600">
+              </p>
+              <p className="mb-4 text-sm text-neutral-400">
                 {error?.data?.code === "NOT_FOUND"
                   ? "The detailed information for this position is not available."
                   : "Failed to load career details. Please try again later."}
@@ -211,7 +204,7 @@ export function CareerDetails({
               {notionApplyUrl && (
                 <Button
                   asChild
-                  className="rounded-full bg-black text-white hover:bg-gray-800"
+                  className="rounded-none bg-primary-500 text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-primary-400"
                 >
                   <Link
                     href={notionApplyUrl}
@@ -219,7 +212,7 @@ export function CareerDetails({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
                   >
-                    <FaExternalLinkAlt className="size-3.5" />
+                    <FaExternalLinkAlt className="size-3" />
                     <span>Apply Directly</span>
                   </Link>
                 </Button>
