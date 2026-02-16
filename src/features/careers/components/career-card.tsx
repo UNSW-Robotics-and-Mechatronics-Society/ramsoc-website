@@ -10,9 +10,6 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { env } from "@/env";
 import { getNotionPageUrl } from "@/lib/constants/urls";
 import { normalizeCareerCtaUrlStrict } from "../utils/career-url";
@@ -82,33 +79,28 @@ export function CareerCard({ career, onClick }: Props) {
 
   const normalizedctaUrl = normalizeCareerCtaUrlStrict(ctaUrl);
 
-  // Generate Notion database URL with filter for this specific job
   const notionApplyUrl = useMemo(() => {
     if (normalizedctaUrl) {
       return normalizedctaUrl;
     }
 
-    // Fallback to filtered Notion database view if no external URL
     const dbId = env.NEXT_PUBLIC_NOTION_CAREERS_DB_SOURCE_ID;
     if (!dbId || !position) {
       return null;
     }
 
-    // Create a Notion URL with a filter for this position
-    // Format: https://notion.so/{dbId}?v={viewId}&p={pageId}
-    // For simplicity, we'll link to the page directly
     return getNotionPageUrl(id);
   }, [normalizedctaUrl, id, position]);
 
   return (
-    <Card
-      className={styles.careerCard}
+    <div
+      className={styles.card}
+      data-clickable={hasDetails}
       onClick={hasDetails ? () => onClick(id) : undefined}
-      style={{ cursor: hasDetails ? "pointer" : "default" }}
     >
-      <CardContent className={styles.cardContent}>
-        {/* Logo Section - Left Side */}
-        <div className={styles.logoContainer}>
+      <div className={styles.inner}>
+        {/* Logo */}
+        <div className={styles.logoWrap}>
           {logo && (
             <Image
               className={styles.logo}
@@ -122,24 +114,18 @@ export function CareerCard({ career, onClick }: Props) {
           )}
         </div>
 
-        {/* Content Section - Center */}
-        <div className={styles.contentSection}>
-          {/* Header */}
-          <div className={styles.header}>
+        {/* Content */}
+        <div className={styles.content}>
+          <div>
             <h3 className={styles.position}>{position}</h3>
             <p className={styles.company}>{company}</p>
-            {type && (
-              <Badge variant="secondary" className={styles.typeBadge}>
-                {type}
-              </Badge>
-            )}
+            {type && <span className={styles.typeBadge}>{type}</span>}
           </div>
 
-          {/* Description */}
           {description && <p className={styles.description}>{description}</p>}
 
           {/* Metadata */}
-          <div className={styles.metadata}>
+          <div className={styles.meta}>
             {timeUntil && (
               <div className={styles.metaItem}>
                 <FaClock className={styles.icon} />
@@ -176,34 +162,30 @@ export function CareerCard({ career, onClick }: Props) {
           {tags.length > 0 && (
             <div className={styles.tags}>
               {tags.map((tag: string) => (
-                <Badge key={tag} variant="secondary">
+                <span key={tag} className={styles.tag}>
                   {tag}
-                </Badge>
+                </span>
               ))}
             </div>
           )}
         </div>
 
-        {/* Quick Apply Button */}
+        {/* Apply */}
         {notionApplyUrl && (
-          <div className={styles.applySection}>
-            <Button
-              asChild
-              className={styles.applyButton}
+          <div className={styles.applyWrap}>
+            <Link
+              rel="noopener noreferrer"
+              target="_blank"
+              href={notionApplyUrl}
+              className={styles.applyBtn}
               onClick={(e) => e.stopPropagation()}
             >
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                href={notionApplyUrl}
-              >
-                <FaExternalLinkAlt className={styles.applyIcon} />
-                <span>Apply</span>
-              </Link>
-            </Button>
+              <FaExternalLinkAlt className={styles.applyIcon} />
+              <span>Apply</span>
+            </Link>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

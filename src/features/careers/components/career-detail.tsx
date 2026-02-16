@@ -15,8 +15,6 @@ import {
 } from "react-icons/fa";
 import { NotionRenderer } from "react-notion-x";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { getNotionPageUrl } from "@/lib/constants/urls";
 import { api } from "@/trpc/react";
 import { normalizeCareerCtaUrlStrict } from "../utils/career-url";
@@ -81,7 +79,7 @@ export function CareerDetails({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
       onClick={handleBackdropClick}
       onKeyDown={(event) => {
         if (event.key === "Escape") {
@@ -92,14 +90,14 @@ export function CareerDetails({
       tabIndex={0}
       aria-label="Close modal"
     >
-      <div className="relative flex size-full max-h-[90vh] max-w-4xl flex-col overflow-hidden border border-neutral-200 bg-white shadow-2xl">
+      <div className="relative flex size-full max-h-[90vh] max-w-4xl flex-col overflow-hidden border border-white/10 bg-[#030a18]">
         {/* Header */}
-        <div className="border-b border-neutral-200 p-6 md:p-8">
+        <div className="border-b border-white/10 p-6 md:p-8">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="mb-4 flex items-start gap-4">
                 {careerMeta?.logo && (
-                  <div className="flex size-16 flex-none items-center justify-center overflow-hidden bg-neutral-50 p-2">
+                  <div className="flex size-14 flex-none items-center justify-center overflow-hidden bg-white p-2">
                     <Image
                       className="size-full object-contain"
                       src={careerMeta.logo}
@@ -111,32 +109,32 @@ export function CareerDetails({
                   </div>
                 )}
                 <div>
-                  <h2 className="text-xl font-bold text-primary-950 md:text-2xl">
+                  <h2 className="text-xl font-bold text-white md:text-2xl">
                     {careerMeta?.position || "Career Details"}
                   </h2>
-                  <p className="text-sm font-medium tracking-wider text-neutral-400 uppercase">
+                  <p className="text-[0.65rem] font-bold tracking-[0.2em] text-white/30 uppercase">
                     {careerMeta?.company}
                   </p>
                 </div>
               </div>
 
               {/* Metadata */}
-              <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-neutral-400">
+              <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-white/40">
                 {careerMeta?.location && (
                   <div className="flex items-center gap-1.5">
-                    <FaMapMarkerAlt className="size-3.5" />
+                    <FaMapMarkerAlt className="size-3" />
                     {careerMeta.location}
                   </div>
                 )}
                 {careerMeta?.pay && (
                   <div className="flex items-center gap-1.5">
-                    <FaDollarSign className="size-3.5" />
+                    <FaDollarSign className="size-3" />
                     {careerMeta.pay}
                   </div>
                 )}
                 {careerMeta?.email && (
                   <div className="flex items-center gap-1.5">
-                    <FaEnvelope className="size-3.5" />
+                    <FaEnvelope className="size-3" />
                     {careerMeta.email}
                   </div>
                 )}
@@ -145,55 +143,52 @@ export function CareerDetails({
               {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {careerMeta?.type && (
-                  <Badge variant="secondary">{careerMeta.type}</Badge>
+                  <span className="border border-primary-400/20 px-2.5 py-0.5 text-[0.625rem] font-bold tracking-[0.15em] text-primary-400 uppercase">
+                    {careerMeta.type}
+                  </span>
                 )}
                 {careerMeta?.tags?.map((tag) => (
-                  <Badge key={tag} variant="outline">
+                  <span
+                    key={tag}
+                    className="border border-white/8 px-2.5 py-0.5 text-[0.625rem] font-medium tracking-[0.1em] text-white/30 uppercase"
+                  >
                     {tag}
-                  </Badge>
+                  </span>
                 ))}
               </div>
 
               {/* Apply */}
               {notionApplyUrl && (
                 <div className="mt-4">
-                  <Button
-                    asChild
-                    size="sm"
-                    className="rounded-none bg-primary-500 text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-primary-400"
+                  <Link
+                    href={notionApplyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-primary-500 px-5 py-2.5 text-[0.7rem] font-bold tracking-[0.15em] text-white uppercase transition-colors hover:bg-primary-400"
                   >
-                    <Link
-                      href={notionApplyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2"
-                    >
-                      <FaExternalLinkAlt className="size-3" />
-                      <span>Apply</span>
-                    </Link>
-                  </Button>
+                    <FaExternalLinkAlt className="size-2.5" />
+                    <span>Apply</span>
+                  </Link>
                 </div>
               )}
             </div>
 
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={onBack}
-              className="ml-4 size-8 p-0 text-neutral-400 hover:text-primary-950"
+              className="ml-4 flex size-8 items-center justify-center text-white/30 transition-colors hover:text-white"
             >
               <FaTimes className="size-4" />
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-8">
+        <div className="flex-1 overflow-y-auto bg-white p-6 md:p-8">
           {isLoading && <PostLoading />}
 
           {error && (
             <div className="flex flex-col items-center justify-center py-12 text-center">
-              <p className="mb-2 text-sm font-bold tracking-wider text-neutral-300 uppercase">
+              <p className="mb-2 text-xs font-bold tracking-[0.2em] text-neutral-300 uppercase">
                 Content Not Available
               </p>
               <p className="mb-4 text-sm text-neutral-400">
@@ -202,20 +197,15 @@ export function CareerDetails({
                   : "Failed to load career details. Please try again later."}
               </p>
               {notionApplyUrl && (
-                <Button
-                  asChild
-                  className="rounded-none bg-primary-500 text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-primary-400"
+                <Link
+                  href={notionApplyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary-500 px-5 py-2.5 text-xs font-bold tracking-[0.15em] text-white uppercase transition-colors hover:bg-primary-400"
                 >
-                  <Link
-                    href={notionApplyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <FaExternalLinkAlt className="size-3" />
-                    <span>Apply Directly</span>
-                  </Link>
-                </Button>
+                  <FaExternalLinkAlt className="size-3" />
+                  <span>Apply Directly</span>
+                </Link>
               )}
             </div>
           )}
