@@ -15,52 +15,52 @@
 }
 
 .subcomPosition {
-  color: var(--color-primary-600);
+  color: rgb(41 171 226); // primary-500
   padding-bottom: 0.5rem;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
 }
 
 .subcomName {
   text-align: center;
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.5;
   font-weight: 500;
-  color: rgb(107 114 128);
+  color: rgb(163 163 163); // neutral-400
 }
 
 .joinUsMessage {
-  color: var(--color-primary-50);
+  color: rgb(163 163 163); // neutral-400
   margin-top: 2rem;
   text-align: center;
 }
 
 .buttonStyle {
-  border-color: var(--color-primary-800);
-  color: var(--color-primary-800);
-  border-radius: 0.5rem;
-  border-width: 1.5px;
+  border-color: rgb(41 171 226); // primary-500
+  color: rgb(41 171 226); // primary-500
+  border-radius: 0;
+  border-width: 1px;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 1.125rem;
-  font-weight: 400;
-  transition-duration: 100ms;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: all 0.2s ease;
 
   &:hover {
-    border-color: var(--color-primary-600);
-    background-color: var(--color-primary-600);
-    color: var(--color-primary-50);
-    transform: scale(1.05);
-    box-shadow:
-      0 1px 3px 0 rgb(0 0 0 / 0.1),
-      0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border-color: rgb(41 171 226); // primary-500
+    background-color: rgb(41 171 226); // primary-500
+    color: white;
   }
 }
 
 .joinUsMessage p {
-  color: var(--color-primary-700);
+  color: rgb(163 163 163); // neutral-400
   margin-top: 1rem;
+  font-size: 0.875rem;
 }
