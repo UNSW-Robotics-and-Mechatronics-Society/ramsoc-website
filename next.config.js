@@ -46,14 +46,7 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
   },
   redirects: async () => {
-    const currentYear = new Date().getFullYear();
-    return [
-      {
-        source: "/team",
-        destination: `/team/${currentYear}`,
-        permanent: true,
-      },
-    ];
+    return [];
   },
 };
 

@@ -87,6 +87,7 @@ export const getTeamByYear = async (
       content_type: "team",
       "fields.year": year,
       order: ["fields.year", "fields.role", "fields.name"],
+      limit: 500,
     });
 
     if (response.items.length === 0) {
@@ -135,6 +136,8 @@ export const getAvailableYears = async (): Promise<number[]> => {
     const response = await client.getEntries({
       content_type: "team",
       order: ["fields.year"],
+      select: ["fields.year"],
+      limit: 1000,
     });
 
     const availableYears: number[] = [];

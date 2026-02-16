@@ -1,7 +1,7 @@
 # RAMSOC Website — Working Memory
 
 > Maintained by **Dash** (Webmaster / IT Lead)
-> Last updated: 2026-02-16
+> Last updated: 2026-02-17
 
 ---
 
@@ -21,40 +21,23 @@
 ## Active Sprint — Tasks
 
 ### 1. Team Page — Year Navigation Guard
-**Priority**: High | **Status**: TODO
-- **Problem**: Clicking the arrow to 2027 (or any year without data) throws an error
-- **Fix needed**:
-  - Prevent the year arrow selector from navigating beyond available years (already has boundary logic but needs validation)
-  - Add a custom error/not-found page for `/team/[year]` that redirects to the latest valid year
-  - Ensure direct URL access to `/team/2027` gracefully redirects instead of crashing
-- **Files**: `src/features/team/components/year-arrow-selector.tsx`, `src/app/team/[year]/page.tsx`
+**Priority**: High | **Status**: DONE
+- Arrow selector now uses actual `availableYears` array for navigation
+- Year validation in page.tsx redirects invalid years to latest available
+- Error boundary at `src/app/team/[year]/error.tsx` catches unhandled errors
+- `/team` now dynamically redirects to latest year (no more hardcoded year in next.config.js)
+- **Files changed**: `year-arrow-selector.tsx`, `page.tsx`, `error.tsx` (new), `src/app/team/page.tsx` (new), `next.config.js`
 
 ### 2. Nav Bar Fixes
-**Priority**: High | **Status**: Ready
-- **Changes needed**:
-  - Unbold all nav link text (currently `font-normal` — verify this is actually rendering unbold)
-  - Remove transparency — make nav background a **solid fixed color** (not `bg-white/60` or `bg-white/80`)
-  - Apply new brand color scheme (see task 3)
-- **Files**: `src/components/nav-bar/navbar.tsx`, `src/components/nav-bar/nav-links.tsx`, `src/styles/globals.css`
+**Priority**: High | **Status**: DONE
+- Solid white background (no transparency)
+- Removed bold from RAMSOC letters in logo
+- **Files changed**: `navbar.tsx`, `logo.tsx`
 
 ### 3. Brand Color Scheme Update
-**Priority**: High | **Status**: Ready — colors confirmed
-- Update Tailwind theme in `src/styles/globals.css` (`@theme` directive, `--color-primary-*` scale)
-- Apply across all components using `primary-*` color tokens
-- **New primary palette** (teal/cyan brand):
-  | Token | Hex | Notes |
-  |-------|-----|-------|
-  | 50 | `#E6F7FC` | Lightest |
-  | 100 | `#CDEFF9` | |
-  | 200 | `#A3E1F5` | |
-  | 300 | `#7BDAF1` | |
-  | 400 | `#4CC6ED` | |
-  | 500 | `#29ABE2` | **Logo primary** |
-  | 600 | `#218CBD` | |
-  | 700 | `#196C97` | |
-  | 800 | `#114D71` | |
-  | 900 | `#0A2E4C` | |
-  | 950 | `#0D2631` | **Logo secondary / darkest** |
+**Priority**: High | **Status**: DONE
+- Updated `--color-primary-*` scale in `src/styles/globals.css`
+- Primary `#29ABE2` (logo teal), Secondary `#0D2631` (dark navy)
 
 ### 4. Society Email Setup (Resend)
 **Priority**: High | **Status**: TODO — Awaiting Resend API key from Dash
@@ -96,24 +79,30 @@
 - **Files to create/modify**: New contact form component, new tRPC procedure, `src/app/_components/contact-us.tsx`
 
 ### 6. Rambo Mascot Page
-**Priority**: Medium | **Status**: TODO
+**Priority**: Medium | **Status**: BLOCKED — Waiting on lore from MXC directors meeting
 - **Route**: `/rambo`
-- **Content**:
-  - Fun lore/bio page: Rambo's backstory, personality, fun facts
-  - His girlfriend (details TBD — need name and info from Dash)
-  - Interactive feature: mini Rambo platformer game (similar in spirit to the `/gambling` slots game)
-- **Needs from Dash**: Rambo artwork/images, girlfriend name & details, any existing lore
+- **Images received** (saved locally, need to copy to `/public/rambo/`):
+  - `RAMSOC_MASCOT_WAVE_1.png` — Front view, waving
+  - `RAMSOC_MASCOT_OG_2.png` — Front view, standard pose
+  - `Group_46_1.png` — Back view
+  - `Meet_Ramtiago.png` — ID card with stats
+- **Known lore from ID card**:
+  - Name: RAMBO
+  - Birthday: 28th March
+  - Height: 6ft ("true i promise")
+  - Star sign: Aries (ram symbol)
+  - Design: Robot-ram hybrid with antenna, curly gold horns, RAMSoc logo on chest
+  - There's also a character called "Ramtiago" (possibly girlfriend?) — details TBD
+- **Content**: Backstory, personality, fun facts — coming from meeting with MXC directors
+- **Interactive feature**: Mini platformer game (similar to `/gambling` slots)
 
 ### 7. Rubric API — Live Events Integration
-**Priority**: Medium | **Status**: TODO
-- **Goal**: Pull live events from Rubric API instead of (or alongside) Facebook/Meta Graph API
-- **Existing work**: Branch `fix-hx-events-hook` has a Rubric Data Adapter (commit `04b30ef`)
-- **Tasks**:
-  - Review the existing adapter code on that branch
-  - Finish integration and restyle event cards
-  - Merge into `dashs-playground` or `main`
-  - Update event components in `src/features/events/`
-- **Rubric club URL**: `https://campus.hellorubric.com/?s=12676`
+**Priority**: Medium | **Status**: DONE
+- Replaced Meta Graph API with Rubric API (`POST https://api.hellorubric.com/`)
+- Society ID: 12676
+- Events now pull live from Rubric with pre-formatted dates
+- **Files**: `rubric.provider.ts`, `rubric.types.ts`, `service.ts`, event card components, `useEvents.ts`
+- **Commit**: `3529d0b`
 
 ### 8. Blog Page
 **Priority**: Medium | **Status**: Planning
@@ -125,12 +114,8 @@
 - **For now**: Scaffold the page structure and decide on content source
 
 ### 9. Linktree Integration
-**Priority**: Low | **Status**: TODO
-- **URL**: `https://linktr.ee/RAMSocUNSW`
-- Add to:
-  - Footer / contact section social links
-  - `src/lib/constants/urls.ts` as `LINKTREE_URL`
-  - Mobile nav or hero CTA if appropriate
+**Priority**: Low | **Status**: DONE
+- Added to footer, contact section, and `src/lib/constants/urls.ts`
 
 ### 10. Subcommittee Application Link Update
 **Priority**: Low | **Status**: TODO
@@ -139,14 +124,10 @@
 - Used in `src/features/team/components/subcom-profiles.tsx`
 
 ### 11. Society Structure Disclaimer
-**Priority**: Low | **Status**: TODO
-- Add a section (team page or dedicated info section) explaining:
-  - How UNSW societies are structured (affiliated with ARC)
-  - Executive roles and responsibilities
-  - Director portfolios
-  - Subcommittee member roles
-  - How to apply / application process & timeline
-- Could live on the team page, a dedicated `/about` page, or as a modal/accordion on the team page
+**Priority**: Low | **Status**: DONE
+- Added `SocietyStructure` component to team page (`src/app/team/[year]/_components/society-structure.tsx`)
+- Visual flowchart: Executives (AGM T3) → Directors (Interview T3) → Subcommittee (Applications T1)
+- Includes CTA linking to subcommittee application form
 
 ---
 
@@ -156,7 +137,7 @@
 | Page | Route | Status | Notes |
 |------|-------|--------|-------|
 | Homepage | `/` | Live | Redesigned (Feb 2026) |
-| Events | `/events` | Live | Pulls from Meta Graph API (Facebook) |
+| Events | `/events` | Live | Pulls from Rubric API (live events) |
 | Careers / Job Board | `/careers` | Live | Pulls from Notion database |
 | Team | `/team/[year]` | Live | Auto-redirects `/team` → `/team/2026` |
 | Sponsors | `/sponsors` | Live | Tier system, prospectus download |
@@ -176,13 +157,14 @@
 - **Framework**: Next.js 16 (App Router) + TypeScript 5.8 (strict)
 - **Styling**: Tailwind CSS v4 + SCSS modules
 - **API**: tRPC v11 + TanStack Query v5
-- **CMS**: Contentful (events, team) + Notion (careers)
+- **CMS**: Contentful (team) + Notion (careers) + Rubric (events)
 - **Email**: Resend (planned)
 - **Deployment**: Vercel (auto-deploy from `main`)
 - **Package Manager**: Yarn 1.22
 
 ### Content Management
-- **Events & Team**: Managed in Contentful CMS (migrating events to Rubric)
+- **Events**: Pulled live from Rubric API (society ID 12676)
+- **Team**: Managed in Contentful CMS
 - **Career Listings**: Managed in Notion database
 - **Sponsorship**: Hardcoded in codebase (`src/features/sponsors/`)
 - **Static Assets**: `/public/` directory (logos, images, prospectus PDF)
@@ -223,10 +205,10 @@
 
 | Issue | Severity | Location | Notes |
 |-------|----------|----------|-------|
-| Team page crashes on non-existent year (e.g., 2027) | **High** | `/team/[year]` | Arrow selector + direct URL access |
-| Nav bar transparency looks washed out | **Medium** | `navbar.tsx` | Switching to solid bg |
-| Color scheme too dark | **Medium** | `globals.css` | Awaiting new brand palette |
-| `/team` redirect hardcoded year | **Low** | `next.config.js` | Must manually update each year |
+| ~~Team page crashes on non-existent year~~ | ~~High~~ | | **FIXED** — Year validation + error boundary |
+| ~~Nav bar transparency~~ | ~~Medium~~ | | **FIXED** — Solid white bg |
+| ~~Color scheme too dark~~ | ~~Medium~~ | | **FIXED** — Brand teal palette |
+| ~~`/team` redirect hardcoded year~~ | ~~Low~~ | | **FIXED** — Dynamic redirect via `src/app/team/page.tsx` |
 | Notion compat layer incomplete | **Low** | `src/lib/notion-compat/` | Table formatting, synced blocks, embedding |
 | tRPC dev latency middleware | **Info** | `src/server/api/trpc.ts` | 100-400ms artificial delay, dev only |
 
@@ -317,7 +299,7 @@ UNSW Arc, UNSW Engineering, UNSW Founders, Engineers Australia, Jinro, Pure Matc
 > Dash's personal TODO list for the website and society work.
 
 - [x] Send brand hex color screenshot to update theme — DONE (primary `#29ABE2`, secondary `#0D2631`)
-- [ ] Provide Rambo artwork/images and lore details (girlfriend name, backstory)
+- [x] Provide Rambo artwork/images — DONE (4 images received, lore from MXC meeting TBD)
 - [ ] Review and clean up stale feature branches
 - [ ] Set up Resend account and get API key
 - [ ] Update `NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL` in Vercel to `http://app.tribespot.co/form/ramsocsubcom2026`
@@ -335,5 +317,10 @@ UNSW Arc, UNSW Engineering, UNSW Founders, Engineers Australia, Jinro, Pure Matc
 - The `/team` year redirect in `next.config.js` needs manual update at the start of each year
 - Sponsorship tier data is currently hardcoded — consider moving to CMS if sponsors change frequently
 - Resend requires DNS verification (MX, SPF, DKIM records) for `ramsocunsw.org` domain
-- The Rubric API integration branch `fix-hx-events-hook` has a data adapter that needs finishing
-- Current events come from Meta Graph API (Facebook) — goal is to migrate to or supplement with Rubric
+- Rubric API integration is complete — events now pull from Rubric (society ID 12676)
+- Meta Graph API code has been replaced (was in `fix-hx-events-hook` branch)
+- Rambo images are saved locally at `c:\Users\Dashi\Downloads\` — copy to `/public/rambo/` when building the page
+
+### Git Commits on `dashs-playground`
+- `ed16c77` — Brand colors, nav/footer rework, team page guard, society structure, linktree
+- `3529d0b` — Replace Meta Graph API with Rubric API for live events

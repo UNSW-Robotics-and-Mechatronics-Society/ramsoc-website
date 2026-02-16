@@ -42,7 +42,10 @@ export default async function TeamPage(props: PageProps<"/team/[year]">) {
 
   if (isNaN(year) || !availableYears.includes(year)) {
     const latestYear = availableYears[availableYears.length - 1];
-    redirect(latestYear ? `/team/${latestYear}` : "/team");
+    if (latestYear) {
+      redirect(`/team/${latestYear}`);
+    }
+    redirect("/");
   }
 
   const teamData = await api.team.getByYear({ year });
