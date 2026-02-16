@@ -111,11 +111,11 @@ export default function CareersPage() {
       </section>
 
       {/* ── Job Listings ── */}
-      <section className="relative overflow-hidden bg-white py-28 text-primary-950 md:py-36">
+      <section className="relative overflow-hidden bg-[#030a18] py-28 text-white md:py-36">
         {/* Decorative lines */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-[25%] h-full w-px bg-neutral-100" />
-          <div className="absolute top-0 left-[75%] h-full w-px bg-neutral-100" />
+          <div className="absolute top-0 left-[25%] h-full w-px bg-white/5" />
+          <div className="absolute top-0 left-[75%] h-full w-px bg-white/5" />
         </div>
 
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
@@ -127,19 +127,19 @@ export default function CareersPage() {
             transition={{ duration: 0.7 }}
             className="mb-16"
           >
-            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-400 uppercase">
               // 01 — Open Positions
             </span>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-8xl">
               Available
               <br />
-              <span className="text-primary-500">Roles</span>
+              <span className="text-primary-400">Roles</span>
             </h2>
             <div className="mt-6 border-l-2 border-primary-500 pl-5">
-              <span className="text-3xl font-black text-primary-950">
+              <span className="text-3xl font-black text-white">
                 {jobCount}
               </span>
-              <span className="ml-2 text-xs font-medium tracking-[0.2em] text-neutral-400 uppercase">
+              <span className="ml-2 text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
                 {jobCount === 1 ? "Position" : "Positions"} Available
               </span>
             </div>
@@ -152,8 +152,8 @@ export default function CareersPage() {
               <CareerCardLoading />
             </div>
           ) : Object.keys(CareerMetaDatas).length === 0 ? (
-            <div className="border border-neutral-200 px-8 py-16 text-center">
-              <p className="text-sm tracking-wider text-neutral-400 uppercase">
+            <div className="border border-white/10 px-8 py-16 text-center">
+              <p className="text-sm tracking-wider text-white/30 uppercase">
                 No positions available at this time
               </p>
             </div>
@@ -176,7 +176,7 @@ export default function CareersPage() {
 
         {/* Decorative large number */}
         <motion.span
-          className="pointer-events-none absolute right-8 bottom-12 hidden select-none text-[12rem] font-black leading-none text-primary-500/5 lg:block xl:right-20 xl:text-[16rem]"
+          className="pointer-events-none absolute right-8 bottom-12 hidden select-none text-[12rem] font-black leading-none text-white/2 lg:block xl:right-20 xl:text-[16rem]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

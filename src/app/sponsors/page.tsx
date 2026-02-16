@@ -471,7 +471,12 @@ export default function SponsorsPage() {
       </section>
 
       {/* ── Benefits Table ── */}
-      <section className="relative overflow-hidden bg-white py-28 text-primary-950 md:py-36">
+      <section className="relative overflow-hidden bg-primary-950 py-28 text-white md:py-36">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-0 left-[25%] h-full w-px bg-white/8" />
+          <div className="absolute top-0 left-[75%] h-full w-px bg-white/8" />
+        </div>
+
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -480,13 +485,13 @@ export default function SponsorsPage() {
             transition={{ duration: 0.7 }}
             className="mb-16"
           >
-            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-400 uppercase">
               // 04 — Comparison
             </span>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-8xl">
               Detailed
               <br />
-              <span className="text-primary-500">Benefits</span>
+              <span className="text-primary-400">Benefits</span>
             </h2>
           </motion.div>
 

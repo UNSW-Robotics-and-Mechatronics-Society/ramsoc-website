@@ -24,7 +24,7 @@ export const YearArrowSelector = ({
     currentIndex === -1 || currentIndex === availableYears.length - 1;
 
   return (
-    <div className="border-b border-neutral-200 bg-white py-6">
+    <div className="border-y border-neutral-200 bg-white py-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-4 px-4">
         <button
           onClick={() => {
