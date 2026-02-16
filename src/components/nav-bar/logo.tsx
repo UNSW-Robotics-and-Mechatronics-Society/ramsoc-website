@@ -25,12 +25,14 @@ export function Logo({
         alt={alt}
         width={48}
         height={48}
-        className="size-14"
+        className="size-10"
       />
       <div className="flex flex-col leading-tight">
-        <span className="text-sm font-medium opacity-80">UNSW</span>
-        <span className="text-xs opacity-70">
-          Robotics And Mechatronics Society
+        <span className="text-xs font-bold tracking-[0.15em] text-primary-950 uppercase">
+          RAMSoc
+        </span>
+        <span className="text-[0.6rem] tracking-[0.1em] text-neutral-400 uppercase">
+          UNSW Robotics
         </span>
       </div>
     </Link>
