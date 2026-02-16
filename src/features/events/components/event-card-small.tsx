@@ -1,5 +1,3 @@
-import { getFacebookEventUrl } from "@/lib/constants/urls";
-import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { HiCalendar, HiMapPin } from "react-icons/hi2";
@@ -10,10 +8,12 @@ interface EventCardSmallProps {
 }
 
 export default function EventCardSmall({ data }: EventCardSmallProps) {
+  const eventUrl = data.url ?? "#";
+
   return (
     <Link
       className="group border-primary-200/50 block overflow-hidden rounded-xl border bg-white shadow-md transition-all duration-300 hover:shadow-xl"
-      href={getFacebookEventUrl(data.id)}
+      href={eventUrl}
       target="_blank"
     >
       {/* Event Image */}
@@ -45,12 +45,12 @@ export default function EventCardSmall({ data }: EventCardSmallProps) {
 
         {/* Date and Location */}
         <div className="space-y-1">
-          <div className="text-primary-600 flex items-center gap-1.5 text-xs">
-            <HiCalendar className="size-3.5 shrink-0" />
-            <span className="font-medium">
-              {format(parseISO(data.start_time), "dd MMM yyyy")}
-            </span>
-          </div>
+          {data.start_time && (
+            <div className="text-primary-600 flex items-center gap-1.5 text-xs">
+              <HiCalendar className="size-3.5 shrink-0" />
+              <span className="font-medium">{data.start_time}</span>
+            </div>
+          )}
           {data.place && (
             <div className="text-primary-600 flex items-center gap-1.5 text-xs">
               <HiMapPin className="size-3.5 shrink-0" />

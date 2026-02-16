@@ -1,6 +1,5 @@
 "use client";
 
-import { format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +8,11 @@ import { HiArrowRight, HiCalendar, HiMapPin } from "react-icons/hi2";
 import { Button } from "@/components/ui/button";
 import { useEvents } from "@/features/events";
 import type { Event } from "@/features/events/types";
-import { getFacebookEventUrl } from "@/lib/constants/urls";
 
 function EventCardFeatured({ event }: { event: Event }) {
   return (
     <Link
-      href={getFacebookEventUrl(event.id)}
+      href={event.url ?? "#"}
       target="_blank"
       className="group relative block overflow-hidden"
     >
@@ -46,7 +44,7 @@ function EventCardFeatured({ event }: { event: Event }) {
             Featured
           </span>
           <span className="text-xs font-medium tracking-wider text-white/50">
-            {format(parseISO(event.start_time), "dd MMM yyyy")}
+            {event.start_time}
           </span>
         </div>
         <h3 className="mb-3 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
@@ -81,7 +79,7 @@ function EventCardCompact({ event, index }: { event: Event; index: number }) {
       transition={{ duration: 0.4, delay: 0.1 * index }}
     >
       <Link
-        href={getFacebookEventUrl(event.id)}
+        href={event.url ?? "#"}
         target="_blank"
         className="group flex gap-5 border-b border-neutral-100 py-5 transition-colors hover:border-primary-500/30"
       >
@@ -106,7 +104,7 @@ function EventCardCompact({ event, index }: { event: Event; index: number }) {
         {/* Info */}
         <div className="flex min-w-0 flex-1 flex-col justify-center">
           <span className="mb-1 text-[0.65rem] font-semibold tracking-[0.2em] text-primary-500/70 uppercase">
-            {format(parseISO(event.start_time), "dd MMM yyyy · hh:mm aa")}
+            {event.start_time}
           </span>
           <h4 className="line-clamp-2 text-sm font-bold leading-snug text-primary-950 transition-colors group-hover:text-primary-500 md:text-base">
             {event.name}
