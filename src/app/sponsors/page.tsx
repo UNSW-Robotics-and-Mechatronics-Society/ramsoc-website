@@ -193,7 +193,7 @@ export default function SponsorsPage() {
                   strokeWidth={1.5}
                   className="mb-4 text-primary-500 group-hover:text-primary-400"
                 />
-                <div className="mb-1 text-4xl font-black tracking-tight text-primary-950 md:text-5xl lg:text-7xl">
+                <div className="mb-1 truncate text-3xl font-black tracking-tight text-primary-950 md:text-4xl lg:text-7xl">
                   {stat.value}
                 </div>
                 <div className="text-xs font-medium tracking-[0.2em] text-neutral-400 uppercase">
