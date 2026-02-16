@@ -9,6 +9,9 @@ import { Space_Grotesk } from "next/font/google";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.svg",
+  },
   title: "Home | RAMSoc UNSW",
   description:
     "UNSW Robotics and Mechatronics Society (RAMSoc) is a student-run engineering society that aims to provide Mechatronic Engineering opportunities and pathways between mechatronic students and the professional community.",

@@ -5,6 +5,8 @@ import { SITE_OG_IMAGE, SITE_URL } from "@/lib/constants/urls";
 import { getAvailableYears } from "@/server/api/routers/team/service";
 import { api } from "@/trpc/server";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { SocietyStructure } from "./_components/society-structure";
 import Team from "./_components/team";
 
 export async function generateMetadata(
@@ -35,11 +37,15 @@ export default async function TeamPage(props: PageProps<"/team/[year]">) {
   const { year: yearStr } = await props.params;
   const year = parseInt(yearStr, 10);
 
-  // Fetch data in parallel on the server
-  const [teamData, availableYears] = await Promise.all([
-    api.team.getByYear({ year }),
-    api.team.getAvailableYears(),
-  ]);
+  // Validate year is available before fetching team data
+  const availableYears = await api.team.getAvailableYears();
+
+  if (isNaN(year) || !availableYears.includes(year)) {
+    const latestYear = availableYears[availableYears.length - 1];
+    redirect(latestYear ? `/team/${latestYear}` : "/team");
+  }
+
+  const teamData = await api.team.getByYear({ year });
 
   return (
     <div>
@@ -57,6 +63,7 @@ export default async function TeamPage(props: PageProps<"/team/[year]">) {
           </p>
         </div>
       </Container>
+      <SocietyStructure />
       <YearArrowSelector selectedYear={year} availableYears={availableYears} />
       <Team {...teamData} year={year} />
     </div>

@@ -28,12 +28,9 @@ export function Logo({
         className="size-14"
       />
       <div className="flex flex-col leading-tight">
-        <span className="text-sm font-bold opacity-80">UNSW</span>
+        <span className="text-sm font-medium opacity-80">UNSW</span>
         <span className="text-xs opacity-70">
-          <span className="font-bold">R</span>obotics{" "}
-          <span className="font-bold">A</span>nd{" "}
-          <span className="font-bold">M</span>echatronics{" "}
-          <span className="font-bold">Soc</span>iety
+          Robotics And Mechatronics Society
         </span>
       </div>
     </Link>

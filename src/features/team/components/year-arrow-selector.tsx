@@ -19,12 +19,18 @@ export const YearArrowSelector = ({
   const currentYear = new Date().getFullYear();
   const isCurrentYear = currentYear === selectedYear;
 
+  const isFirst = currentIndex <= 0;
+  const isLast = currentIndex === -1 || currentIndex === availableYears.length - 1;
+
   return (
     <div className="bg-primary-50/30 border-primary-200/50 border-b py-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-4 px-4">
         <button
-          onClick={() => router.push(`${selectedYear - 1}/`, { scroll: false })}
-          disabled={currentIndex === 0}
+          onClick={() => {
+            const prevYear = availableYears[currentIndex - 1];
+            if (prevYear != null) router.push(`/team/${prevYear}`, { scroll: false });
+          }}
+          disabled={isFirst}
           className="border-primary-300 hover:bg-primary-50 group flex size-10 items-center justify-center rounded-full border bg-white transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
           aria-label="Previous year"
         >
@@ -48,8 +54,11 @@ export const YearArrowSelector = ({
         </motion.div>
 
         <button
-          onClick={() => router.push(`${selectedYear + 1}/`, { scroll: false })}
-          disabled={currentIndex === availableYears.length - 1}
+          onClick={() => {
+            const nextYear = availableYears[currentIndex + 1];
+            if (nextYear != null) router.push(`/team/${nextYear}`, { scroll: false });
+          }}
+          disabled={isLast}
           className="border-primary-300 hover:bg-primary-50 group flex size-10 items-center justify-center rounded-full border bg-white transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
           aria-label="Next year"
         >
