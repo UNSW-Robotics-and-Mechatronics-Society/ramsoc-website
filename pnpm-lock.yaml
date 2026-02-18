@@ -71,6 +71,9 @@ importers:
       framer-motion:
         specifier: ^12.34.1
         version: 12.34.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      katex:
+        specifier: ^0.16.28
+        version: 0.16.28
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.23
@@ -92,6 +95,9 @@ importers:
       p-queue:
         specifier: ^9.1.0
         version: 9.1.0
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -2441,6 +2447,10 @@ packages:
 
   katex@0.16.21:
     resolution: {integrity: sha512-XvqR7FgOHtWupfMiigNzmh+MgUVmDGU2kXZm899ZkPfcuoPuFxyHmXsgATDpFZDAXCI8tvinaVcDo8PIIJSo4A==}
+    hasBin: true
+
+  katex@0.16.28:
+    resolution: {integrity: sha512-YHzO7721WbmAL6Ov1uzN/l5mY5WWWhJBSW+jq4tkfZfsxmo1hu6frS0EOswvjBUnWE6NtjEs48SFn5CQESRLZg==}
     hasBin: true
 
   keyv@4.5.4:
@@ -5792,6 +5802,10 @@ snapshots:
       object.values: 1.2.1
 
   katex@0.16.21:
+    dependencies:
+      commander: 8.3.0
+
+  katex@0.16.28:
     dependencies:
       commander: 8.3.0
 
