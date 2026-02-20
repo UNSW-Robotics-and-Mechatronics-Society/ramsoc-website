@@ -91,9 +91,6 @@ export function TeamPageClient({
         </div>
       </section>
 
-      {/* ── Society Structure ── */}
-      <SocietyStructure />
-
       {/* ── Year Selector ── */}
       <YearArrowSelector
         selectedYear={year}
@@ -102,6 +99,9 @@ export function TeamPageClient({
 
       {/* ── Team Members ── */}
       <Team {...teamData} year={year} />
+
+      {/* ── Society Structure ── */}
+      <SocietyStructure />
     </>
   );
 }
