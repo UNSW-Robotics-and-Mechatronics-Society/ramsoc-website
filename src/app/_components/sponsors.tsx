@@ -95,14 +95,14 @@ export default function SponsoredSection() {
               href={sponsor.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex size-full items-center justify-center grayscale transition-all duration-300 hover:scale-110 hover:grayscale-0"
+              className="group flex size-full items-center justify-center transition-all duration-300 hover:scale-110"
             >
               <Image
                 src={sponsor.logo}
                 alt={`${sponsor.name} logo`}
                 width={120}
                 height={120}
-                className="object-contain opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+                className="object-contain transition-opacity duration-300"
               />
             </Link>
           ))}

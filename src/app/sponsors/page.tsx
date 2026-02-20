@@ -251,7 +251,7 @@ export default function SponsorsPage() {
                     alt={`${sponsor.name} logo`}
                     width={120}
                     height={120}
-                    className="object-contain opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                    className="object-contain transition-all duration-300"
                   />
                 </Link>
               </motion.div>

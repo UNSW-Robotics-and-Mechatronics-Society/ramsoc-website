@@ -6,20 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Development
-yarn dev              # Start dev server with Turbopack
-yarn build            # Build for production
-yarn start            # Start production server
-yarn preview          # Build and start production server locally
+pnpm dev              # Start dev server with Turbopack
+pnpm build            # Build for production
+pnpm start            # Start production server
+pnpm preview          # Build and start production server locally
 
 # Code Quality
-yarn lint             # Run ESLint
-yarn lint:fix         # Fix ESLint issues automatically
-yarn typecheck        # Run TypeScript type checking
-yarn check            # Run both lint and typecheck
+pnpm lint             # Run ESLint
+pnpm lint:fix         # Fix ESLint issues automatically
+pnpm typecheck        # Run TypeScript type checking
+pnpm check            # Run both lint and typecheck
 
 # Formatting
-yarn format:check     # Check code formatting with Prettier
-yarn format:write     # Auto-format code with Prettier
+pnpm format:check     # Check code formatting with Prettier
+pnpm format:write     # Auto-format code with Prettier
 ```
 
 ## Architecture Overview
@@ -31,7 +31,7 @@ yarn format:write     # Auto-format code with Prettier
 - **API Layer**: tRPC v11 for type-safe server-client communication
 - **State Management**: TanStack Query (React Query) for data fetching/caching
 - **CMS**: Contentful for team/events, Notion for career listings
-- **Package Manager**: Yarn 1.22
+- **Package Manager**: pnpm 10
 
 ### Key Architectural Patterns
 
@@ -181,8 +181,8 @@ Components are configured in [components.json](components.json) with:
 
 ### Code Quality Checks
 Before committing:
-1. Run `yarn check` (lint + typecheck)
-2. Run `yarn format:write` to auto-format
+1. Run `pnpm check` (lint + typecheck)
+2. Run `pnpm format:write` to auto-format
 3. Ensure no TypeScript errors (strict mode is enabled)
 
 ### Commit Convention
