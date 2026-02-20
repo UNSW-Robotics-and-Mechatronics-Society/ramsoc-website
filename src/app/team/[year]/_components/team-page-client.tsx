@@ -34,7 +34,7 @@ export function TeamPageClient({
       {/* ── Hero ── */}
       <section
         ref={heroRef}
-        className="relative flex min-h-[70vh] items-center overflow-hidden bg-primary-950"
+        className="bg-primary-950 relative flex min-h-[70vh] items-center overflow-hidden"
       >
         <motion.div
           className="absolute inset-0 -z-0"
@@ -49,8 +49,8 @@ export function TeamPageClient({
             quality={90}
           />
         </motion.div>
-        <div className="absolute inset-0 bg-primary-700/50" />
-        <div className="absolute inset-0 bg-primary-950/40" />
+        <div className="bg-primary-700/50 absolute inset-0" />
+        <div className="bg-primary-950/40 absolute inset-0" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-white to-transparent" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:px-20">
@@ -58,7 +58,7 @@ export function TeamPageClient({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.1 }}
-            className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-400 uppercase"
+            className="text-primary-400 mb-4 block text-xs font-bold tracking-[0.3em] uppercase"
           >
             // Our Team
           </motion.span>
@@ -76,7 +76,7 @@ export function TeamPageClient({
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.5, ease, delay: 0.35 }}
-            className="my-6 h-1.5 w-16 origin-left bg-primary-400"
+            className="bg-primary-400 my-6 h-1.5 w-16 origin-left"
           />
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -91,17 +91,14 @@ export function TeamPageClient({
         </div>
       </section>
 
-      {/* ── Society Structure ── */}
-      <SocietyStructure />
-
       {/* ── Year Selector ── */}
-      <YearArrowSelector
-        selectedYear={year}
-        availableYears={availableYears}
-      />
+      <YearArrowSelector selectedYear={year} availableYears={availableYears} />
 
       {/* ── Team Members ── */}
       <Team {...teamData} year={year} />
+
+      {/* ── Society Structure ── */}
+      <SocietyStructure />
     </>
   );
 }

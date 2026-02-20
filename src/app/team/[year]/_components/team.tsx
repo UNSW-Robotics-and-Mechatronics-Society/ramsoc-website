@@ -16,7 +16,7 @@ interface TeamSectionProps extends TeamStructure {
 const Team = (team: TeamSectionProps) => {
   return (
     <section
-      className="relative overflow-hidden bg-white py-28 text-primary-950 md:py-36"
+      className="text-primary-950 relative overflow-hidden bg-white py-28 md:py-36"
       key={team.year}
     >
       {/* Faint grid background */}
@@ -38,7 +38,7 @@ const Team = (team: TeamSectionProps) => {
             transition={{ duration: 0.7 }}
             className="mb-12"
           >
-            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            <span className="text-primary-500 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
               // 01 — Leadership
             </span>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-8xl">
@@ -64,7 +64,7 @@ const Team = (team: TeamSectionProps) => {
             transition={{ duration: 0.7 }}
             className="mb-12"
           >
-            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            <span className="text-primary-500 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
               // 02 — Management
             </span>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-8xl">
@@ -89,8 +89,8 @@ const Team = (team: TeamSectionProps) => {
             transition={{ duration: 0.7 }}
             className="mb-12"
           >
-            <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
-              // 03 — Support
+            <span className="text-primary-500 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
+              // 02 — Support
             </span>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-8xl">
               Sub
@@ -109,7 +109,7 @@ const Team = (team: TeamSectionProps) => {
 
       {/* Decorative large number */}
       <motion.span
-        className="pointer-events-none absolute right-8 bottom-12 hidden select-none text-[12rem] font-black leading-none text-primary-500/5 lg:block xl:right-20 xl:text-[16rem]"
+        className="text-primary-500/5 pointer-events-none absolute right-8 bottom-12 hidden text-[12rem] leading-none font-black select-none lg:block xl:right-20 xl:text-[16rem]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
