@@ -35,6 +35,7 @@ const categorizeTeamMembersByRole = (
     "marketing executive",
     "technical executive",
     "industry & sponsorships executive",
+    "socials executive",
   ];
 
   teamMembers.forEach((member) => {
