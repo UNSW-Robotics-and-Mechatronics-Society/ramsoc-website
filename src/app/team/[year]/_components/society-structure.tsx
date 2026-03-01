@@ -53,8 +53,8 @@ export function SocietyStructure() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-400 uppercase">
-            // Structure
+          <span className="text-primary-400 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
+            // 03 - Structure
           </span>
           <h3 className="text-3xl font-bold md:text-4xl">
             How Our Society <span className="text-primary-400">Works</span>
@@ -77,21 +77,17 @@ export function SocietyStructure() {
               className="relative flex w-full flex-col items-center"
             >
               {/* Connector line from previous tier */}
-              {index > 0 && (
-                <div className="h-6 w-px bg-white/10" />
-              )}
+              {index > 0 && <div className="h-6 w-px bg-white/10" />}
 
               {/* Tier card */}
-              <div className="w-full border border-white/10 bg-white/5 p-5 transition-colors hover:border-primary-500/30">
+              <div className="hover:border-primary-500/30 w-full border border-white/10 bg-white/5 p-5 transition-colors">
                 <div className="mb-2 flex items-center gap-3">
-                  <div className="flex size-9 items-center justify-center bg-primary-500 text-white">
+                  <div className="bg-primary-500 flex size-9 items-center justify-center text-white">
                     <tier.icon className="size-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">
-                      {tier.title}
-                    </h4>
-                    <span className="text-xs font-medium tracking-[0.15em] text-primary-400 uppercase">
+                    <h4 className="font-bold text-white">{tier.title}</h4>
+                    <span className="text-primary-400 text-xs font-medium tracking-[0.15em] uppercase">
                       {tier.timing}
                     </span>
                   </div>
@@ -106,7 +102,7 @@ export function SocietyStructure() {
               {index < tiers.length - 1 && (
                 <div className="flex items-center gap-1 pt-1 text-xs text-white/20">
                   <span>▼</span>
-                  <span className="text-xs font-medium tracking-[0.15em] text-primary-400 uppercase">
+                  <span className="text-primary-400 text-xs font-medium tracking-[0.15em] uppercase">
                     recruits
                   </span>
                   <span>▼</span>
@@ -128,12 +124,11 @@ export function SocietyStructure() {
             Interested in joining the team?{" "}
             <Link
               href={
-                process.env.NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL ??
-                "#"
+                process.env.NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL ?? "#"
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-primary-400 underline decoration-primary-500/30 underline-offset-2 transition-colors hover:text-primary-300"
+              className="text-primary-400 decoration-primary-500/30 hover:text-primary-300 font-medium underline underline-offset-2 transition-colors"
             >
               Apply for subcommittee
             </Link>
