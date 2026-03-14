@@ -23,7 +23,7 @@ export default function AboutUs() {
   const highlights = [
     {
       title: "Hands-On Learning",
-      description:t
+      description:
         "We provide hands-on workshops and practical projects, enabling students to bridge the gap between theoretical knowledge and real-world applications.",
       image: "/home/buildathon-workshop.webp",
       alt: "Students working on robotics projects",
