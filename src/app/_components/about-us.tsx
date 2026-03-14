@@ -14,7 +14,7 @@ export default function AboutUs() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   const stats = [
-    { icon: LuUsers, number: "900+", label: "Active Members" },
+    { icon: LuUsers, number: "600+", label: "Active Members" },
     { icon: LuBookOpenText, number: "50+", label: "Workshops Annually" },
     { icon: LuBuilding2, number: "20+", label: "Industry Partners" },
     { icon: LuRocket, number: "30+", label: "Annual Events" },
@@ -23,7 +23,7 @@ export default function AboutUs() {
   const highlights = [
     {
       title: "Hands-On Learning",
-      description:
+      description:t
         "We provide hands-on workshops and practical projects, enabling students to bridge the gap between theoretical knowledge and real-world applications.",
       image: "/home/buildathon-workshop.webp",
       alt: "Students working on robotics projects",
