@@ -58,7 +58,7 @@ const currentSponsors = [
   },
   {
     name: "Yokogawa",
-    logo: "/home/dominos.svg",
+    logo: "/home/yokogawa_logo.png",
     url: "https://www.yokogawa.com/au/",
   },
   {
