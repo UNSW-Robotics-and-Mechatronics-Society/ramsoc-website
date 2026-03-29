@@ -57,9 +57,9 @@ const currentSponsors = [
     url: "https://purematcha.com.au/",
   },
   {
-    name: "Domino's",
+    name: "Yokogawa",
     logo: "/home/dominos.svg",
-    url: "https://www.dominos.com.au/",
+    url: "https://www.yokogawa.com/au/",
   },
   {
     name: "KOKO amuesment",
