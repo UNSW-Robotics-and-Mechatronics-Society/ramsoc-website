@@ -64,7 +64,7 @@ export default function Footer() {
                   RAMSoc
                 </span>
                 <span className="text-[0.6rem] tracking-[0.1em] text-white/30 uppercase">
-                  UNSW Robotics
+                  UNSW Robotics & Mechatronics Society
                 </span>
               </div>
             </Link>
