@@ -69,7 +69,7 @@ const currentSponsors = [
 ];
 
 const stats = [
-  { icon: Users, value: "1,800+", label: "Active Members" },
+  { icon: Users, value: "600+", label: "Active Members" },
   { icon: Calendar, value: "41", label: "Annual Events" },
   { icon: BarChart3, value: "100k+", label: "Monthly Social Views" },
   { icon: TrendingUp, value: "20.3%", label: "Female Engagement Growth" },
@@ -79,7 +79,7 @@ const achievements = [
   "2025 ARC Clubs Outstanding Event Series Award (Sumobots) - Winners",
   "2025 ARC Club of the Year Award - Runners Up",
   "Largest robotics-related society in NSW",
-  "Over 300 students in annual competitions",
+  "Over 350 students in annual competitions",
 ];
 
 const featuredEvents = [
