@@ -87,6 +87,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "canvas",
       "msw",
       "sharp",
       "unrs-resolver"
