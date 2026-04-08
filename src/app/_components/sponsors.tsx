@@ -7,48 +7,58 @@ import Link from "next/link";
 import { InfiniteMovingCards } from "@/components/infinite-moving-cards";
 
 export default function SponsoredSection() {
-  const sponsors = [
-    {
-      name: "UNSW Arc",
-      logo: "/home/unsw-arc-logo.png",
-      url: "https://www.arc.unsw.edu.au/",
-    },
-    {
-      name: "UNSW Engineering",
-      logo: "/home/unsw-engineering-logo.png",
-      url: "https://www.engineering.unsw.edu.au/",
-    },
-    {
-      name: "UNSW Founders",
-      logo: "/home/unsw-founders-logo.png",
-      url: "https://www.founders.unsw.edu.au/",
-    },
-    {
-      name: "Engineers Australia",
-      logo: "/home/engineers-australia-logo.png",
-      url: "https://www.engineersaustralia.org.au/",
-    },
-    {
-      name: "Jinro",
-      logo: "/home/Jinro_logo_-_no_background.png",
-      url: "https://jinro.com.au/",
-    },
-    {
-      name: "Pure Matcha",
-      logo: "/home/purematcha-logo.avif",
-      url: "https://purematcha.com.au/",
-    },
-    {
-      name: "Domino's",
-      logo: "/home/dominos.svg",
-      url: "https://www.dominos.com.au/",
-    },
-    {
-      name: "KOKO amuesment",
-      logo: "/home/koko.jpg",
-      url: "https://kokoamusement.com.au/",
-    },
-  ];
+  const currentSponsors = [
+  {
+    name: "UNSW Arc",
+    logo: "/home/unsw-arc-logo.png",
+    url: "https://www.arc.unsw.edu.au/",
+  },
+  {
+    name: "UNSW Engineering",
+    logo: "/home/unsw-engineering-logo.png",
+    url: "https://www.engineering.unsw.edu.au/",
+  },
+  {
+    name: "UNSW School of Mechanical & Manufacturing Engineering",
+    logo: "/home/UNSW_MME_logo.jpeg",
+    url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
+  },
+  {
+    name: "UNSW School of Electrical Engineering and Telecommunications",
+    logo: "/home/UNSW_EET_logo.png",
+    url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
+  },
+  {
+    name: "UNSW Founders",
+    logo: "/home/unsw-founders-logo.png",
+    url: "https://www.founders.unsw.edu.au/",
+  },
+  {
+    name: "Engineers Australia",
+    logo: "/home/engineers-australia-logo.png",
+    url: "https://www.engineersaustralia.org.au/",
+  },
+  {
+    name: "Jinro",
+    logo: "/home/Jinro_logo_-_no_background.png",
+    url: "https://jinro.com.au/",
+  },
+  {
+    name: "Pure Matcha",
+    logo: "/home/purematcha-logo.avif",
+    url: "https://purematcha.com.au/",
+  },
+  {
+    name: "Yokogawa",
+    logo: "/home/yokogawa_logo.png",
+    url: "https://www.yokogawa.com/au/",
+  },
+  {
+    name: "KOKO amuesment",
+    logo: "/home/koko.jpg",
+    url: "https://kokoamusement.com.au/",
+  },
+];
 
   return (
     <section className="relative bg-white py-24" id="sponsors">
