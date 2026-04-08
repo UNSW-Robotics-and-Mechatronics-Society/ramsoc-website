@@ -19,6 +19,16 @@ export default function SponsoredSection() {
       url: "https://www.engineering.unsw.edu.au/",
     },
     {
+      name: "UNSW School of Mechanical & Manufacturing Engineering",
+      logo: "/home/UNSW_MME_logo.jpeg",
+      url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
+    },
+    {
+      name: "UNSW School of Electrical Engineering and Telecommunications",
+      logo: "/home/UNSW_EET_logo.png",
+      url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
+    },
+    {
       name: "UNSW Founders",
       logo: "/home/unsw-founders-logo.png",
       url: "https://www.founders.unsw.edu.au/",
@@ -39,9 +49,9 @@ export default function SponsoredSection() {
       url: "https://purematcha.com.au/",
     },
     {
-      name: "Domino's",
-      logo: "/home/dominos.svg",
-      url: "https://www.dominos.com.au/",
+      name: "Yokogawa",
+      logo: "/home/yokogawa_logo.png",
+      url: "https://www.yokogawa.com/au/",
     },
     {
       name: "KOKO amuesment",
@@ -63,10 +73,10 @@ export default function SponsoredSection() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+          <span className="text-primary-500 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
             // 05 — Partners
           </span>
-          <h2 className="mb-4 text-4xl font-bold text-primary-950 md:text-5xl lg:text-6xl">
+          <h2 className="text-primary-950 mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
             Our Sponsors
             <br />
             <span className="text-primary-500">&amp; Partners</span>
