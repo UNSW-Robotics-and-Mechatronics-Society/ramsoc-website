@@ -38,12 +38,12 @@ const currentSponsors = [
   },
   {
     name: "UNSW School of Mechanical & Manufacturing Engineering",
-    logo: "/home/unsw-engineering-logo.png",
+    logo: "/home/UNSW_MME_logo.jpeg",
     url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
   },
   {
     name: "UNSW School of Electrical Engineering and Telecommunications",
-    logo: "/home/unsw-engineering-logo.png",
+    logo: "/home/UNSW_EET_logo.png",
     url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
   },
   {
