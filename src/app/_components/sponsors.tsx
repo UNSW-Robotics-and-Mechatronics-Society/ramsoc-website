@@ -7,58 +7,58 @@ import Link from "next/link";
 import { InfiniteMovingCards } from "@/components/infinite-moving-cards";
 
 export default function SponsoredSection() {
-  const currentSponsors = [
-  {
-    name: "UNSW Arc",
-    logo: "/home/unsw-arc-logo.png",
-    url: "https://www.arc.unsw.edu.au/",
-  },
-  {
-    name: "UNSW Engineering",
-    logo: "/home/unsw-engineering-logo.png",
-    url: "https://www.engineering.unsw.edu.au/",
-  },
-  {
-    name: "UNSW School of Mechanical & Manufacturing Engineering",
-    logo: "/home/UNSW_MME_logo.jpeg",
-    url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
-  },
-  {
-    name: "UNSW School of Electrical Engineering and Telecommunications",
-    logo: "/home/UNSW_EET_logo.png",
-    url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
-  },
-  {
-    name: "UNSW Founders",
-    logo: "/home/unsw-founders-logo.png",
-    url: "https://www.founders.unsw.edu.au/",
-  },
-  {
-    name: "Engineers Australia",
-    logo: "/home/engineers-australia-logo.png",
-    url: "https://www.engineersaustralia.org.au/",
-  },
-  {
-    name: "Jinro",
-    logo: "/home/Jinro_logo_-_no_background.png",
-    url: "https://jinro.com.au/",
-  },
-  {
-    name: "Pure Matcha",
-    logo: "/home/purematcha-logo.avif",
-    url: "https://purematcha.com.au/",
-  },
-  {
-    name: "Yokogawa",
-    logo: "/home/yokogawa_logo.png",
-    url: "https://www.yokogawa.com/au/",
-  },
-  {
-    name: "KOKO amuesment",
-    logo: "/home/koko.jpg",
-    url: "https://kokoamusement.com.au/",
-  },
-];
+  const sponsors = [
+    {
+      name: "UNSW Arc",
+      logo: "/home/unsw-arc-logo.png",
+      url: "https://www.arc.unsw.edu.au/",
+    },
+    {
+      name: "UNSW Engineering",
+      logo: "/home/unsw-engineering-logo.png",
+      url: "https://www.engineering.unsw.edu.au/",
+    },
+    {
+      name: "UNSW School of Mechanical & Manufacturing Engineering",
+      logo: "/home/UNSW_MME_logo.jpeg",
+      url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
+    },
+    {
+      name: "UNSW School of Electrical Engineering and Telecommunications",
+      logo: "/home/UNSW_EET_logo.png",
+      url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
+    },
+    {
+      name: "UNSW Founders",
+      logo: "/home/unsw-founders-logo.png",
+      url: "https://www.founders.unsw.edu.au/",
+    },
+    {
+      name: "Engineers Australia",
+      logo: "/home/engineers-australia-logo.png",
+      url: "https://www.engineersaustralia.org.au/",
+    },
+    {
+      name: "Jinro",
+      logo: "/home/Jinro_logo_-_no_background.png",
+      url: "https://jinro.com.au/",
+    },
+    {
+      name: "Pure Matcha",
+      logo: "/home/purematcha-logo.avif",
+      url: "https://purematcha.com.au/",
+    },
+    {
+      name: "Yokogawa",
+      logo: "/home/yokogawa_logo.png",
+      url: "https://www.yokogawa.com/au/",
+    },
+    {
+      name: "KOKO amuesment",
+      logo: "/home/koko.jpg",
+      url: "https://kokoamusement.com.au/",
+    },
+  ];
 
   return (
     <section className="relative bg-white py-24" id="sponsors">
@@ -73,10 +73,10 @@ export default function SponsoredSection() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+          <span className="text-primary-500 mb-4 block text-xs font-bold tracking-[0.3em] uppercase">
             // 05 — Partners
           </span>
-          <h2 className="mb-4 text-4xl font-bold text-primary-950 md:text-5xl lg:text-6xl">
+          <h2 className="text-primary-950 mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
             Our Sponsors
             <br />
             <span className="text-primary-500">&amp; Partners</span>
