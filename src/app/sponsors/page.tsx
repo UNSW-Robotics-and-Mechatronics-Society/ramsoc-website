@@ -2,13 +2,13 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  Award,
-  Building2,
-  Calendar,
-  Mail,
-  Target,
-  TrendingUp,
-  Users,
+    Award,
+    Building2,
+    Calendar,
+    Mail,
+    Target,
+    TrendingUp,
+    Users,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,65 +18,15 @@ import { HiArrowRight } from "react-icons/hi2";
 import { BarChart3 } from "lucide-react";
 
 import {
-  SponsorshipBenefitsTable,
-  SponsorshipTierCard,
+    SponsorshipBenefitsTable,
+    SponsorshipTierCard,
 } from "@/features/sponsors/components";
+import { CURRENT_SPONSORS } from "@/features/sponsors/data";
 import { SPONSORSHIP_TIERS } from "@/features/sponsors/types";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const currentSponsors = [
-  {
-    name: "UNSW Arc",
-    logo: "/home/unsw-arc-logo.png",
-    url: "https://www.arc.unsw.edu.au/",
-  },
-  {
-    name: "UNSW Engineering",
-    logo: "/home/unsw-engineering-logo.png",
-    url: "https://www.engineering.unsw.edu.au/",
-  },
-  {
-    name: "UNSW School of Mechanical & Manufacturing Engineering",
-    logo: "/home/UNSW_MME_logo.jpeg",
-    url: "https://www.unsw.edu.au/engineering/our-schools/mechanical-and-manufacturing-engineering",
-  },
-  {
-    name: "UNSW School of Electrical Engineering and Telecommunications",
-    logo: "/home/UNSW_EET_logo.png",
-    url: "https://www.unsw.edu.au/engineering/our-schools/electrical-engineering-telecommunications",
-  },
-  {
-    name: "UNSW Founders",
-    logo: "/home/unsw-founders-logo.png",
-    url: "https://www.founders.unsw.edu.au/",
-  },
-  {
-    name: "Engineers Australia",
-    logo: "/home/engineers-australia-logo.png",
-    url: "https://www.engineersaustralia.org.au/",
-  },
-  {
-    name: "Jinro",
-    logo: "/home/Jinro_logo_-_no_background.png",
-    url: "https://jinro.com.au/",
-  },
-  {
-    name: "Pure Matcha",
-    logo: "/home/purematcha-logo.avif",
-    url: "https://purematcha.com.au/",
-  },
-  {
-    name: "Yokogawa",
-    logo: "/home/yokogawa_logo.png",
-    url: "https://www.yokogawa.com/au/",
-  },
-  {
-    name: "KOKO amuesment",
-    logo: "/home/koko.jpg",
-    url: "https://kokoamusement.com.au/",
-  },
-];
+const currentSponsors = CURRENT_SPONSORS;
 
 const stats = [
   { icon: Users, value: "600+", label: "Active Members" },
