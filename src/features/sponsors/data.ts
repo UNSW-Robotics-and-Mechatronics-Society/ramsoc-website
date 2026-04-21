@@ -57,7 +57,7 @@ export const CURRENT_SPONSORS: Sponsor[] = [
   },
   {
     name: "UNSW School of Computer Science and Engineering",
-    logo: "/home/cse-pic.png",
+    logo: "/home/cse_pic.png",
     url: "https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering",
   },
 ];
