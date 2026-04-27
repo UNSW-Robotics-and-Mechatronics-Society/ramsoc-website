@@ -1,0 +1,520 @@
+.profileCardRoot {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0.5;
+  --pointer-from-left: 0.5;
+  --card-opacity: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --background-x: 50%;
+  --background-y: 50%;
+  --grain: none;
+  --icon: none;
+  --behind-glow-color: rgba(125, 190, 255, 0.67);
+  --behind-glow-size: 25%;
+  --inner-gradient: none;
+  --sunpillar-1: hsl(2, 100%, 73%);
+  --sunpillar-2: hsl(53, 100%, 69%);
+  --sunpillar-3: hsl(93, 100%, 69%);
+  --sunpillar-4: hsl(176, 100%, 76%);
+  --sunpillar-5: hsl(228, 100%, 74%);
+  --sunpillar-6: hsl(283, 100%, 73%);
+  --sunpillar-clr-1: var(--sunpillar-1);
+  --sunpillar-clr-2: var(--sunpillar-2);
+  --sunpillar-clr-3: var(--sunpillar-3);
+  --sunpillar-clr-4: var(--sunpillar-4);
+  --sunpillar-clr-5: var(--sunpillar-5);
+  --sunpillar-clr-6: var(--sunpillar-6);
+  --card-radius: 30px;
+}
+
+:global(.pc-card-wrapper) {
+  perspective: 500px;
+  position: relative;
+  touch-action: none;
+  transform: translate3d(0, 0, 0.1px);
+}
+
+:global(.pc-behind) {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    var(--behind-glow-color) 0%,
+    transparent var(--behind-glow-size)
+  );
+  filter: blur(50px) saturate(1.1);
+  opacity: calc(0.8 * var(--card-opacity));
+  transition: opacity 200ms ease;
+}
+
+:global(.pc-card-wrapper:hover),
+:global(.pc-card-wrapper:has(.pc-card-shell.active)) {
+  --card-opacity: 1;
+}
+
+:global(.pc-card) {
+  position: relative;
+  display: grid;
+  height: min(70svh, 500px);
+  max-height: 500px;
+  aspect-ratio: 0.718;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: rgba(0, 0, 0, 0.9);
+  background-blend-mode: color-dodge, normal, normal, normal;
+  backface-visibility: hidden;
+  box-shadow: rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px)
+    calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  transition: transform 1s ease;
+  animation: pc-glow-bg 12s linear infinite;
+}
+
+:global(.pc-card:hover),
+:global(.pc-card-shell.active .pc-card) {
+  transform: translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+  transition: none;
+}
+
+:global(.pc-card-shell.entering .pc-card) {
+  transition: transform 180ms ease-out;
+}
+
+:global(.pc-card-shell) {
+  position: relative;
+  z-index: 1;
+}
+
+:global(.pc-card *) {
+  display: grid;
+  grid-area: 1 / -1;
+  border-radius: var(--card-radius);
+  pointer-events: none;
+}
+
+:global(.pc-inside) {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  background-image: var(--inner-gradient);
+  transform: none;
+}
+
+:global(.pc-shine) {
+  z-index: 3;
+  overflow: hidden;
+  background: transparent;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      var(--sunpillar-clr-1) 5%,
+      var(--sunpillar-clr-2) 10%,
+      var(--sunpillar-clr-3) 15%,
+      var(--sunpillar-clr-4) 20%,
+      var(--sunpillar-clr-5) 25%,
+      var(--sunpillar-clr-6) 30%,
+      var(--sunpillar-clr-1) 35%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      #0e152e 0%,
+      hsl(180, 10%, 60%) 3.8%,
+      hsl(180, 29%, 66%) 4.5%,
+      hsl(180, 10%, 60%) 5.2%,
+      #0e152e 10%,
+      #0e152e 12%
+    ),
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x) var(--pointer-y),
+      hsla(0, 0%, 0%, 0.1) 12%,
+      hsla(0, 0%, 0%, 0.15) 20%,
+      hsla(0, 0%, 0%, 0.25) 120%
+    );
+  background-repeat: repeat;
+  background-position:
+    0 var(--background-y),
+    var(--background-x) var(--background-y),
+    center;
+  background-size:
+    500% 500%,
+    300% 300%,
+    200% 200%;
+  background-blend-mode: color, hard-light;
+  mask-image: var(--icon);
+  mask-mode: luminance;
+  mask-repeat: repeat;
+  mask-size: 150%;
+  mask-position: top calc(200% - (var(--background-y) * 5)) left
+    calc(100% - var(--background-x));
+  mix-blend-mode: color-dodge;
+  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5);
+  transform: translate3d(0, 0, 1px);
+  transition: filter 0.8s ease;
+  animation: pc-holo-bg 18s linear infinite;
+}
+
+:global(.pc-shine::before),
+:global(.pc-shine::after) {
+  content: "";
+  grid-area: 1 / 1;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+:global(.pc-shine::before) {
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--sunpillar-4),
+      var(--sunpillar-5),
+      var(--sunpillar-6),
+      var(--sunpillar-1),
+      var(--sunpillar-2),
+      var(--sunpillar-3)
+    ),
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      hsl(0, 0%, 70%) 0%,
+      hsla(0, 0%, 30%, 0.2) 90%
+    ),
+    var(--grain);
+  background-position:
+    var(--pointer-x) var(--pointer-y),
+    center,
+    calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
+  background-size:
+    250% 250%,
+    100% 100%,
+    220px 220px;
+  background-blend-mode: color-dodge;
+  filter: brightness(calc(2 - var(--pointer-from-center)))
+    contrast(calc(var(--pointer-from-center) + 2))
+    saturate(calc(0.5 + var(--pointer-from-center)));
+  mix-blend-mode: luminosity;
+}
+
+:global(.pc-shine::after) {
+  background-position:
+    0 var(--background-y),
+    calc(var(--background-x) * 0.4) calc(var(--background-y) * 0.5),
+    center;
+  background-size:
+    200% 300%,
+    700% 700%,
+    100% 100%;
+  mix-blend-mode: difference;
+  filter: brightness(0.8) contrast(1.5);
+}
+
+:global(.pc-card:hover .pc-shine),
+:global(.pc-card-shell.active .pc-shine) {
+  filter: brightness(0.85) contrast(1.5) saturate(0.5);
+  animation-play-state: paused;
+}
+
+:global(.pc-card:hover .pc-shine::before),
+:global(.pc-card-shell.active .pc-shine::before),
+:global(.pc-card:hover .pc-shine::after),
+:global(.pc-card-shell.active .pc-shine::after) {
+  opacity: 1;
+}
+
+:global(.pc-glare) {
+  z-index: 4;
+  overflow: hidden;
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    hsl(248, 25%, 80%) 12%,
+    hsla(207, 40%, 30%, 0.8) 90%
+  );
+  mix-blend-mode: overlay;
+  filter: brightness(0.8) contrast(1.2);
+  transform: translate3d(0, 0, 1.1px);
+}
+
+:global(.pc-avatar-content) {
+  overflow: visible;
+  backface-visibility: hidden;
+  transform: translateZ(2);
+}
+
+:global(.pc-avatar-content .avatar) {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 100%;
+  backface-visibility: hidden;
+  object-fit: contain;
+  object-position: bottom center;
+  transform-origin: 50% 100%;
+  transform: translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px))
+    translateZ(0) scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02))
+    scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
+  transition: transform 120ms ease-out;
+  will-change: transform;
+}
+
+:global(.pc-avatar-content::before) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+:global(.pc-user-info) {
+  --ui-inset: 20px;
+  --ui-radius-bias: 6px;
+  position: absolute;
+  right: var(--ui-inset);
+  bottom: var(--ui-inset);
+  left: var(--ui-inset);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: calc(
+    max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias))
+  );
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  pointer-events: auto;
+}
+
+:global(.pc-user-details) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+:global(.pc-mini-avatar) {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+:global(.pc-mini-avatar img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+:global(.pc-user-text) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+:global(.pc-handle) {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:global(.pc-status) {
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+:global(.pc-contact-btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: rgba(13, 38, 49, 0.45);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+}
+
+:global(.pc-contact-btn:hover) {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(41, 171, 226, 0.5);
+  transform: translateY(-1px);
+}
+
+:global(.pc-content:not(.pc-avatar-content)) {
+  position: relative;
+  z-index: 5;
+  max-height: 100%;
+  overflow: hidden;
+  text-align: center;
+  transform: translate3d(
+    calc(var(--pointer-from-left) * -6px + 3px),
+    calc(var(--pointer-from-top) * -6px + 3px),
+    0.1px
+  );
+}
+
+:global(.pc-details) {
+  position: absolute;
+  top: 3em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+:global(.pc-details h3) {
+  margin: 0;
+  color: #7bdaf1;
+  font-size: min(5svh, 3em);
+  font-weight: 700;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+:global(.pc-details p) {
+  position: relative;
+  top: -12px;
+  width: min-content;
+  margin: 0 auto;
+  color: #4cc6ed;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+  white-space: nowrap;
+}
+
+@keyframes pc-glow-bg {
+  0% {
+    --bgrotate: 0deg;
+  }
+
+  100% {
+    --bgrotate: 360deg;
+  }
+}
+
+@keyframes pc-holo-bg {
+  0% {
+    background-position:
+      0 var(--background-y),
+      0 0,
+      center;
+  }
+
+  100% {
+    background-position:
+      0 var(--background-y),
+      90% 90%,
+      center;
+  }
+}
+
+@media (max-width: 768px) {
+  :global(.pc-card) {
+    height: 70svh;
+    max-height: 450px;
+  }
+
+  :global(.pc-details) {
+    top: 2em;
+  }
+
+  :global(.pc-details h3) {
+    font-size: min(4svh, 2.5em);
+  }
+
+  :global(.pc-details p) {
+    font-size: 14px;
+  }
+
+  :global(.pc-user-info) {
+    --ui-inset: 15px;
+    padding: 10px 12px;
+  }
+
+  :global(.pc-mini-avatar) {
+    width: 28px;
+    height: 28px;
+  }
+
+  :global(.pc-user-details) {
+    gap: 10px;
+  }
+
+  :global(.pc-handle) {
+    font-size: 13px;
+  }
+
+  :global(.pc-status) {
+    font-size: 10px;
+  }
+
+  :global(.pc-contact-btn) {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  :global(.pc-card) {
+    height: 60svh;
+    max-height: 380px;
+  }
+
+  :global(.pc-details) {
+    top: 1.5em;
+  }
+
+  :global(.pc-details h3) {
+    font-size: min(3.5svh, 2em);
+  }
+
+  :global(.pc-details p) {
+    top: -8px;
+    font-size: 12px;
+  }
+
+  :global(.pc-user-info) {
+    --ui-inset: 12px;
+    padding: 8px 10px;
+  }
+
+  :global(.pc-mini-avatar) {
+    width: 24px;
+    height: 24px;
+  }
+
+  :global(.pc-user-details) {
+    gap: 8px;
+  }
+
+  :global(.pc-handle) {
+    font-size: 12px;
+  }
+
+  :global(.pc-status) {
+    font-size: 9px;
+  }
+
+  :global(.pc-contact-btn) {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
