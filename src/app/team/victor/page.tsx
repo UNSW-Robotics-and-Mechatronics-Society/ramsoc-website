@@ -4,7 +4,11 @@ import Script from "next/script";
 
 import AnimatedContent from "./_components/AnimatedContent";
 import FlipCard from "./_components/FlipCard";
-import VictorShapeGrid from "./_components/VictorShapeGrid";
+import MagicRingsP2AgentX from "./_components/MagicRingsP2AgentX";
+import P2AgentXLogoButton from "./_components/P2AgentXLogoButton";
+import ShapeGridP2AgentX from "./_components/ShapeGridP2AgentX";
+import ShapeGridRoboCup from "./_components/ShapeGridRoboCup";
+import UserInteractiveAppCarousel from "./_components/UserInteractiveAppCarousel";
 import VictorProfileCard from "./_components/VictorProfileCard";
 
 export default function VictorPage() {
@@ -50,8 +54,8 @@ export default function VictorPage() {
                 <p>4th Year Robotics and Mechatronics Engineering Student</p>
                 <ul className="list-disc space-y-2 pl-6 text-lg font-bold text-white">
                   <li>RoboCup Rescue Team Lead & Thesis Project</li>
-                  <li>Mechatronics Intern at Polymaya</li>
                   <li>UNSW Taste of Research Scholarship with P2AgentX</li>
+                  <li>Mechatronics Intern at Polymaya</li>
                   <li>Student Mentor/EEA at Engineers Australia</li>
                 </ul>
               </div>
@@ -62,7 +66,7 @@ export default function VictorPage() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 opacity-70">
-          <VictorShapeGrid />
+          <ShapeGridRoboCup />
         </div>
 
         <section className="relative z-10 mx-auto max-w-6xl px-3 py-16 md:px-5">
@@ -101,10 +105,10 @@ export default function VictorPage() {
               {[
                 {
                   title: "Teleop-Control",
-                  src: "/team/victor/VIP_controller.jpg",
-                  alt: "Controller interface",
+                  src: "/team/victor/Web_controller.jpg",
+                  alt: "Web controller interface",
                   description:
-                    "A logitech controller that has been programmed with the movement capeabilities given by the base Unitree Go2, used to test and control the robot's movement.",
+                    "This interface lets me remotely command the robot and test how different locomotion behaviors respond during rescue-style missions.",
                   className: "md:col-start-1 md:row-start-1 md:px-6",
                 },
                 {
@@ -112,7 +116,7 @@ export default function VictorPage() {
                   src: "/team/victor/GLIM_SLAM.jpg",
                   alt: "SLAM map",
                   description:
-                    "SLAM(Simultaneous Localization and Mapping) is used to build and refine spatial maps so the robot can localise itself and autonomously navigate.",
+                    "I use SLAM to build and refine spatial maps so the robot can localise itself and navigate through complex, changing environments.",
                   className: "md:col-start-2 md:row-start-1 md:px-6",
                 },
                 {
@@ -187,6 +191,106 @@ export default function VictorPage() {
                 sizes="(min-width: 768px) 260px, 210px"
                 className="object-cover"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative w-full overflow-hidden bg-white py-12 md:py-16">
+        <div className="pointer-events-none absolute inset-0 opacity-60">
+          <ShapeGridP2AgentX />
+        </div>
+        {/* Left diagonal blue panel */}
+        <div
+          className="absolute inset-y-0 left-0 z-10 w-full bg-[#1353af]"
+          style={{ clipPath: "polygon(0 0, 65% 0, 0 92%)" }}
+        >
+          <video
+            src="/team/victor/P2DingoVideo.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          <div className="bg-primary-700/45 absolute inset-0 mix-blend-multiply" />
+          <div className="bg-primary-950/50 absolute inset-0" />
+        </div>
+
+        <div className="relative z-20 mx-auto max-w-6xl px-5 md:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            {/* Left visual/logo area */}
+            <div className="relative min-h-[220px] md:min-h-[280px] lg:min-h-[420px]">
+              <div className="pointer-events-none absolute left-[28%] top-[37%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 opacity-95 md:h-[320px] md:w-[320px]">
+                <MagicRingsP2AgentX
+                  color="#5b4eea"
+                  colorTwo="#63bbf1"
+                  ringCount={3}
+                  speed={0.6}
+                  attenuation={10}
+                  lineThickness={2}
+                  baseRadius={0.2}
+                  radiusStep={0.1}
+                  scaleRate={0.14}
+                  opacity={1}
+                  blur={0}
+                  noiseAmount={0.1}
+                  rotation={0}
+                  ringGap={1.5}
+                  fadeIn={0.7}
+                  fadeOut={0.5}
+                  followMouse={false}
+                  mouseInfluence={0.2}
+                  hoverScale={1.2}
+                  parallax={0.05}
+                  clickBurst
+                />
+              </div>
+              <div className="absolute left-[28%] top-[42%]">
+                <P2AgentXLogoButton />
+              </div>
+            </div>
+
+            {/* Right content */}
+            <div className="space-y-8 lg:pt-0">
+              <div className="ml-auto max-w-2xl border-r-4 border-primary-400 py-2 pr-5 text-center lg:text-right">
+                <p className="text-primary-400 text-2xl font-extrabold tracking-tight md:text-2xl">
+                  P2AGENTX
+                </p>
+
+                <h2 className="text-primary-950 mt-4 text-2xl font-bold leading-tight md:text-4xl">
+                  UNSW Taste of Research
+                  <br /> 
+                  Scholarship
+                </h2>
+
+                <p className="mt-4 text-base leading-relaxed text-neutral-500 md:text-xl">
+                  Development of SLAM-Based Autonomous
+                  <br /> 
+                  Inspection System for Solar Power Plants
+                </p>
+              </div>
+
+              {/* Cards row */}
+              <div className="grid gap-8 md:grid-cols-[320px_400px] md:justify-center md:items-start">
+                {/* P2Sim card - matches regular site card size */}
+                <article className="space-y-3">
+                  <h3 className="text-primary-600 text-center text-xl font-bold italic tracking-tight md:text-3xl">
+                    Working in Isaac Sim
+                  </h3>
+
+                  <div className="mx-auto w-full max-w-[320px]">
+                    <FlipCard
+                      title="Working in Isaac Sim"
+                      src="/team/victor/P2Sim.jpg"
+                      alt="Isaac Sim working environment"
+                      description="Isaac Sim is used to simulate the environment and test algorithims before deploying to the real robot."
+                    />
+                  </div>
+                </article>
+
+                <UserInteractiveAppCarousel />
+              </div>
             </div>
           </div>
         </div>

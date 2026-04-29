@@ -2,13 +2,13 @@
 
 import ShapeGrid from "@/components/ShapeGrid";
 
-export default function VictorShapeGrid() {
+export default function ShapeGridP2AgentX() {
   return (
     <div className="relative h-full w-full">
       <ShapeGrid
         speed={0.3}
         squareSize={60}
-        direction="right"
+        direction="diagonal"
         borderColor="#deebff"
         hoverFillColor="#d2d2f1"
         shape="square"
