@@ -6,18 +6,14 @@ import AnimatedContent from "./_components/AnimatedContent";
 import FlipCard from "./_components/FlipCard";
 import MagicRingsP2AgentX from "./_components/MagicRingsP2AgentX";
 import P2AgentXLogoButton from "./_components/P2AgentXLogoButton";
-import ShapeGridP2AgentX from "./_components/ShapeGridP2AgentX";
-import ShapeGridRoboCup from "./_components/ShapeGridRoboCup";
 import UserInteractiveAppCarousel from "./_components/UserInteractiveAppCarousel";
 import VictorProfileCard from "./_components/VictorProfileCard";
+import VictorShapeGrid from "./_components/VictorShapeGrid";
 
 export default function VictorPage() {
   return (
     <main className="w-full py-12">
-      <Script
-        src="https://elfsightcdn.com/platform.js"
-        strategy="lazyOnload"
-      />
+      <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
 
       <div className="mx-auto max-w-5xl px-4 md:px-8">
         <Link
@@ -66,7 +62,7 @@ export default function VictorPage() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 opacity-70">
-          <ShapeGridRoboCup />
+          <VictorShapeGrid direction="left" />
         </div>
 
         <section className="relative z-10 mx-auto max-w-6xl px-3 py-16 md:px-5">
@@ -82,8 +78,8 @@ export default function VictorPage() {
                 />
               </div>
 
-              <div className="relative border-l-4 border-primary-500 py-2 pl-5 md:pl-7">
-                <h2 className="text-primary-950 mb-4 text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+              <div className="border-primary-500 relative border-l-4 py-2 pl-5 md:pl-7">
+                <h2 className="text-primary-950 mb-4 text-3xl leading-tight font-bold tracking-tight md:text-4xl">
                   RoboCup Rescue Team Lead & Thesis Project
                 </h2>
                 <ul className="text-primary-950 list-disc space-y-1 pl-5 text-base leading-relaxed md:text-lg">
@@ -99,8 +95,8 @@ export default function VictorPage() {
             </div>
 
             <div className="relative grid gap-8 md:grid-cols-3 md:items-start">
-              <div className="bg-primary-400 absolute left-0 top-2 hidden h-18 w-1 md:block" />
-              <div className="bg-primary-400 absolute bottom-4 right-0 hidden h-18 w-1 md:block" />
+              <div className="bg-primary-400 absolute top-2 left-0 hidden h-18 w-1 md:block" />
+              <div className="bg-primary-400 absolute right-0 bottom-4 hidden h-18 w-1 md:block" />
 
               {[
                 {
@@ -198,7 +194,7 @@ export default function VictorPage() {
 
       <section className="relative w-full overflow-hidden bg-white py-12 md:py-16">
         <div className="pointer-events-none absolute inset-0 opacity-60">
-          <ShapeGridP2AgentX />
+          <VictorShapeGrid direction="diagonal" />
         </div>
         {/* Left diagonal blue panel */}
         <div
@@ -221,7 +217,7 @@ export default function VictorPage() {
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             {/* Left visual/logo area */}
             <div className="relative min-h-[220px] md:min-h-[280px] lg:min-h-[420px]">
-              <div className="pointer-events-none absolute left-[28%] top-[37%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 opacity-95 md:h-[320px] md:w-[320px]">
+              <div className="pointer-events-none absolute top-[37%] left-[28%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 opacity-95 md:h-[320px] md:w-[320px]">
                 <MagicRingsP2AgentX
                   color="#5b4eea"
                   colorTwo="#63bbf1"
@@ -246,36 +242,36 @@ export default function VictorPage() {
                   clickBurst
                 />
               </div>
-              <div className="absolute left-[28%] top-[42%]">
+              <div className="absolute top-[42%] left-[28%]">
                 <P2AgentXLogoButton />
               </div>
             </div>
 
             {/* Right content */}
             <div className="space-y-8 lg:pt-0">
-              <div className="ml-auto max-w-2xl border-r-4 border-primary-400 py-2 pr-5 text-center lg:text-right">
+              <div className="border-primary-400 ml-auto max-w-2xl border-r-4 py-2 pr-5 text-center lg:text-right">
                 <p className="text-primary-400 text-2xl font-extrabold tracking-tight md:text-2xl">
                   P2AGENTX
                 </p>
 
-                <h2 className="text-primary-950 mt-4 text-2xl font-bold leading-tight md:text-4xl">
+                <h2 className="text-primary-950 mt-4 text-2xl leading-tight font-bold md:text-4xl">
                   UNSW Taste of Research
-                  <br /> 
+                  <br />
                   Scholarship
                 </h2>
 
                 <p className="mt-4 text-base leading-relaxed text-neutral-500 md:text-xl">
                   Development of SLAM-Based Autonomous
-                  <br /> 
+                  <br />
                   Inspection System for Solar Power Plants
                 </p>
               </div>
 
               {/* Cards row */}
-              <div className="grid gap-8 md:grid-cols-[320px_400px] md:justify-center md:items-start">
+              <div className="grid gap-8 md:grid-cols-[320px_400px] md:items-start md:justify-center">
                 {/* P2Sim card - matches regular site card size */}
                 <article className="space-y-3">
-                  <h3 className="text-primary-600 text-center text-xl font-bold italic tracking-tight md:text-3xl">
+                  <h3 className="text-primary-600 text-center text-xl font-bold tracking-tight italic md:text-3xl">
                     Working in Isaac Sim
                   </h3>
 
@@ -292,6 +288,135 @@ export default function VictorPage() {
                 <UserInteractiveAppCarousel />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative -mt-6 w-full overflow-hidden bg-white pb-12 md:-mt-8 md:pb-16">
+        <div className="pointer-events-none absolute inset-0 opacity-60">
+          <VictorShapeGrid direction="up" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-[1280px] px-2 md:px-3">
+          <div className="grid gap-8 lg:min-h-[430px] lg:grid-cols-[1fr_0.92fr_1fr] lg:items-stretch">
+            <article
+              className="relative isolate overflow-hidden px-7 py-10 text-white shadow-xl md:px-10 lg:px-8 lg:py-12"
+              style={{
+                clipPath:
+                  "polygon(0 5%, 3% 1%, 8% 0, 12% 6%, 19% 2%, 24% 8%, 31% 1%, 37% 5%, 44% 0, 53% 7%, 60% 2%, 68% 6%, 76% 1%, 83% 4%, 91% 0, 97% 3%, 100% 1%, 100% 97%, 95% 100%, 89% 96%, 84% 92%, 76% 98%, 70% 94%, 63% 99%, 56% 91%, 47% 97%, 40% 90%, 31% 95%, 24% 88%, 17% 94%, 9% 89%, 4% 92%, 0 87%)",
+              }}
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src="/team/victor/SurfaceMineBackground.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 30vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[#081632]/82" />
+              </div>
+
+              <div className="relative z-10 flex h-full flex-col items-start">
+                <div className="mx-auto flex size-32 items-center justify-center overflow-hidden rounded-full bg-white/80 shadow-lg md:size-36">
+                  <Image
+                    src="/team/victor/SurfaceMineLogo.jpg"
+                    alt="SurfaceMine logo"
+                    width={144}
+                    height={144}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div className="mt-8 w-full text-center lg:text-left">
+                  <p className="text-xl font-black tracking-tight text-lime-400 md:text-2xl">
+                    SURFACE MINE
+                  </p>
+                  <h2 className="mt-3 text-lg font-bold tracking-tight text-sky-400 md:text-xl">
+                    Sustainability in Ewaste
+                  </h2>
+                </div>
+
+                <div className="mt-7 flex items-start gap-5">
+                  <span className="mt-1 h-16 w-1 shrink-0 bg-lime-400/80" />
+                  <p className="max-w-xs text-sm leading-relaxed text-white/75 md:text-base">
+                    Turning E-Waste plastic into recycled filament and 3D
+                    printed products
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article className="relative isolate flex flex-col items-center justify-center overflow-hidden px-2 py-6 text-center md:px-6 lg:py-12">
+              <span className="h-2 w-32 bg-sky-300 md:w-36" />
+              <p className="relative z-10 mt-6 text-3xl font-black tracking-tight text-sky-500">
+                POLYMAYA
+              </p>
+              <h2 className="relative z-10 mt-6 text-2xl leading-tight font-bold tracking-tight text-[#111111] md:text-[2.2rem]">
+                Undergraduate Mechatronics
+                <br />
+                Engineering Intern
+              </h2>
+
+              <div className="relative z-10 mt-10 flex size-32 items-center justify-center overflow-hidden rounded-full bg-white shadow-lg md:size-36">
+                <Image
+                  src="/team/victor/polymaya_logo.png"
+                  alt="Polymaya logo"
+                  width={144}
+                  height={144}
+                  className="h-full w-full object-contain p-3"
+                />
+              </div>
+            </article>
+
+            <article
+              className="relative isolate overflow-hidden px-7 py-10 text-white shadow-xl md:px-10 lg:px-8 lg:py-12"
+              style={{
+                clipPath:
+                  "polygon(0 2%, 5% 6%, 11% 1%, 18% 5%, 26% 0, 33% 7%, 39% 3%, 47% 8%, 55% 2%, 63% 6%, 71% 1%, 80% 4%, 88% 0, 95% 5%, 100% 4%, 100% 95%, 96% 92%, 90% 97%, 83% 94%, 77% 100%, 69% 95%, 61% 98%, 53% 93%, 46% 99%, 37% 94%, 29% 97%, 21% 91%, 14% 95%, 7% 90%, 0 93%)",
+              }}
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src="/team/victor/Refit8Background.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 30vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[#081632]/84" />
+              </div>
+
+              <div className="relative z-10 flex h-full flex-col items-start">
+                <div className="w-full text-center lg:text-right">
+                  <p className="text-xl font-black tracking-tight text-orange-400 md:text-2xl">
+                    REFIT8
+                  </p>
+                  <h2 className="mt-3 text-lg font-bold tracking-tight text-sky-400 md:text-xl">
+                    Sustainability in Construction
+                  </h2>
+                </div>
+
+                <div className="mt-7 flex items-start gap-5 lg:flex-row-reverse">
+                  <span className="mt-1 h-24 w-1 shrink-0 bg-orange-400/80" />
+                  <p className="max-w-xs text-sm leading-relaxed text-white/75 md:text-base lg:text-right">
+                    Capturing data on asset lifecycles to reduce waste and plan
+                    for reuse and recycling in fit-outs and de-fits
+                  </p>
+                </div>
+
+                <div className="mt-8 flex w-full flex-1 items-center justify-center">
+                  <div className="flex size-32 items-center justify-center overflow-hidden rounded-full bg-white shadow-lg md:size-36">
+                    <Image
+                      src="/team/victor/refit8Logo.png"
+                      alt="Refit8 logo"
+                      width={144}
+                      height={144}
+                      className="h-full w-full object-contain p-3"
+                    />
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
