@@ -2,6 +2,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -9,10 +10,12 @@ import { useEffect, useRef } from "react";
 
 import AnimatedContent from "./_components/AnimatedContent";
 import BorderGlow from "./_components/BorderGlow";
+import BounceCards from "./_components/BounceCards";
 import FlipCard from "./_components/FlipCard";
 import LogoButton from "./_components/LogoButton";
 import MagicRingsP2AgentX from "./_components/MagicRingsP2AgentX";
 import P2AgentXLogoButton from "./_components/P2AgentXLogoButton";
+import SoftAurora from "./_components/SoftAurora";
 import UserInteractiveAppCarousel from "./_components/UserInteractiveAppCarousel";
 import VictorProfileCard from "./_components/VictorProfileCard";
 import VictorShapeGrid from "./_components/VictorShapeGrid";
@@ -27,6 +30,10 @@ export default function VictorPage() {
   const thesisContentRef = useRef<HTMLDivElement>(null);
   const thesisTopFoldRef = useRef<HTMLDivElement>(null);
   const thesisBottomFoldRef = useRef<HTMLDivElement>(null);
+  const origamiSectionRef = useRef<HTMLDivElement>(null);
+  const origamiContentRef = useRef<HTMLDivElement>(null);
+  const origamiTopBarRef = useRef<HTMLDivElement>(null);
+  const origamiBottomBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const heroSection = heroSectionRef.current;
@@ -174,6 +181,106 @@ export default function VictorPage() {
         gsap.killTweensOf([thesisTopFold, thesisBottomFold, thesisContent]);
       };
     }, thesisSection);
+
+    return () => context.revert();
+  }, []);
+
+  useEffect(() => {
+    const origamiSection = origamiSectionRef.current;
+    const origamiContent = origamiContentRef.current;
+    const origamiTopBar = origamiTopBarRef.current;
+    const origamiBottomBar = origamiBottomBarRef.current;
+
+    if (
+      !origamiSection ||
+      !origamiContent ||
+      !origamiTopBar ||
+      !origamiBottomBar
+    ) {
+      return;
+    }
+
+    const context = gsap.context(() => {
+      gsap.set(origamiSection, { perspective: 1200 });
+      gsap.set([origamiTopBar, origamiBottomBar], {
+        scaleY: 1,
+        opacity: 1,
+        visibility: "visible",
+      });
+      gsap.set(origamiTopBar, { transformOrigin: "top center", rotateX: 0 });
+      gsap.set(origamiBottomBar, {
+        transformOrigin: "bottom center",
+        rotateX: 0,
+      });
+      gsap.set(origamiContent, { opacity: 0.3, scale: 0.97 });
+
+      const openOrigami = () => {
+        gsap.to(origamiTopBar, {
+          scaleY: 0,
+          rotateX: -88,
+          opacity: 0.25,
+          duration: 0.95,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+        gsap.to(origamiBottomBar, {
+          scaleY: 0,
+          rotateX: 88,
+          opacity: 0.25,
+          duration: 0.95,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+        gsap.to(origamiContent, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      };
+
+      const closeOrigami = () => {
+        gsap.to(origamiTopBar, {
+          scaleY: 1,
+          rotateX: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: "power2.inOut",
+          overwrite: "auto",
+        });
+        gsap.to(origamiBottomBar, {
+          scaleY: 1,
+          rotateX: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: "power2.inOut",
+          overwrite: "auto",
+        });
+        gsap.to(origamiContent, {
+          opacity: 0.3,
+          scale: 0.97,
+          duration: 0.55,
+          ease: "power2.inOut",
+          overwrite: "auto",
+        });
+      };
+
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: origamiSection,
+        start: "top 78%",
+        end: "bottom 22%",
+        onEnter: openOrigami,
+        onLeave: closeOrigami,
+        onEnterBack: openOrigami,
+        onLeaveBack: closeOrigami,
+      });
+
+      return () => {
+        scrollTrigger.kill();
+        gsap.killTweensOf([origamiTopBar, origamiBottomBar, origamiContent]);
+      };
+    }, origamiSection);
 
     return () => context.revert();
   }, []);
@@ -680,6 +787,134 @@ export default function VictorPage() {
                 </div>
               </article>
             </AnimatedContent>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-8 md:px-8 md:py-12">
+        <div
+          ref={origamiSectionRef}
+          className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[32px] bg-white px-0 py-0 text-white shadow-[0_28px_70px_rgba(9,20,59,0.18)]"
+        >
+          <div className="absolute inset-x-0 top-0 z-[15] h-[25px] bg-[#040b18]" />
+          <div className="absolute inset-x-0 bottom-0 z-[15] h-[25px] bg-[#040b18]" />
+          <div
+            ref={origamiTopBarRef}
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 h-1/2 bg-[#040b18] shadow-[0_14px_28px_rgba(0,0,0,0.35)]"
+          />
+          <div
+            ref={origamiBottomBarRef}
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-1/2 bg-[#040b18] shadow-[0_-14px_28px_rgba(0,0,0,0.35)]"
+          />
+
+          <div
+            ref={origamiContentRef}
+            className="relative z-10 flex min-h-[560px] flex-col justify-between gap-2 bg-white px-5 pt-[56px] pb-[44px] md:min-h-[600px] md:px-8 md:pt-[62px] md:pb-[48px]"
+          >
+            <div className="pointer-events-none absolute inset-x-0 top-[25px] bottom-[25px] opacity-55">
+              <VictorShapeGrid
+                direction="down"
+                speed={0.2}
+                squareSize={54}
+                borderColor="#d8e8ff"
+                hoverFillColor="#eef6ff"
+                className="h-full w-full"
+              />
+            </div>
+
+            <div className="grid items-center gap-6 md:grid-cols-[1fr_auto_1fr]">
+              <div className="flex items-start justify-center md:justify-end">
+                <div className="relative z-10 w-full max-w-[240px] text-center md:text-left">
+                  <span className="mx-auto mb-5 block h-2 w-36 bg-sky-300/95 md:mr-auto md:ml-0" />
+                  <p className="text-3xl font-black tracking-tight text-sky-300 md:text-[2.2rem]">
+                    V.ARTPOSTS.L
+                  </p>
+                  <a
+                    href="https://www.instagram.com/v.artposts.l/?hl="
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-full border border-sky-200/70 bg-white/85 px-4 py-2 text-sm font-bold text-sky-500 shadow-sm transition hover:scale-[1.02] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2"
+                    aria-label="Check out V.ARTPOSTS.L on Instagram"
+                  >
+                    <Instagram className="size-4" />
+                    <span>Check it out</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative z-10 mx-auto flex size-36 items-center justify-center overflow-hidden rounded-full bg-[#c7c7c7] shadow-xl md:size-40">
+                <Image
+                  src="/team/victor/Alexandria_origami.png"
+                  alt="Alexandria origami logo"
+                  width={180}
+                  height={180}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              <div className="flex items-end justify-center md:justify-start">
+                <div className="relative z-10 w-full max-w-[260px] text-center md:text-left">
+                  <p className="text-3xl font-black tracking-tight text-black md:text-[2.2rem]">
+                    Origami and more!
+                  </p>
+                  <span className="mx-auto mt-5 block h-2 w-36 bg-sky-300/95 md:ml-0" />
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-10 mx-auto flex w-full max-w-[760px] justify-center overflow-hidden rounded-[28px] bg-[#040b18] px-4 py-[18px] shadow-[0_18px_40px_rgba(13,41,110,0.28)] md:px-6 md:py-[26px]">
+              <Image
+                src="/team/victor/origami_background.png"
+                alt=""
+                fill
+                sizes="(min-width: 768px) 760px, 100vw"
+                className="object-cover opacity-50 brightness-110"
+              />
+              <div className="absolute inset-0 z-[3] opacity-100 mix-blend-plus-lighter">
+                <SoftAurora
+                  speed={0.6}
+                  scale={1.5}
+                  brightness={1.4}
+                  color1="#06B6D4"
+                  color2="#0a4ee5"
+                  noiseFrequency={2.5}
+                  noiseAmplitude={2}
+                  bandHeight={0.5}
+                  bandSpread={1}
+                  octaveDecay={0.1}
+                  layerOffset={0.2}
+                  colorSpeed={1.3}
+                  enableMouseInteraction={true}
+                  mouseInfluence={0.35}
+                />
+              </div>
+              <div className="absolute inset-0 z-[2] bg-[#040b18]/8" />
+              <div className="relative z-10 flex w-full justify-center overflow-hidden">
+                <BounceCards
+                  className="max-w-full"
+                  images={[
+                    "/team/victor/Alexandria_origami.png",
+                    "/team/victor/firery_dragon_2_origami.png",
+                    "/team/victor/phoenix_origami.png",
+                    "/team/victor/origami_shinlong.png",
+                    "/team/victor/guitar_origami.png",
+                  ]}
+                  containerWidth={500}
+                  containerHeight={250}
+                  animationDelay={1}
+                  animationStagger={0.08}
+                  easeType="elastic.out(1, 0.5)"
+                  transformStyles={[
+                    "rotate(5deg) translate(-150px)",
+                    "rotate(0deg) translate(-70px)",
+                    "rotate(-5deg)",
+                    "rotate(5deg) translate(70px)",
+                    "rotate(-5deg) translate(150px)",
+                  ]}
+                  enableHover
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
