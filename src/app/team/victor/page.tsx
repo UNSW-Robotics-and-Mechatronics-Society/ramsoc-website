@@ -5,12 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import AnimatedContent from "./_components/AnimatedContent";
 import BorderGlow from "./_components/BorderGlow";
 import BounceCards from "./_components/BounceCards";
+import CountUp from "./_components/CountUp";
 import FlipCard from "./_components/FlipCard";
 import LogoButton from "./_components/LogoButton";
 import MagicRingsP2AgentX from "./_components/MagicRingsP2AgentX";
@@ -21,6 +21,36 @@ import VictorProfileCard from "./_components/VictorProfileCard";
 import VictorShapeGrid from "./_components/VictorShapeGrid";
 
 gsap.registerPlugin(ScrollTrigger);
+
+declare global {
+  interface Window {
+    Elfsight?: {
+      destroy?: () => void;
+      init?: () => void;
+    };
+  }
+}
+
+function getNextDecemberTenth(fromDate = new Date()) {
+  const year =
+    fromDate.getMonth() === 11 && fromDate.getDate() > 10
+      ? fromDate.getFullYear() + 1
+      : fromDate.getFullYear();
+
+  return new Date(year, 11, 10);
+}
+
+function getDaysUntilDecemberTenth(fromDate = new Date()) {
+  const now = new Date(
+    fromDate.getFullYear(),
+    fromDate.getMonth(),
+    fromDate.getDate(),
+  );
+  const target = getNextDecemberTenth(now);
+  const difference = target.getTime() - now.getTime();
+
+  return Math.max(0, Math.ceil(difference / (1000 * 60 * 60 * 24)));
+}
 
 export default function VictorPage() {
   const heroSectionRef = useRef<HTMLElement>(null);
@@ -34,6 +64,10 @@ export default function VictorPage() {
   const origamiContentRef = useRef<HTMLDivElement>(null);
   const origamiTopBarRef = useRef<HTMLDivElement>(null);
   const origamiBottomBarRef = useRef<HTMLDivElement>(null);
+  const linkedinWidgetRef = useRef<HTMLDivElement>(null);
+  const [daysUntilDecemberTenth, setDaysUntilDecemberTenth] = useState(() =>
+    getDaysUntilDecemberTenth(),
+  );
 
   useEffect(() => {
     const heroSection = heroSectionRef.current;
@@ -186,6 +220,32 @@ export default function VictorPage() {
   }, []);
 
   useEffect(() => {
+    const updateCountdown = () => {
+      setDaysUntilDecemberTenth(getDaysUntilDecemberTenth());
+    };
+
+    updateCountdown();
+
+    const now = new Date();
+    const nextMidnight = new Date(now);
+    nextMidnight.setHours(24, 0, 0, 0);
+    const delay = nextMidnight.getTime() - now.getTime();
+    let intervalId: number | undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      updateCountdown();
+      intervalId = window.setInterval(updateCountdown, 24 * 60 * 60 * 1000);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId) {
+        window.clearInterval(intervalId);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const origamiSection = origamiSectionRef.current;
     const origamiContent = origamiContentRef.current;
     const origamiTopBar = origamiTopBarRef.current;
@@ -285,10 +345,49 @@ export default function VictorPage() {
     return () => context.revert();
   }, []);
 
+  useEffect(() => {
+    const initializeWidget = () => {
+      if (!linkedinWidgetRef.current) return;
+
+      linkedinWidgetRef.current.innerHTML = "";
+      linkedinWidgetRef.current.className =
+        "elfsight-app-7a246483-c4a5-4958-bd86-00bbe1af7b11 relative z-10 mt-6 min-h-[360px]";
+
+      window.Elfsight?.destroy?.();
+      window.Elfsight?.init?.();
+    };
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[src="https://elfsightcdn.com/platform.js"]',
+    );
+
+    if (existingScript) {
+      if (window.Elfsight?.init) {
+        initializeWidget();
+      } else {
+        existingScript.addEventListener("load", initializeWidget, {
+          once: true,
+        });
+      }
+
+      return () => {
+        existingScript.removeEventListener("load", initializeWidget);
+      };
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://elfsightcdn.com/platform.js";
+    script.async = true;
+    script.addEventListener("load", initializeWidget, { once: true });
+    document.body.appendChild(script);
+
+    return () => {
+      script.removeEventListener("load", initializeWidget);
+    };
+  }, []);
+
   return (
     <main className="w-full py-12">
-      <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-
       <div className="mx-auto max-w-5xl px-4 md:px-8">
         <Link
           href="/team"
@@ -467,7 +566,7 @@ export default function VictorPage() {
 
         <div
           ref={thesisContentRef}
-          className="relative z-10 mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_260px] md:items-start md:gap-10 md:px-8"
+          className="relative z-10 mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_320px] md:items-start md:gap-10 md:px-8"
         >
           <div className="md:col-start-1">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
@@ -491,15 +590,32 @@ export default function VictorPage() {
             </ul>
           </div>
 
-          <div className="mx-auto w-full max-w-[210px] md:col-start-3 md:row-start-1 md:mx-0 md:w-[260px] md:max-w-none">
-            <div className="relative aspect-[1.55/1] overflow-hidden rounded-2xl bg-neutral-300">
+          <div className="mx-auto flex w-full max-w-[240px] flex-col items-center text-center md:col-start-3 md:row-start-1 md:mx-0 md:w-[320px] md:max-w-none">
+            <div className="relative min-h-[180px] w-full overflow-hidden rounded-2xl bg-white/10 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.18)] md:min-h-[250px]">
               <Image
                 src="/team/victor/More_to_come.png"
                 alt="More to come thesis teaser"
                 fill
-                sizes="(min-width: 768px) 260px, 210px"
-                className="object-cover"
+                sizes="(min-width: 768px) 320px, 240px"
+                className="object-contain object-center"
               />
+            </div>
+            <div className="mt-5 text-center">
+              <p className="text-primary-400 text-[1.35rem] font-black tracking-tight md:text-[1.85rem]">
+                Days Till Graduation
+              </p>
+              <p className="mt-2 text-3xl font-black tracking-tight text-white md:text-[2.4rem]">
+                <CountUp
+                  key={daysUntilDecemberTenth}
+                  from={0}
+                  to={daysUntilDecemberTenth}
+                  separator=","
+                  direction="up"
+                  duration={1.5}
+                  delay={0.5}
+                  replayOnExit
+                />
+              </p>
             </div>
           </div>
         </div>
@@ -791,10 +907,20 @@ export default function VictorPage() {
         </div>
       </section>
 
-      <section className="bg-white px-4 py-8 md:px-8 md:py-12">
+      <section className="relative overflow-hidden bg-white px-4 py-8 md:px-8 md:py-12">
+        <div className="pointer-events-none absolute inset-0 opacity-60">
+          <VictorShapeGrid
+            direction="down"
+            speed={0.2}
+            squareSize={54}
+            borderColor="#d8e8ff"
+            hoverFillColor="#eef6ff"
+            className="h-full w-full"
+          />
+        </div>
         <div
           ref={origamiSectionRef}
-          className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[32px] bg-white px-0 py-0 text-white shadow-[0_28px_70px_rgba(9,20,59,0.18)]"
+          className="relative z-10 mx-auto w-full max-w-6xl overflow-hidden rounded-[32px] bg-white px-0 py-0 text-white shadow-[0_28px_70px_rgba(9,20,59,0.18)]"
         >
           <div className="absolute inset-x-0 top-0 z-[15] h-[25px] bg-[#040b18]" />
           <div className="absolute inset-x-0 bottom-0 z-[15] h-[25px] bg-[#040b18]" />
@@ -813,9 +939,9 @@ export default function VictorPage() {
           >
             <div className="pointer-events-none absolute inset-x-0 top-[25px] bottom-[25px] opacity-55">
               <VictorShapeGrid
-                direction="down"
-                speed={0.2}
-                squareSize={54}
+                direction="up"
+                speed={0.25}
+                squareSize={64}
                 borderColor="#d8e8ff"
                 hoverFillColor="#eef6ff"
                 className="h-full w-full"
@@ -833,7 +959,7 @@ export default function VictorPage() {
                     href="https://www.instagram.com/v.artposts.l/?hl="
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 rounded-full border border-sky-200/70 bg-white/85 px-4 py-2 text-sm font-bold text-sky-500 shadow-sm transition hover:scale-[1.02] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2"
+                    className="mt-4 inline-flex items-center gap-2 rounded-full border border-fuchsia-300/60 bg-gradient-to-r from-[#833AB4] via-[#C13584] to-[#F77737] px-4 py-2 text-sm font-bold text-white shadow-[0_10px_24px_rgba(193,53,132,0.28)] transition hover:scale-[1.02] hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 focus-visible:ring-offset-2"
                     aria-label="Check out V.ARTPOSTS.L on Instagram"
                   >
                     <Instagram className="size-4" />
@@ -919,15 +1045,27 @@ export default function VictorPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pb-16 md:px-8">
-        <div className="rounded-3xl bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-primary-600 text-center text-2xl font-black italic md:text-3xl">
-            LinkedIn Feed
-          </h2>
-          <div
-            className="elfsight-app-7a246483-c4a5-4958-bd86-00bbe1af7b11 mt-6"
-            data-elfsight-app-lazy
+      <section className="relative overflow-hidden px-4 pb-16 md:px-8">
+        <div className="pointer-events-none absolute inset-0 opacity-60">
+          <VictorShapeGrid
+            direction="right"
+            speed={0.2}
+            squareSize={54}
+            borderColor="#d8e8ff"
+            hoverFillColor="#eef6ff"
+            className="h-full w-full"
           />
+        </div>
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <div className="relative overflow-hidden rounded-3xl bg-white p-6 shadow-sm md:p-8">
+            <h2 className="text-primary-600 text-center text-2xl font-black italic md:text-3xl">
+              LinkedIn Feed
+            </h2>
+            <div
+              ref={linkedinWidgetRef}
+              className="elfsight-app-7a246483-c4a5-4958-bd86-00bbe1af7b11 relative z-10 mt-6 min-h-[360px]"
+            />
+          </div>
         </div>
       </section>
     </main>

@@ -33,10 +33,18 @@ const ShapeGrid = ({
     const hexVert = squareSize * Math.sqrt(3);
 
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      numSquaresX.current = Math.ceil(canvas.width / squareSize) + 1;
-      numSquaresY.current = Math.ceil(canvas.height / squareSize) + 1;
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      numSquaresX.current = Math.ceil(width / squareSize) + 1;
+      numSquaresY.current = Math.ceil(height / squareSize) + 1;
     };
 
     window.addEventListener('resize', resizeCanvas);
