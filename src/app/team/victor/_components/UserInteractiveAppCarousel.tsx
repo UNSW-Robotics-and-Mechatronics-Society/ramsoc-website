@@ -101,12 +101,15 @@ export default function UserInteractiveAppCarousel() {
 
   return (
     <article className="space-y-3">
-      <h3 className="text-primary-600 text-center text-xl font-bold italic tracking-tight md:text-3xl">
+      <h3 className="text-primary-600 text-center text-xl font-bold tracking-tight italic md:text-3xl">
         User Interactive App
       </h3>
 
       <div className="mx-auto w-full max-w-[400px]">
-        <div className="aspect-[5/3.5] w-full" style={{ perspective: "1200px" }}>
+        <div
+          className="aspect-[5/3.5] w-full"
+          style={{ perspective: "1200px" }}
+        >
           <div
             className="relative h-full w-full transition-transform duration-700"
             style={{
@@ -157,15 +160,18 @@ export default function UserInteractiveAppCarousel() {
               <p className="text-primary-600 text-xs font-black tracking-[0.2em] uppercase">
                 User Interactive App
               </p>
-              <p className="mt-3 text-sm leading-relaxed font-semibold md:text-base">
-                This web interface is locally hosted on the robot and will be used for the user to interact with the robot, 
-                test movement features and percieve data. Main Features include:
-                <ul className="list-disc list-inside mt-2">
+              <div className="mt-3 text-sm leading-relaxed font-semibold md:text-base">
+                <p>
+                  This web interface is locally hosted on the robot and will be
+                  used for the user to interact with the robot, test movement
+                  features and perceive data . Main features include:
+                </p>
+                <ul className="mt-2 list-inside list-disc">
                   <li>Real-time movement control</li>
                   <li>Camera feed display</li>
                   <li>Terminal access for diagnostics</li>
                 </ul>
-              </p>
+              </div>
               <p className="text-primary-600 mt-4 text-xs font-bold uppercase">
                 Click to flip back
               </p>

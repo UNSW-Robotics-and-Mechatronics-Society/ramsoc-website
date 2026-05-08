@@ -24,6 +24,10 @@ type AnimatedContentProps = ComponentPropsWithoutRef<"div"> & {
   scale?: number;
   threshold?: number;
   delay?: number;
+  replay?: boolean;
+  exitDistance?: number;
+  exitScale?: number;
+  exitOpacity?: number;
   disappearAfter?: number;
   disappearDuration?: number;
   disappearEase?: string;
@@ -44,6 +48,10 @@ export default function AnimatedContent({
   scale = 1,
   threshold = 0.1,
   delay = 0,
+  replay = false,
+  exitDistance,
+  exitScale,
+  exitOpacity,
   disappearAfter = 0,
   disappearDuration = 0.5,
   disappearEase = "power3.in",
@@ -67,14 +75,60 @@ export default function AnimatedContent({
 
     const axis = direction === "horizontal" ? "x" : "y";
     const offset = reverse ? -distance : distance;
+    const resolvedExitDistance = exitDistance ?? distance;
+    const exitOffset = reverse ? -resolvedExitDistance : resolvedExitDistance;
+    const hiddenOpacity = animateOpacity ? initialOpacity : 1;
     const startPct = (1 - threshold) * 100;
 
     gsap.set(element, {
       [axis]: offset,
       scale,
-      opacity: animateOpacity ? initialOpacity : 1,
+      opacity: hiddenOpacity,
       visibility: "visible",
     });
+
+    const animateIn = () => {
+      gsap.to(element, {
+        [axis]: 0,
+        scale: 1,
+        opacity: 1,
+        duration,
+        ease,
+        delay,
+        overwrite: "auto",
+        onComplete,
+      });
+    };
+
+    const animateOut = () => {
+      gsap.to(element, {
+        [axis]: exitOffset,
+        scale: exitScale ?? scale,
+        opacity: exitOpacity ?? hiddenOpacity,
+        duration: disappearDuration,
+        ease: disappearEase,
+        overwrite: "auto",
+        onComplete: onDisappearanceComplete,
+      });
+    };
+
+    if (replay) {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: element,
+        scroller: scrollerTarget,
+        start: `top ${startPct}%`,
+        end: "bottom top",
+        onEnter: animateIn,
+        onLeave: animateOut,
+        onEnterBack: animateIn,
+        onLeaveBack: animateOut,
+      });
+
+      return () => {
+        scrollTrigger.kill();
+        gsap.killTweensOf(element);
+      };
+    }
 
     const timeline = gsap.timeline({
       paused: true,
@@ -119,20 +173,24 @@ export default function AnimatedContent({
   }, [
     container,
     distance,
-    direction,
-    reverse,
-    duration,
-    ease,
-    initialOpacity,
-    animateOpacity,
-    scale,
-    threshold,
-    delay,
-    disappearAfter,
-    disappearDuration,
-    disappearEase,
-    onComplete,
-    onDisappearanceComplete,
+      direction,
+      reverse,
+      duration,
+      ease,
+      initialOpacity,
+      animateOpacity,
+      scale,
+      threshold,
+      delay,
+      replay,
+      exitDistance,
+      exitScale,
+      exitOpacity,
+      disappearAfter,
+      disappearDuration,
+      disappearEase,
+      onComplete,
+      onDisappearanceComplete,
   ]);
 
   return (

@@ -1,30 +1,21 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+
+import LogoButton from "./LogoButton";
 
 export default function P2AgentXLogoButton() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <div className="-translate-x-1/2 -translate-y-1/2">
-        <a
-          href="https://www.p2agentx.com/"
-          target="_blank"
-          rel="noreferrer"
-          className="flex size-28 items-center justify-center overflow-hidden rounded-full bg-[#222a34] shadow-xl transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 md:size-36"
-          aria-label="Open P2AgentX website"
-        >
-          <Image
-            src="/team/victor/P2AgentXLogo.jpg"
-            alt="P2AgentX logo"
-            width={144}
-            height={144}
-            className="h-full w-full object-cover"
-          />
-        </a>
-
+      <LogoButton
+        href="https://www.p2agentx.com/"
+        src="/team/victor/P2AgentXLogo.jpg"
+        alt="P2AgentX logo"
+        ariaLabel="Open P2AgentX website"
+        containerClassName="-translate-x-1/2 -translate-y-1/2"
+      >
         <button
           type="button"
           onClick={() => setIsOpen(true)}
@@ -33,7 +24,7 @@ export default function P2AgentXLogoButton() {
         >
           [ Video ]
         </button>
-      </div>
+      </LogoButton>
 
       {isOpen ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#020a17]/80 p-6 backdrop-blur-sm">
