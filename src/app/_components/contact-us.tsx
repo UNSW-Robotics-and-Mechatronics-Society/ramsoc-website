@@ -182,7 +182,7 @@ export default function ContactUs() {
                   <option value="student">Student</option>
                   <option value="teacher">Teacher</option>
                   <option value="industry">Industry</option>
-                  <option value="it_test">IT_TEST</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>

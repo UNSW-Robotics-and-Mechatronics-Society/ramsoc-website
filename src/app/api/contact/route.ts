@@ -7,7 +7,7 @@ const RECIPIENT: Record<string, string> = {
   student: "info@ramsocunsw.org",
   teacher: "outreach@ramsocunsw.org",
   industry: "sponsorships@ramsocunsw.org",
-  it_test: "it.port@ramsocunsw.org",
+  other: "info@ramsocunsw.org",
 };
 
 export async function POST(request: Request) {
