@@ -202,35 +202,49 @@ export default function ContactUs() {
 
               {/* File attachment */}
               <div className="mt-3">
+                {/* sr-only keeps it accessible + clickable; display:none blocks programmatic .click() in some browsers */}
                 <input
                   ref={fileInputRef}
                   type="file"
                   multiple
                   onChange={handleFileChange}
-                  className="hidden"
+                  className="sr-only"
                 />
+
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isSubmitting}
-                  className="flex items-center gap-2 border border-neutral-400 px-4 py-2 text-xs font-bold tracking-[0.15em] text-neutral-500 uppercase transition-colors hover:border-primary-500 hover:text-primary-500 disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 border border-dashed border-neutral-400 py-2.5 text-xs font-bold tracking-[0.15em] text-neutral-400 uppercase transition-colors hover:border-primary-500 hover:text-primary-500 disabled:opacity-50"
                 >
                   <HiPaperClip className="size-4" />
-                  Attach Files
+                  {files.length > 0
+                    ? `${files.length} file${files.length > 1 ? "s" : ""} attached — add more`
+                    : "Attach Files"}
                 </button>
 
                 {files.length > 0 && (
-                  <ul className="mt-2 flex flex-col gap-1">
+                  <ul className="mt-2 divide-y divide-neutral-100 border border-neutral-200">
                     {files.map((file, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 text-xs text-neutral-500"
+                        className="flex items-center gap-3 bg-white px-3 py-2"
                       >
-                        <span className="max-w-50 truncate">{file.name}</span>
+                        <HiPaperClip className="size-3.5 shrink-0 text-primary-500" />
+                        <span className="min-w-0 flex-1 truncate text-xs font-medium text-primary-950">
+                          {file.name}
+                        </span>
+                        <span className="shrink-0 text-xs text-neutral-400">
+                          {file.size < 1024
+                            ? `${file.size} B`
+                            : file.size < 1024 * 1024
+                              ? `${(file.size / 1024).toFixed(1)} KB`
+                              : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
+                        </span>
                         <button
                           type="button"
                           onClick={() => removeFile(i)}
-                          className="ml-auto text-neutral-400 transition-colors hover:text-primary-500"
+                          className="shrink-0 text-neutral-300 transition-colors hover:text-red-500"
                           aria-label={`Remove ${file.name}`}
                         >
                           <HiX className="size-3.5" />
