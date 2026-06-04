@@ -12,6 +12,7 @@ export const env = createEnv({
     CONTENTFUL_SPACE_ID: z.string(),
     CONTENTFUL_ACCESS_TOKEN: z.string(),
     NOTION_TOKEN: z.string(),
+    RESEND_API_KEY: z.string().optional(),
   },
 
   /**
@@ -36,6 +37,7 @@ export const env = createEnv({
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
     NOTION_TOKEN: process.env.NOTION_TOKEN,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_NOTION_CAREERS_DB_SOURCE_ID:
       process.env.NEXT_PUBLIC_NOTION_CAREERS_DB_SOURCE_ID,
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
