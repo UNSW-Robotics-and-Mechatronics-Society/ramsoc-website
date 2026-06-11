@@ -8,6 +8,7 @@ const RECIPIENT: Record<string, string> = {
   teacher: "outreach@ramsocunsw.org",
   industry: "sponsorships@ramsocunsw.org",
   other: "info@ramsocunsw.org",
+  it_test: "it.port@ramsocunsw.org",
 };
 
 export async function POST(request: Request) {
