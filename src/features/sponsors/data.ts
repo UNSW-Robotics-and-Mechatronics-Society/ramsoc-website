@@ -60,4 +60,9 @@ export const CURRENT_SPONSORS: Sponsor[] = [
     logo: "/home/cse_pic.png",
     url: "https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering",
   },
+  {
+    name: "ANT61",
+    logo: "/home/ant61-logo.png",
+    url: "https://ant61.com/",
+  },
 ];
