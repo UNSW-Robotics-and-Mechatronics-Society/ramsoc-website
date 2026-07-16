@@ -56,13 +56,13 @@ export const CURRENT_SPONSORS: Sponsor[] = [
     url: "https://kokoamusement.com.au/",
   },
   {
-    name: "UNSW School of Computer Science and Engineering",
-    logo: "/home/cse_pic.png",
-    url: "https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering",
-  },
-  {
     name: "ANT61",
     logo: "/home/ant61-logo.png",
     url: "https://ant61.com/",
+  },
+  {
+    name: "UNSW School of Computer Science and Engineering",
+    logo: "/home/cse_pic.png",
+    url: "https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering",
   },
 ];
