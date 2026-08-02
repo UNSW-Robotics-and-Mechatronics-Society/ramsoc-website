@@ -14,8 +14,7 @@ export const LINKTREE_URL = "https://linktr.ee/RAMSocUNSW";
 export const JOIN_US_URL =
   "https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VybQAE";
 export const SUMOBOTS_URL = "https://sumobots.ramsocunsw.org";
-export const BUILDATHON_URL =
-  "https://www.facebook.com/events/1154974769420620";
+export const BUILDATHON_URL = "https://buildathon.ramsocunsw.org";
 
 // Helper Functions
 export const getFacebookEventUrl = (eventId: string | number) =>
