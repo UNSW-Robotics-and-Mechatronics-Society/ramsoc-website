@@ -9,6 +9,7 @@ import {
 import { SiLinktree } from "react-icons/si";
 
 import {
+  BUILDATHON_URL,
   DISCORD_URL,
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -27,6 +28,7 @@ const navLinks = [
 const resourceLinks = [
   { label: "Join on Rubric", href: "https://campus.hellorubric.com/?s=12676" },
   { label: "Sumobots", href: "https://sumobots.ramsocunsw.org" },
+  { label: "Buildathon", href: BUILDATHON_URL },
   {
     label: "Subcommittee Applications",
     href: process.env.NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL ?? "#",
