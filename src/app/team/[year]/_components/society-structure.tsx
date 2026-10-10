@@ -135,7 +135,7 @@ export function SocietyStructure() {
               rel="noopener noreferrer"
               className="font-medium text-primary-400 underline decoration-primary-500/30 underline-offset-2 transition-colors hover:text-primary-300"
             >
-              Apply for subcommittee
+              Apply Here
             </Link>
           </p>
         </motion.div>
