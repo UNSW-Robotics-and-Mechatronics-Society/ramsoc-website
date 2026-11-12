@@ -14,8 +14,11 @@ import { SiLinktree } from "react-icons/si";
 import Link from "next/link";
 
 import {
+  CONSTITUTION_EFFECTIVE_DATE,
+  CONSTITUTION_URL,
   DISCORD_URL,
   FACEBOOK_URL,
+  GRIEVANCE_FORM_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   LINKTREE_URL,
@@ -313,6 +316,56 @@ export default function ContactUs() {
               </Link>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Governance & Grievances */}
+        <motion.div
+          id="governance"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 border-l-2 border-primary-500 pl-8"
+        >
+          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-primary-500 uppercase">
+            // Governance &amp; Grievances
+          </span>
+          <h3 className="mb-4 text-2xl font-bold text-primary-950">
+            Raising A Grievance
+          </h3>
+          <p className="max-w-3xl text-sm leading-relaxed text-neutral-500">
+            If a conflict, concern or complaint can&apos;t be resolved between
+            the people involved, our Grievance, Equity, Diversity and Inclusion
+            (GEDI) Officer handles it confidentially. They examine what
+            happened and discuss the outcome and its reasoning with everyone
+            involved. Anything beyond a Student Grievance Officer&apos;s
+            responsibility — crime or sexual misconduct — is reported to Arc
+            and/or the police. Appeals go to Arc in writing within seven (7)
+            days of receiving a penalty.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-5">
+            <Link
+              href={GRIEVANCE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 text-sm font-bold tracking-[0.2em] text-primary-950 uppercase transition-colors hover:text-primary-500"
+            >
+              <span className="flex size-12 items-center justify-center bg-primary-500 text-white transition-colors group-hover:bg-primary-400">
+                <HiArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
+              </span>
+              Grievance Form
+            </Link>
+
+            <Link
+              href={CONSTITUTION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-neutral-500 underline-offset-4 transition-colors hover:text-primary-500 hover:underline"
+            >
+              Read the constitution (effective {CONSTITUTION_EFFECTIVE_DATE})
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
