@@ -7,7 +7,11 @@ import { HiArrowRight } from "react-icons/hi2";
 
 import { Button } from "@/components/ui/button";
 
-export default function MeetTheTeam() {
+interface MeetTheTeamProps {
+  year: number;
+}
+
+export default function MeetTheTeam({ year }: MeetTheTeamProps) {
   return (
     <section className="relative overflow-hidden">
       {/* Full-bleed image background */}
@@ -42,7 +46,7 @@ export default function MeetTheTeam() {
           <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl lg:text-8xl">
             Meet Our
             <br />
-            <span className="text-primary-400">2025 Team!</span>
+            <span className="text-primary-400">{year} Team!</span>
           </h2>
 
           <p className="mb-12 max-w-lg text-base leading-relaxed text-white/40">
