@@ -22,3 +22,9 @@ export const getFacebookEventUrl = (eventId: string | number) =>
 
 export const getNotionPageUrl = (pageId: string) =>
   `https://notion.so/${pageId.replace(/-/g, "")}`;
+
+// Governance
+export const CONSTITUTION_URL = "/RAMSoc Constitution 2026.pdf";
+export const CONSTITUTION_EFFECTIVE_DATE = "26 October 2026";
+export const GRIEVANCE_FORM_URL =
+  "https://forms.cloud.microsoft/pages/responsepage.aspx?id=pM_2PxXn20i44Qhnufn7oyjs5s-7OMdMtroBOQpyBT5URVZOVzkwTjBMTDZHNVkzVzJYQVpSRTM3RC4u&route=shorturl";

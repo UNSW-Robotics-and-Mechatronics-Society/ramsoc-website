@@ -10,8 +10,10 @@ import { SiLinktree } from "react-icons/si";
 
 import {
   BUILDATHON_URL,
+  CONSTITUTION_URL,
   DISCORD_URL,
   FACEBOOK_URL,
+  GRIEVANCE_FORM_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   LINKTREE_URL,
@@ -23,6 +25,7 @@ const navLinks = [
   { label: "Careers", href: "/careers" },
   { label: "Team", href: "/team" },
   { label: "Sponsors", href: "/sponsors" },
+  { label: "Governance", href: "/#governance" },
 ];
 
 const resourceLinks = [
@@ -33,6 +36,8 @@ const resourceLinks = [
     label: "Subcommittee Applications",
     href: process.env.NEXT_PUBLIC_SUBCOMMITTEE_APPLICATION_FORM_URL ?? "#",
   },
+  { label: "Constitution", href: CONSTITUTION_URL },
+  { label: "Grievance Form", href: GRIEVANCE_FORM_URL },
 ];
 
 const socialLinks = [
